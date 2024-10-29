@@ -1,0 +1,82 @@
+h2 {
+    border-bottom: 2px solid white;
+}
+
+table {
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table td {
+    color: black;
+    padding: 5px;
+}
+
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 15px;
+}
+
+table tr:first-child td:first-child {
+    border-top-left-radius: 15px;
+}
+    
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 15px;
+}
+
+table tr:first-child td:last-child {
+    border-top-right-radius: 15px;
+}
+
+table tr:nth-child(even) {
+    background: rgb(175, 188, 213);
+}
+
+table tr:nth-child(odd) {
+    background: rgb(213, 175, 175);
+}
+
+table tr td {
+    width: 25%;
+}
+
+.verb1 {
+    color: rgb(31, 201, 31);
+}
+
+.verb2 {
+    color: lime;
+}
+
+.sust1 {
+    color: rgb(0, 187, 255);
+}
+
+.sust2 {
+    color: aqua;
+}
+
+.particle1 {
+    color: yellow;
+}
+
+.particle2 {
+    color: orange;
+}
+
+.adverb {
+    color: rgb(255, 133, 133);
+}
+
+.nexo {
+    color: violet;
+}
+
+.transform1 {
+    color: rgb(255, 63, 159);
+}
+
+.transform2 {
+    color: rgb(255, 59, 255);
+}

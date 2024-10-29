@@ -1,0 +1,148 @@
+@font-face {
+    font-family: 'gowun';
+    src: url('../assets/fonts/GowunDodum-Regular.ttf');
+}
+
+* {
+    color: white;
+    font-family: gowun;
+}
+
+body {
+    background: silver url("../assets/img/background.png") no-repeat fixed center;
+    background-size: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.header {
+    background: rgb(51, 51, 51);
+    padding: 5px 0;
+}
+
+.header>.logo {
+    float: left;
+    height: 50px;
+    margin: 0 20px;
+    width: 50px;
+}
+
+.header>ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.header>ul>li, .navbar {
+    background: #555;
+    border-radius: 15px;
+    font-weight: bold;
+    margin: 5px;
+    padding: 10px;
+}
+
+.header>ul>li {
+    float: left;
+}
+
+.navbar::first-letter, .subnav::first-letter {
+    text-transform: uppercase;
+}
+
+.navbar.collapsable .icoCollapsed {
+    float: right;
+}
+
+.subnav {
+    border-radius: 15px;
+    display: none;
+    margin: 2px 0px 2px 20px;
+    padding: 5px 10px;
+}
+
+.header>ul>li:hover, .navbar:hover {
+    background: rgb(15, 27, 80);
+}
+
+.navbar>.subnav:hover {
+    background: rgb(26, 46, 136) !important;
+}
+
+.header>ul>li.selected, .navbar.selected {
+    background: rgb(80, 15, 15) !important;
+}
+
+.navbar>.subnav.selected {
+    background: rgb(130, 25, 25) !important;
+}
+
+.main {
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+    overflow-y: hidden;
+}
+
+.aside, .content {
+    background: rgba(51, 51, 51, .85);
+    border-radius: 15px 9px 9px 15px;
+    overflow-y: scroll;
+    visibility: hidden;
+}
+
+.aside {
+    flex: 2 2 10px;
+    margin: 10px 5px 10px 10px;
+    padding: 10px;
+}
+
+.content {
+    flex: 5 5;
+    margin: 10px 10px 10px 5px;
+    padding: 0px 10px 10px;
+}
+
+.footer {
+    background: rgb(51, 51, 51);
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+}
+
+.footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/*scrollbar*/
+::-webkit-scrollbar {
+    /* width */
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    /* Track */
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 0 10px 10px 0;
+}
+
+::-webkit-scrollbar-thumb {
+    /* Handle */
+    background: rgb(80, 15, 15);
+    border-radius: 0 10px 10px 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    /* Handle on hover */
+    background: rgb(15, 27, 80);
+}
+
+@media all and (max-width: 540px) {
+    .main {
+        flex-direction: column;
+    }
+}
