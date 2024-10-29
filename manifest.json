@@ -3,12 +3,13 @@
     "short_name": "K-NOTES ~ K-주석",
     "icons": [
         {
-            "src": "/assets/img/logo.png",
+            "src": "./assets/img/logo.png",
             "sizes": "192x192",
             "type": "image/png"
         }
     ],
-    "start_url": "/index.html",
+    "homepage": "https://esckelethor.github.io/knotes/",
+    "start_url": "./index.html",
     "display": "standalone",
     "orientation": "landscape"
 }

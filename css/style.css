@@ -10,7 +10,7 @@
 
 body {
     background: silver url("../assets/img/background.png") no-repeat fixed center;
-    background-size: 100%;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     height: 100vh;
