@@ -30,7 +30,7 @@ _vQuery.prototype.loadContent = function (data) {
 	data = data.replaceAll('.', '/');
 	this.ajax({
 		method: 'GET',
-		url: '../assets/content/' + data + '.html'
+		url: './assets/content/' + data + '.html'
 	}).then((data) => {
 		this.innerHTML(data);
 	}).catch((data) => {
