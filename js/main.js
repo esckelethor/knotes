@@ -2,7 +2,7 @@ menu = new Object();
 currentMenu = null;
 
 isCollapsed = function (collapsed) {
-    return (collapsed == 'true') ? '⮞' : '⮟';
+    return (collapsed == 'true') ? '►' : '▼';
 }
 
 setAsideEvents = function () {
@@ -91,7 +91,7 @@ loadAside = function () {
             var collapsableIco = $v().createElement({
                 label: 'code',
                 classes: ['icoCollapsed'],
-                innerHTML: '&#11166;'
+                innerHTML: isCollapsed('true')
             });
             $v('.aside #' + keyId).appendChilds(collapsableIco);
 
