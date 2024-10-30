@@ -2,7 +2,7 @@ menu = new Object();
 currentMenu = null;
 
 isCollapsed = function (collapsed) {
-    return (collapsed == 'true') ? '&#11166;' : '&#11167;';
+    return (collapsed == 'true') ? '⮞' : '⮟';
 }
 
 setAsideEvents = function () {
@@ -42,11 +42,13 @@ setAsideEvents = function () {
 
             //load content
             if (!$v('#' + event.currentTarget.id).hasClass('collapsable')) {
-                $v('#note').loadContent(currentMenu + '.' + event.currentTarget.id);
+                $v('#note').loadContent(currentMenu + '.' + event.currentTarget.id.formatKeyId());
+                $v('.content').css('visibility', 'visible');
             }
         } else {
             //close current note
             $v('#note').innerHTML('');
+            $v('.content').css('visibility', 'hidden');
         }
     });
     
@@ -57,7 +59,8 @@ setAsideEvents = function () {
         $v('#' + event.currentTarget.id).addClass('selected');
 
         //load content
-        $v('#note').loadContent(currentMenu + '.' + event.currentTarget.parentNode.id + '.' + event.currentTarget.id);
+        $v('#note').loadContent(currentMenu + '.' + event.currentTarget.parentNode.id.formatKeyId() + '.' + event.currentTarget.id);
+        $v('.content').css('visibility', 'visible');
     
         event.stopPropagation();
     });
@@ -70,9 +73,10 @@ loadAside = function () {
     var aside = menu[currentMenu];
 
     for(var key in aside) {
+        var keyId = key.formatKeyId(true);
         var contentAside = $v().createElement({
             label: 'div',
-            id: key,
+            id: keyId,
             classes: ['navbar'],
             innerHTML: key
         });
@@ -81,15 +85,15 @@ loadAside = function () {
         //check subnav
         if (aside[key].length > 0) {
             //add collapse options
-            $v('.aside #' + key).addClass('collapsable');
-            $v('.aside #' + key).attr({attr: 'data-collapsed', value: 'true'});
+            $v('.aside #' + keyId).addClass('collapsable');
+            $v('.aside #' + keyId).attr({attr: 'data-collapsed', value: 'true'});
 
             var collapsableIco = $v().createElement({
                 label: 'code',
                 classes: ['icoCollapsed'],
                 innerHTML: '&#11166;'
             });
-            $v('.aside #' + key).appendChilds(collapsableIco);
+            $v('.aside #' + keyId).appendChilds(collapsableIco);
 
             //add subnav
             aside[key].forEach(subnav => {
@@ -99,7 +103,7 @@ loadAside = function () {
                     classes: ['subnav'],
                     innerHTML: subnav.title
                 });
-                $v('.aside #' + key).appendChilds(contentSubnav);
+                $v('.aside #' + keyId).appendChilds(contentSubnav);
             });
         }
     };
@@ -113,15 +117,18 @@ $v('.logo').addEvent('click', () => {
 });
 
 $v('.header li').addEvent('click', (event) => {
-    //remove selected menu
-    currentMenu = null;
-    $v('.header .selected').removeClass('selected');
-
-    //set selected menu
-    currentMenu = event.currentTarget.id;
-    $v('#' + event.currentTarget.id).addClass('selected');
-    //set navbar/content visible
-    $v('.aside, .content').css('visibility', 'visible');
-    //load aside
-    loadAside();
+    if (currentMenu != event.currentTarget.id) {
+        //remove selected menu
+        currentMenu = null;
+        $v('.header .selected').removeClass('selected');
+    
+        //set selected menu
+        currentMenu = event.currentTarget.id;
+        $v('#' + event.currentTarget.id).addClass('selected');
+        //set navbar/content visible
+        $v('.aside').css('visibility', 'visible');
+        $v('.content').css('visibility', 'hidden');
+        //load aside
+        loadAside();
+    }
 });
