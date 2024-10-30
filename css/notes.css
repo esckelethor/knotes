@@ -1,5 +1,10 @@
-h2 {
+h2, h3 {
     border-bottom: 2px solid white;
+}
+
+h2 {
+    color: rgb(252, 252, 155);
+    border-color: rgb(252, 252, 155);
 }
 
 table {

@@ -1,7 +1,12 @@
 menu.vocabulario = {
     hangul: [],
     bloque: [
-        {id: 'test', title: 'large name test 1'},
-        {id: 'test2', title: 'very large korean 안녕 test'}
+        {id: 'nacionalidades', title: 'nacionalidades'},
+        {id: 'hora', title: 'hora'},
+        {id: 'numeros', title: 'números'},
+        {id: 'conteo', title: 'unidades de conteo'},
+        {id: 'uso-ne', title: 'uso de 네'},
+        {id: 'cute', title: 'cute - 귀여운'},
+        {id: 'otros', title: 'otros'}
     ]
 };
