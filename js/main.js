@@ -2,7 +2,7 @@ menu = new Object();
 currentMenu = null;
 
 isCollapsed = function (collapsed) {
-    return (collapsed == 'true') ? '►' : '▼';
+    return './assets/img/' + ((collapsed == 'true') ? 'r' : 'b') + '_arrow.png';
 }
 
 setAsideEvents = function () {
@@ -21,7 +21,7 @@ setAsideEvents = function () {
             $v('.navbar.selected .subnav').css('display', 'none');
             $v('.navbar.selected').attr('data-collapsed', 'true');
             var icoCollapse = isCollapsed($v('.navbar.selected').attr('data-collapsed'));
-            $v('.navbar.selected .icoCollapsed').innerHTML(icoCollapse);
+            $v('.navbar.selected .icoCollapsed').attr('src', icoCollapse);
         }
         $v('.navbar.selected').removeClass('selected');
     
@@ -36,7 +36,7 @@ setAsideEvents = function () {
             if ($v('.navbar.selected').hasClass('collapsable')) {
                 $v('#' + event.currentTarget.id).attr('data-collapsed', 'false');
                 icoCollapse = isCollapsed($v('#' + event.currentTarget.id).attr('data-collapsed'));
-                $v('#' + event.currentTarget.id + ' .icoCollapsed').innerHTML(icoCollapse);
+                $v('#' + event.currentTarget.id + ' .icoCollapsed').attr('src', icoCollapse);
                 $v('#' + event.currentTarget.id + ' .subnav').css('display', 'inherit');
             }
 
@@ -89,9 +89,9 @@ loadAside = function () {
             $v('.aside #' + keyId).attr({attr: 'data-collapsed', value: 'true'});
 
             var collapsableIco = $v().createElement({
-                label: 'code',
+                label: 'img',
                 classes: ['icoCollapsed'],
-                innerHTML: isCollapsed('true')
+                attrs: [{attr: 'src', value: isCollapsed('true')}]
             });
             $v('.aside #' + keyId).appendChilds(collapsableIco);
 

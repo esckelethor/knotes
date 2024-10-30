@@ -55,6 +55,7 @@ body {
 
 .navbar.collapsable .icoCollapsed {
     float: right;
+    width: 23px;
 }
 
 .subnav {
@@ -144,5 +145,6 @@ body {
 @media all and (max-width: 540px) {
     .main {
         flex-direction: column;
+        font-size: 18px;
     }
 }
