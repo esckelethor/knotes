@@ -57,7 +57,7 @@ menu.gramatica = {
         {id: 'nominalizacion', title: 'nominalización de verbos'}
     ],
     nexos: [
-        {id: 'base', title: 'base'},
+        {id: 'nexo-base', title: 'base'},
         {id: 'desde-hasta', title: 'desde/hasta'},
         {id: 'nexo-preposion', title: 'nexo de preposiciones'},
         {id: 'igual-que', title: 'como, igual que'},
