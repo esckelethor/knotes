@@ -55,23 +55,47 @@ table tr td {
     width: 25%;
 }
 
+.verb1, .verb2, .sust1, .sust2, .particle1, .particle2, .adverb, .nexo, .transform1, .transform2 {
+    font-weight: bold;
+}
+
 .verb1 {
     color: rgb(31, 201, 31);
+}
+
+table .verb1 {
+    color: rgb(7, 91, 7);
 }
 
 .verb2 {
     color: lime;
 }
 
+table .verb2 {
+    color: rgb(2, 147, 2);
+}
+
 .sust1 {
     color: rgb(0, 187, 255);
+}
+
+table .sust1 {
+    color: rgb(5, 96, 129);
 }
 
 .sust2 {
     color: aqua;
 }
 
+table .sust2 {
+    color: rgb(5, 145, 145);
+}
+
 .particle1 {
+    color: yellow;
+}
+
+table .particle1 {
     color: yellow;
 }
 
@@ -79,18 +103,38 @@ table tr td {
     color: orange;
 }
 
+table .particle2 {
+    color: rgb(190, 125, 6);
+}
+
 .adverb {
     color: rgb(255, 133, 133);
+}
+
+table .adverb {
+    color: rgb(248, 62, 62);
 }
 
 .nexo {
     color: violet;
 }
 
+table .nexo {
+    color: rgb(153, 45, 153);
+}
+
 .transform1 {
     color: rgb(255, 63, 159);
 }
 
+table .transform1 {
+    color: rgb(248, 34, 141);
+}
+
 .transform2 {
+    color: rgb(255, 59, 255);
+}
+
+table .transform2 {
     color: rgb(255, 59, 255);
 }
