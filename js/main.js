@@ -42,7 +42,7 @@ setAsideEvents = function () {
 
             //load content
             if (!$v('#' + event.currentTarget.id).hasClass('collapsable')) {
-                $v('#note').loadContent(currentMenu + '.' + event.currentTarget.id.formatKeyId());
+                $v('#note').loadContent(event.currentTarget.id);
                 $v('.content').css('visibility', 'visible');
             }
         } else {
@@ -59,7 +59,7 @@ setAsideEvents = function () {
         $v('#' + event.currentTarget.id).addClass('selected');
 
         //load content
-        $v('#note').loadContent(currentMenu + '.' + event.currentTarget.parentNode.id.formatKeyId() + '.' + event.currentTarget.id);
+        $v('#note').loadContent(event.currentTarget.id);
         $v('.content').css('visibility', 'visible');
     
         event.stopPropagation();
@@ -73,37 +73,37 @@ loadAside = function () {
     var aside = menu[currentMenu];
 
     for(var key in aside) {
-        var keyId = key.formatKeyId(true);
+        var currentAside = currentMenu + '-' + key;
         var contentAside = $v().createElement({
             label: 'div',
-            id: keyId,
+            id: currentAside,
             classes: ['navbar'],
-            innerHTML: key
+            innerHTML: key.formatKeyToText()
         });
         $v('.aside').appendChilds(contentAside);
 
         //check subnav
         if (aside[key].length > 0) {
             //add collapse options
-            $v('.aside #' + keyId).addClass('collapsable');
-            $v('.aside #' + keyId).attr({attr: 'data-collapsed', value: 'true'});
+            $v('.aside #' + currentAside).addClass('collapsable');
+            $v('.aside #' + currentAside).attr({attr: 'data-collapsed', value: 'true'});
 
             var collapsableIco = $v().createElement({
                 label: 'img',
                 classes: ['icoCollapsed'],
                 attrs: [{attr: 'src', value: isCollapsed('true')}]
             });
-            $v('.aside #' + keyId).appendChilds(collapsableIco);
+            $v('.aside #' + currentAside).appendChilds(collapsableIco);
 
             //add subnav
             aside[key].forEach(subnav => {
                 var contentSubnav = $v().createElement({
                     label: 'div',
-                    id: subnav.id,
+                    id: currentAside + '-' + subnav.id,
                     classes: ['subnav'],
                     innerHTML: subnav.title
                 });
-                $v('.aside #' + keyId).appendChilds(contentSubnav);
+                $v('.aside #' + currentAside).appendChilds(contentSubnav);
             });
         }
     };

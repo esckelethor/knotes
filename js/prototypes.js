@@ -1,3 +1,3 @@
-String.prototype.formatKeyId = function (toId = false) {
-    return (toId) ? this.replaceAll(' ', '-') : this.replaceAll('-', ' ');
+String.prototype.formatKeyToText = function () {
+    return this.replaceAll('_', ' ');
 }

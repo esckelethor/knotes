@@ -27,7 +27,7 @@ _vQuery.prototype.getValueOrDefault = function (value, defaultValue) {
 _vQuery.prototype.loadContent = function (data) {
 	this.innerHTML('');
 
-	data = data.replaceAll('.', '/');
+	data = data.replaceAll('-', '/');
 	this.ajax({
 		method: 'GET',
 		url: './assets/content/' + data + '.html'
