@@ -1,4 +1,4 @@
-h2, h3 {
+h2, h3, h4 {
     border-bottom: 2px solid white;
 }
 
@@ -7,22 +7,31 @@ h2 {
     border-color: rgb(252, 252, 155);
 }
 
+h3 {
+    color: rgb(220 255 217);
+    border-color: rgb(220 255 217);
+}
+
 table {
     border: none;
     border-collapse: collapse;
     width: 100%;
 }
 
-table td {
+table td, table th {
     color: black;
     padding: 5px;
 }
 
-table tr:last-child td:first-child {
+table th {
+    background-color: rgb(255 255 192 / 50%);
+}
+
+table tr:last-child td:first-child{
     border-bottom-left-radius: 15px;
 }
 
-table tr:first-child td:first-child {
+table tr:first-child td:first-child, table tr:first-child th:first-child {
     border-top-left-radius: 15px;
 }
     
@@ -30,7 +39,7 @@ table tr:last-child td:last-child {
     border-bottom-right-radius: 15px;
 }
 
-table tr:first-child td:last-child {
+table tr:first-child td:last-child, table tr:first-child th:last-child {
     border-top-right-radius: 15px;
 }
 
