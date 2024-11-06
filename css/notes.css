@@ -8,8 +8,8 @@ h2 {
 }
 
 h3 {
-    color: rgb(220 255 217);
-    border-color: rgb(220 255 217);
+    color: rgb(220, 255, 217);
+    border-color: rgb(220, 255, 217);
 }
 
 table {
@@ -18,13 +18,20 @@ table {
     width: 100%;
 }
 
+table img {
+    height: 15px;
+    width: 15px;
+}
+
 table td, table th {
     color: black;
     padding: 5px;
 }
 
-table th {
-    background-color: rgb(255 255 192 / 50%);
+table th, table td.title {
+    background-color: rgb(255, 255, 214);
+    font-weight: bold;
+    text-align: center;
 }
 
 table tr:last-child td:first-child{
@@ -47,16 +54,53 @@ table tr:nth-child(even) {
     background: rgb(175, 188, 213);
 }
 
+table tr:nth-child(even) td.left {
+    background: rgb(106, 143, 212);
+    font-weight: bold;
+    text-align: center;
+}
+
 table tr:nth-child(odd) {
     background: rgb(213, 175, 175);
+}
+
+table tr:nth-child(odd) td.left {
+    background: rgb(206, 99, 99);
+    font-weight: bold;
+    text-align: center;
 }
 
 table tr td {
     width: 25%;
 }
 
+table td.left {
+    width: 20%;
+}
+
+table td.rigth {
+    width: 80%;
+}
+
+table tr.w-auto td {
+    width: auto;
+    border: 1px black !important;
+    text-align: center;
+}
+
+.batchim {
+    background: linear-gradient(to bottom, black 0 57%, #d300ff 43% 100%);
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
+}
+
 .verb1, .verb2, .sust1, .sust2, .particle1, .particle2, .adverb, .nexo, .transform1, .transform2 {
     font-weight: bold;
+}
+
+.mark {
+    color: rgb(252, 252, 155);
 }
 
 .verb1 {

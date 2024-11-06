@@ -23,11 +23,15 @@ body {
     padding: 5px 0;
 }
 
-.header>.logo {
+.header>.logo, .header>.logo2 {
     float: left;
     height: 50px;
     margin: 0 20px;
     width: 50px;
+}
+
+.header>.logo2 {
+    float: right;
 }
 
 .header>ul {
