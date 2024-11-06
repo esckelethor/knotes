@@ -31,6 +31,7 @@ setAsideEvents = function () {
             
             //close current note
             $v('#note').innerHTML('');
+            $v('.content').css('visibility', 'hidden');
             
             //open subnav
             if ($v('.navbar.selected').hasClass('collapsable')) {
@@ -112,6 +113,7 @@ loadAside = function () {
 }
 
 $v('.logo').addEvent('click', () => {
+    currentMenu = null;
     $v('.header .selected').removeClass('selected');
     $v('.aside, .content').css('visibility', 'hidden');
 });
