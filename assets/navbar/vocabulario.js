@@ -1,5 +1,10 @@
 menu.vocabulario = {
-    hangul: [],
+    hangeul: [
+        {id: 'hangeuli', title: 'Parte I'},
+        {id: 'hangeulii', title: 'Parte II'},
+        {id: 'hangeuliii', title: 'Parte III'},
+        {id: 'hangeuliv', title: 'Parte IV'}
+    ],
     bloque: [
         {id: 'nacionalidades', title: 'nacionalidades'},
         {id: 'hora', title: 'hora'},
