@@ -88,6 +88,10 @@ table tr.w-auto td {
     text-align: center;
 }
 
+.to-rigth {
+    float: right;
+}
+
 .batchim {
     background: linear-gradient(to bottom, black 0 57%, #d300ff 43% 100%);
     background-clip: text;
