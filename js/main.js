@@ -140,7 +140,10 @@ $v('.logo').addEvent('click', () => {
 
 $v('.logo2').addEvent('click', () => {
     //auto play on first visibility change
-    if (currentSpotifyPlaylist == null) spotifyEmbedController.play();
+    if (currentSpotifyPlaylist == null) {
+        spotifyEmbedController.play();
+        currentSpotifyPlaylist = $v('#spotify .container .item.selected').attr('id');
+    }
 
     var visibility = $v('#spotify').css('visibility');
     visibility = (visibility == '') ? 'hidden' : visibility;
