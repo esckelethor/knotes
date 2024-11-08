@@ -88,10 +88,6 @@ table tr.w-auto td {
     text-align: center;
 }
 
-.to-rigth {
-    float: right;
-}
-
 .batchim {
     background: linear-gradient(to bottom, black 0 57%, #d300ff 43% 100%);
     background-clip: text;
@@ -99,11 +95,23 @@ table tr.w-auto td {
     font-weight: bold;
 }
 
+.to-rigth {
+    float: right;
+}
+
+.col2 {
+    column-count: 2;
+}
+
 .verb1, .verb2, .sust1, .sust2, .particle1, .particle2, .adverb, .nexo, .transform1, .transform2 {
     font-weight: bold;
 }
 
 .mark {
+    color: rgb(98, 248, 201);
+}
+
+.mark2 {
     color: rgb(252, 252, 155);
 }
 
