@@ -118,6 +118,12 @@ $v('.logo').addEvent('click', () => {
     $v('.aside, .content').css('visibility', 'hidden');
 });
 
+$v('.logo2').addEvent('click', () => {
+    var visibility = $v('#spotify').css('visibility');
+    visibility = (visibility == '') ? 'hidden' : visibility;
+    $v('#spotify').css('visibility', (visibility == 'hidden') ? 'visible' : 'hidden');
+});
+
 $v('.header li').addEvent('click', (event) => {
     if (currentMenu != event.currentTarget.id) {
         //remove selected menu

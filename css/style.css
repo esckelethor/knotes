@@ -132,6 +132,15 @@ body {
     width: 25px;
 }
 
+#spotify {
+    position: absolute;
+    right: 10px;
+    top: 70px;
+    visibility: hidden;
+    width: 400px;
+    z-index: 999;
+}
+
 /*scrollbar*/
 ::-webkit-scrollbar {
     /* width */
