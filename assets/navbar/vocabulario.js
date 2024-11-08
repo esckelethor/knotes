@@ -1,9 +1,9 @@
 menu.vocabulario = {
     hangeul: [
-        {id: 'hangeuli', title: 'Parte I'},
-        {id: 'hangeulii', title: 'Parte II'},
-        {id: 'hangeuliii', title: 'Parte III'},
-        {id: 'hangeuliv', title: 'Parte IV'}
+        {id: 'hangeul_i', title: 'I: Alfabeto'},
+        {id: 'hangeul_ii', title: 'II: Batchim'},
+        {id: 'hangeul_iii', title: 'III: Construcción silabica'},
+        {id: 'hangeul_iv', title: 'IV: Orden oracional'}
     ],
     bloque: [
         {id: 'nacionalidades', title: 'nacionalidades'},
