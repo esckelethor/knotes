@@ -26,13 +26,25 @@ body {
 .header>.logo, .header>.logo2 {
     float: left;
     height: 50px;
-    margin: 0 20px;
+    margin: 2px 20px 0px;
     width: 50px;
 }
 
 .header>.logo2 {
     float: right;
 }
+
+.header>.logo2:hover, .header>.logo2.rotate {
+    animation: rotation 2s linear;
+}
+
+.header>.logo2.rotateInfinite {
+    animation: rotation 2s linear infinite;
+}
+
+@keyframes rotation {
+    100% {transform: rotate(-360deg);}
+  }
 
 .header>ul {
     list-style-type: none;
@@ -69,7 +81,7 @@ body {
     padding: 5px 10px;
 }
 
-.header>ul>li:hover, .navbar:hover {
+.header>ul>li:hover, .navbar:hover, #spotify>.container>.item:hover {
     background: rgb(15, 27, 80);
 }
 
@@ -77,8 +89,8 @@ body {
     background: rgb(26, 46, 136) !important;
 }
 
-.header>ul>li.selected, .navbar.selected {
-    background: rgb(80, 15, 15) !important;
+.header>ul>li.selected, .navbar.selected, #spotify>.container>.item.selected {
+    background: rgb(80, 15, 15);
 }
 
 .navbar>.subnav.selected {
@@ -111,6 +123,35 @@ body {
     padding: 0px 10px 10px;
 }
 
+#spotify {
+    background: linear-gradient(145deg, #0045a1 0 33%, #ce2a37 0 66%, #ffc31f 33% 100%);
+    border-radius: 15px;
+    padding: 10px 10px 0 10px;
+    position: absolute;
+    right: 7px;
+    top: 70px;
+    visibility: hidden;
+    width: 400px;
+    z-index: 999;
+}
+
+#spotify>.container {
+    border-radius: 15px;
+    display: flex;
+    font-weight: bold;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+#spotify>.container>.item {
+    background: rgb(51, 51, 51);
+    border-radius: 15px;
+    margin-bottom: 3px;
+    padding: 5px;
+    text-align-last: center;
+    width: 20%;
+}
+
 .footer {
     align-items: center;
     background: rgb(51, 51, 51);
@@ -130,15 +171,6 @@ body {
     margin-bottom: -5px;
     padding: 0px 5px;
     width: 25px;
-}
-
-#spotify {
-    position: absolute;
-    right: 10px;
-    top: 70px;
-    visibility: hidden;
-    width: 400px;
-    z-index: 999;
 }
 
 /*scrollbar*/

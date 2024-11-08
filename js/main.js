@@ -1,5 +1,8 @@
 menu = new Object();
 currentMenu = null;
+currentSpotifyPlaylist = null;
+spotifyIsPaused = true;
+spotifyEmbedController = null;
 
 isCollapsed = function (collapsed) {
     return './assets/img/' + ((collapsed == 'true') ? 'r' : 'b') + '_arrow.png';
@@ -112,24 +115,12 @@ loadAside = function () {
     setAsideEvents();
 }
 
-$v('.logo').addEvent('click', () => {
-    currentMenu = null;
-    $v('.header .selected').removeClass('selected');
-    $v('.aside, .content').css('visibility', 'hidden');
-});
-
-$v('.logo2').addEvent('click', () => {
-    var visibility = $v('#spotify').css('visibility');
-    visibility = (visibility == '') ? 'hidden' : visibility;
-    $v('#spotify').css('visibility', (visibility == 'hidden') ? 'visible' : 'hidden');
-});
-
 $v('.header li').addEvent('click', (event) => {
     if (currentMenu != event.currentTarget.id) {
         //remove selected menu
         currentMenu = null;
         $v('.header .selected').removeClass('selected');
-    
+        
         //set selected menu
         currentMenu = event.currentTarget.id;
         $v('#' + event.currentTarget.id).addClass('selected');
@@ -140,3 +131,67 @@ $v('.header li').addEvent('click', (event) => {
         loadAside();
     }
 });
+
+$v('.logo').addEvent('click', () => {
+    currentMenu = null;
+    $v('.header .selected').removeClass('selected');
+    $v('.aside, .content').css('visibility', 'hidden');
+});
+
+$v('.logo2').addEvent('click', () => {
+    //auto play on first visibility change
+    if (currentSpotifyPlaylist == null) spotifyEmbedController.play();
+
+    var visibility = $v('#spotify').css('visibility');
+    visibility = (visibility == '') ? 'hidden' : visibility;
+    $v('#spotify').css('visibility', (visibility == 'hidden') ? 'visible' : 'hidden');
+});
+
+window.onSpotifyIframeApiReady = (IFrameAPI) => {
+    const element = document.getElementById('playlist');
+    const options = {
+        width: '100%',
+        height: '160',
+        uri: 'spotify:playlist:37i9dQZF1DXdR77H5Z8MIM',
+        theme: 'dark'
+    };
+    const callback = (EmbedController) => {
+        spotifyEmbedController = EmbedController;
+
+        $v('#spotify .container .item').addEvent('click', function (event) {
+            if (currentSpotifyPlaylist != event.currentTarget.id) {
+                //remove selected playlist
+                currentSpotifyPlaylist = null;
+                $v('#spotify .container .item.selected').removeClass('selected');
+                
+                //set selected playlist
+                currentSpotifyPlaylist = event.currentTarget.id;
+                $v('#' + event.currentTarget.id).addClass('selected');
+
+                EmbedController.loadUri($v('#' + event.currentTarget.id).attr('data-spotify-id'));
+                EmbedController.play();
+            }
+        });
+
+        EmbedController.addListener('playback_update', (event) => {
+            spotifyIsPaused = event.data.isPaused;
+        });
+    };
+    IFrameAPI.createController(element, options, callback);
+};
+
+window.onload = function () {
+    $v('.logo2').addClass('rotate');
+
+    window.setInterval(function () {
+        $v('.logo2').removeClass('rotate');
+        
+        window.setInterval(function (){
+            if (!spotifyIsPaused) {
+                $v('.logo2').addClass('rotateInfinite');
+            } else {
+                $v('.logo2').removeClass('rotateInfinite');
+            }
+        }, 1000);
+    }, 2000);
+}();
