@@ -111,8 +111,16 @@ table tr.w-auto td {
     color: rgb(98, 248, 201);
 }
 
+table .mark {
+    color: rgb(0, 126, 87);;
+}
+
 .mark2 {
     color: rgb(252, 252, 155);
+}
+
+table .mark2 {
+    color: rgb(255, 255, 0);
 }
 
 .verb1 {
