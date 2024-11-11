@@ -63,7 +63,8 @@ setAsideEvents = function () {
         $v('#' + event.currentTarget.id).addClass('selected');
 
         //load content
-        $v('#note').loadContent(event.currentTarget.id);
+        var gotScript = $v('#' + event.currentTarget.id).attr('data-script');
+        $v('#note').loadContent(event.currentTarget.id, gotScript);
         $v('.content').css('visibility', 'visible');
     
         event.stopPropagation();
@@ -105,6 +106,9 @@ loadAside = function () {
                     label: 'div',
                     id: currentAside + '-' + subnav.id,
                     classes: ['subnav'],
+                    attrs: [
+                        {attr: 'data-script', value: (subnav.script == undefined) ? false : subnav.script}
+                    ],
                     innerHTML: subnav.title
                 });
                 $v('.aside #' + currentAside).appendChilds(contentSubnav);

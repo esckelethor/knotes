@@ -12,13 +12,31 @@ h3 {
     border-color: rgb(220, 255, 217);
 }
 
+#selector-anexos #anexos {
+    font-weight: bold;
+}
+
+#content-anexo, #content-anexo #wrapper-anexos, #content-anexo #wrapper-anexos div {
+    display: none;
+}
+
+#content-anexo img {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+}
+
+#content-anexo #back img {
+    display: initial;
+}
+
 table {
     border: none;
     border-collapse: collapse;
     width: 100%;
 }
 
-table img {
+table img, h3 img, #content-anexo #back img {
     height: 15px;
     width: 15px;
 }

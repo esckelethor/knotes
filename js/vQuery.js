@@ -24,15 +24,26 @@ _vQuery.prototype.getValueOrDefault = function (value, defaultValue) {
 	return (value != undefined && value != null) ? value : defaultValue;
 }
 
-_vQuery.prototype.loadContent = function (data) {
+_vQuery.prototype.loadContent = function (asset, gotScript) {
 	this.innerHTML('');
 
-	data = data.replaceAll('-', '/');
+	asset = asset.replaceAll('-', '/');
 	this.ajax({
 		method: 'GET',
-		url: './assets/content/' + data + '.html'
+		url: './assets/content/' + asset + '.html'
 	}).then((data) => {
 		this.innerHTML(data);
+
+		if (gotScript == 'true') {
+			var script = this.createElement({
+				label: 'script',
+				attrs: [
+					{attr: 'type', value: 'text/javascript'},
+					{attr: 'src', value: './assets/modules/' + asset + '.js'}
+				]
+			});
+			this.appendChilds(script);
+		}
 	}).catch((data) => {
 		console.log(data.message);
 	});
