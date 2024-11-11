@@ -29,7 +29,7 @@ menu.frases = {
     ],
     hablar_en_idioma : [
         {id: 'por_que_tema', title: '¿Por qué [tema]?'},
-        {id: 'hablar_idioma', title: 'No sé hablar/Puedo hablar [idioma]'},
+        {id: 'hablar_idioma', title: 'No puedo/sé hablar [idioma]'},
         {id: 'estudio_idioma', title: 'Estudio [idioma]'},
         {id: 'como_se_dice', title: '¿Cómo se dice [esto] en [idioma]?'}
     ],
