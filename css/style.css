@@ -101,7 +101,6 @@ body {
     display: flex;
     flex: 1;
     flex-grow: 1;
-    font-size: 16px !important;
     overflow-y: hidden;
 }
 
@@ -206,4 +205,10 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     /* Handle on hover */
     background: rgb(15, 27, 80);
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .main, #version {
+        font-size: 85%;
+    }
 }
