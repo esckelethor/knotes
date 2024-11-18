@@ -209,6 +209,6 @@ body {
 
 @media (min-width: 768px) and (max-width: 1024px) {
     *:not(h1):not(h2):not(h3):not(h4) {
-        font-size: 14px;
+        font-size: 14px !important;
     }
 }
