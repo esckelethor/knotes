@@ -8,16 +8,6 @@
     font-family: gowun;
 }
 
-*:not(h1):not(h2):not(h3):not(h4) {
-    font-size: 16px;
-    /* prevent auto resize on responsive devices */
-    line-height: 1.5;
-    -webkit-text-size-adjust:none;
-    -ms-text-size-adjust:none;
-    -moz-text-size-adjust:none;
-    text-size-adjust:none;
-}
-
 body {
     background: silver url("../assets/img/background.png") no-repeat fixed center;
     background-size: cover;
@@ -215,20 +205,4 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     /* Handle on hover */
     background: rgb(15, 27, 80);
-}
-
-@media all and (max-width: 540px) {
-    *:not(h1):not(h2):not(h3):not(h4) {
-        font-size: 16px !important;
-        /* prevent auto resize on responsive devices */
-        line-height: 1.5;
-        -webkit-text-size-adjust:none;
-        -ms-text-size-adjust:none;
-        -moz-text-size-adjust:none;
-        text-size-adjust:none;
-    }
-
-    .main {
-        flex-direction: column;
-    }
 }
