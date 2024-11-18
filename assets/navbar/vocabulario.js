@@ -6,7 +6,7 @@ menu.vocabulario = {
         {id: 'hangeul_iv', title: 'IV: Orden oracional'}
     ],
     bloque: [
-        {id: 'nacionalidades', title: 'nacionalidades'},
+        {id: 'nacionalidades', title: 'nacionalidades', script: true},
         {id: 'hora', title: 'hora'},
         {id: 'numeros', title: 'números'},
         {id: 'conteo', title: 'unidades de conteo'},
