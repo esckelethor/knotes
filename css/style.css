@@ -7,6 +7,9 @@
     color: white;
     font-family: gowun;
 }
+*:not(h1):not(h2):not(h3):not(h4) {
+    font-size: 16px;
+}
 
 body {
     background: silver url("../assets/img/background.png") no-repeat fixed center;
@@ -161,6 +164,17 @@ body {
     padding: 5px;
 }
 
+.footer #version, .footer #footer_filler {
+    flex: 1;
+    margin: 0 10px;
+    text-align-last: right;
+}
+
+.footer #copyrigth {
+    flex: 2;
+    text-align: center;
+}
+
 .footer a {
     color: inherit;
     text-decoration: none;
@@ -199,6 +213,5 @@ body {
 @media all and (max-width: 540px) {
     .main {
         flex-direction: column;
-        font-size: 18px;
     }
 }
