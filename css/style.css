@@ -209,6 +209,6 @@ body {
 
 @media (min-width: 768px) and (max-width: 1024px) {
     .main, #version {
-        font-size: 85%;
+        font-size: 85% !important;
     }
 }
