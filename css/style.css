@@ -217,6 +217,15 @@ body {
 }
 
 @media all and (max-width: 540px) {
+    *:not(h1):not(h2):not(h3):not(h4) {
+        font-size: 16px;
+        /* prevent auto resize on responsive devices */
+        -webkit-text-size-adjust:none;
+        -ms-text-size-adjust:none;
+        -moz-text-size-adjust:none;
+        text-size-adjust:none;
+    }
+    
     .main {
         flex-direction: column;
     }
