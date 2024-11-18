@@ -8,6 +8,10 @@
     font-family: gowun;
 }
 
+*:not(h1):not(h2):not(h3):not(h4) {
+    font-size: 16px;
+}
+
 body {
     background: silver url("../assets/img/background.png") no-repeat fixed center;
     background-size: cover;
@@ -184,31 +188,25 @@ body {
     width: 25px;
 }
 
-/*scrollbar* /
+/* scrollbar */
 ::-webkit-scrollbar {
-    /* width * /
+    /* width */
     width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-    /* Track * /
+    /* Track */
     box-shadow: inset 0 0 5px grey;
     border-radius: 0 10px 10px 0;
 }
 
 ::-webkit-scrollbar-thumb {
-    /* Handle * /
+    /* Handle */
     background: rgb(80, 15, 15);
     border-radius: 0 10px 10px 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    /* Handle on hover * /
+    /* Handle on hover */
     background: rgb(15, 27, 80);
 }
-
-@media (min-width: 768px) and (max-width: 1024px) {
-    .main, #version {
-        font-size: 65% !important;
-    }
-}*/
