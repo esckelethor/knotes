@@ -4,6 +4,8 @@ $v('#selector-anexos #anexos li').addEvent('click', (event) => {
     $v('#note #content-anexo, #note #content-anexo #wrapper-anexos').css('display', 'block');
 
     $v('#note #content-anexo #wrapper-anexos #content-' + event.currentTarget.id).css('display', 'block');
+
+    $v('#note').nodes[0].scrollTop = 0;
 });
 
 $v('#note #content-anexo #back').addEvent('click', (event) => {
@@ -12,4 +14,6 @@ $v('#note #content-anexo #back').addEvent('click', (event) => {
     $v('#note #content-anexo, #note #content-anexo #wrapper-anexos').css('display', 'none');
 
     $v('#note #content-anexo #wrapper-anexos div').css('display', 'none');
+
+    $v('#note').nodes[0].scrollTop = 0;
 });
