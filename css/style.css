@@ -8,10 +8,6 @@
     font-family: gowun;
 }
 
-*:not(h1):not(h2):not(h3):not(h4) {
-    font-size: 1em;
-}
-
 body {
     background: silver url("../assets/img/background.png") no-repeat fixed center;
     background-size: cover;
