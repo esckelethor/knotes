@@ -11,6 +11,7 @@
 *:not(h1):not(h2):not(h3):not(h4) {
     font-size: 16px;
     /* prevent auto resize on responsive devices */
+    line-height: 1.5;
     -webkit-text-size-adjust:none;
     -ms-text-size-adjust:none;
     -moz-text-size-adjust:none;
@@ -220,6 +221,7 @@ body {
     *:not(h1):not(h2):not(h3):not(h4) {
         font-size: 16px !important;
         /* prevent auto resize on responsive devices */
+        line-height: 1.5;
         -webkit-text-size-adjust:none;
         -ms-text-size-adjust:none;
         -moz-text-size-adjust:none;
