@@ -1,6 +1,6 @@
 //constans
-const VERSION = '1.1.0';
-const PREVIOUS_VERSION = '1.0.1';
+const VERSION = '2.0';
+const PREVIOUS_VERSION = '1.1.0';
 const DIFF_SAME_VERSION = 0;
 const DIFF_ILEGAL_VERSION = 1;
 const DIFF_OLDER_VERSION = -1;

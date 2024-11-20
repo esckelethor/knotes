@@ -44,24 +44,6 @@ _vQuery.prototype.loadContent = function (asset, gotScript) {
 				]
 			});
 			this.appendChilds(script);
-
-			//check if custom JS it's need for content
-			console.log('[Info] Checking if need module JS for content ' + asset);
-			this.ajax({
-				method: 'GET',
-				url: './assets/modules/' + asset + '.js'
-			}).then((data2) => {
-				var script2 = this.createElement({
-					label: 'script',
-					attrs: [
-						{attr: 'type', value: 'text/javascript'},
-						{attr: 'src', value: './assets/modules/' + asset + '.js'}
-					]
-				});
-				this.appendChilds(script2);
-			}).catch((data2) => {
-				console.log('[INFO] No custom JS need for ' + asset);
-			});
 		}
 	}).catch((data) => {
 		console.log(data.message);
