@@ -16,7 +16,7 @@ h3 {
     font-weight: bold;
 }
 
-#content-anexo, #content-anexo #wrapper-anexos, #content-anexo #wrapper-anexos div {
+#content-anexo, #content-anexo #wrapper-anexos, #content-anexo #wrapper-anexos div:not([data-ejercicio]) {
     display: none;
 }
 
@@ -121,6 +121,18 @@ table tr.w-auto td {
     column-count: 2;
 }
 
+.col3 {
+    column-count: 3;
+}
+
+.col4 {
+    column-count: 4;
+}
+
+.col5 {
+    column-count: 5;
+}
+
 .verb1, .verb2, .sust1, .sust2, .particle1, .particle2, .adverb, .nexo, .transform1, .transform2 {
     font-weight: bold;
 }
@@ -130,7 +142,7 @@ table tr.w-auto td {
 }
 
 table .mark {
-    color: rgb(0, 126, 87);;
+    color: rgb(0, 126, 87);
 }
 
 .mark2 {
@@ -141,7 +153,7 @@ table .mark2 {
     color: rgb(255, 255, 0);
 }
 
-.verb1 {
+.verb1, .success {
     color: rgb(31, 201, 31);
 }
 
@@ -205,7 +217,7 @@ table .nexo {
     color: rgb(153, 45, 153);
 }
 
-.transform1 {
+.transform1, .fail {
     color: rgb(255, 63, 159);
 }
 
