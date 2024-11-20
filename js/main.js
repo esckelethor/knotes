@@ -1,3 +1,12 @@
+//constans
+const VERSION = '1.1.0';
+const PREVIOUS_VERSION = '1.0.1';
+const DIFF_SAME_VERSION = 0;
+const DIFF_ILEGAL_VERSION = 1;
+const DIFF_OLDER_VERSION = -1;
+//global vars
+//check client version
+clientVersion = localStorage.getItem('version');
 menu = new Object();
 currentMenu = null;
 currentSpotifyPlaylist = null;
@@ -187,7 +196,104 @@ window.onSpotifyIframeApiReady = (IFrameAPI) => {
     IFrameAPI.createController(element, options, callback);
 };
 
+checkOlderVersion = function(client, project = VERSION) {
+    switch (checkDiffVersion(client, project)) {
+        case DIFF_SAME_VERSION:
+        case DIFF_ILEGAL_VERSION:
+            return false;
+        case DIFF_OLDER_VERSION:
+            return true;
+    }
+}
+
+checkDiffVersion = function(client, project = VERSION) {
+    switch (client.localeCompare(project, undefined, { numeric: true, sensitivity: 'base' })) {
+        case 0: //same version
+            return DIFF_SAME_VERSION;
+        case 1: //clientVersion > version
+            return DIFF_ILEGAL_VERSION;
+        case -1: //clientVersion < version
+            return DIFF_OLDER_VERSION;
+    }
+}
+
+changelogLoader = function () {
+    //set event show changelog
+    $v('#version').addEvent('click', (event) => {
+        var visibility = $v('#changelog').css('visibility');
+        visibility = (visibility == '') ? 'hidden' : visibility;
+        $v('#changelog').css('visibility', (visibility == 'hidden') ? 'visible' : 'hidden');
+    });
+
+    //display version
+    $v('#version').attr('data-version', version).innerHTML(VERSION);
+
+    $v('#changelog').ajax({
+        method: 'GET',
+        url: './assets/changelog.html'
+    }).then((data) => {
+        $v('#changelog').innerHTML(data);
+        
+        //check client version
+        clientVersion = clientVersion || PREVIOUS_VERSION;
+        clientVersion = (checkDiffVersion(clientVersion) == 1) ? PREVIOUS_VERSION : clientVersion;
+
+        //check version diff
+        if (checkOlderVersion(clientVersion)) {
+            $v('#changelog').css('visibility', 'visible');
+    
+            $v('#changelog .version').nodes.forEach((element) => {
+                //add new tag on updated versions
+                var tagNew = $v().createElement({
+                    label: 'code',
+                    classes: ['new'],
+                    innerHTML: 'new'
+                });
+                
+                if (checkOlderVersion(clientVersion, element.dataset.version)) {
+                    element.appendChild(tagNew);
+                }
+            });
+
+            //set new version to client
+            localStorage.setItem('version', VERSION);
+        }
+
+        //add event full changelog
+        $v('#changelog #full-changelog').addEvent('click', (event) => {
+            $v('#changelog').css('visibility', 'hidden');
+            
+            var tagLogo = $v().createElement({
+                label: 'img',
+                attrs: [{attr: 'src', value: './assets/img/logo.png'}]
+            });
+
+            var tagImgContainer = $v().createElement({
+                label: 'div',
+                classes: ['imgContainer'],
+            });
+            tagImgContainer.appendChild(tagLogo);
+
+            var updatedChangelog = $v('#changelog').innerHTML();
+            $v('#note').innerHTML(updatedChangelog);
+            $v('#note #full-changelog').css('display', 'none');
+            $v('#note #changelog-oldVersions').css('display', 'initial');
+            $v('#note').css('visibility', 'visible');
+
+            $v('.aside').innerHTML('');
+            $v('.aside').appendChilds(tagImgContainer);
+            $v('.aside').css('visibility', 'visible');
+
+            $v('#changelog').nodes[0].scrollTop = 0;
+        })
+    }).catch((data) => {
+        console.log(data);
+    });
+}
+
 window.onload = function () {
+    changelogLoader();
+
     $v('.logo2').addClass('rotate');
 
     window.setInterval(function () {
