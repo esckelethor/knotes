@@ -1,6 +1,6 @@
 //constans
-const VERSION = '2.2';
-const PREVIOUS_VERSION = '2.1';
+const VERSION = '2.3';
+const PREVIOUS_VERSION = '2.2';
 const DIFF_SAME_VERSION = 0;
 const DIFF_ILEGAL_VERSION = 1;
 const DIFF_OLDER_VERSION = -1;
@@ -222,7 +222,11 @@ changelogLoader = function () {
     $v('#version').addEvent('click', (event) => {
         var visibility = $v('#changelog').css('visibility');
         visibility = (visibility == '') ? 'hidden' : visibility;
-        $v('#changelog').css('visibility', (visibility == 'hidden') ? 'visible' : 'hidden');
+
+        //prevent open changelog if full changelog visible
+        if ($v('#note #changelogContents').length == 0) {
+            $v('#changelog').css('visibility', (visibility == 'hidden') ? 'visible' : 'hidden');
+        }
     });
 
     //display version
@@ -285,6 +289,11 @@ changelogLoader = function () {
             $v('.aside').css('visibility', 'visible');
 
             $v('#changelog').nodes[0].scrollTop = 0;
+            $v('#note').nodes[0].scrollTop = 0;
+
+            //prevent locked menu
+            currentMenu = null;
+            $v('.header .selected').removeClass('selected');
         })
     }).catch((data) => {
         console.log(data);

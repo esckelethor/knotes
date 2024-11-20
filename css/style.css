@@ -203,8 +203,8 @@ body {
     display: none;
 }
 
-#changelog .new, #changelog .bugfix, #changelog .feature,
-#note .new, #note .bugfix, #note .feature {
+#changelog .new, #changelog .bugfix, #changelog .feature, #changelog .texts,
+#note .new, #note .bugfix, #note .feature, #note .texts {
     border-radius: 15px 15px 0 0;
     color: black;
     float: right;
@@ -223,6 +223,10 @@ body {
 
 #changelog .feature, #note .feature {
     background-color: rgb(98, 248, 201);
+}
+
+#changelog .texts, #note .texts {
+    background-color: violet;
 }
 
 .footer {
