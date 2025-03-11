@@ -24,7 +24,7 @@ _vQuery.prototype.getValueOrDefault = function (value, defaultValue) {
 	return (value != undefined && value != null) ? value : defaultValue;
 }
 
-_vQuery.prototype.loadContent = function (asset, gotScript) {
+_vQuery.prototype.loadContent = function (asset, module) {
 	this.innerHTML('');
 
 	asset = asset.replaceAll('-', '/');
@@ -34,13 +34,13 @@ _vQuery.prototype.loadContent = function (asset, gotScript) {
 	}).then((data) => {
 		this.innerHTML(data);
 
-		if (gotScript == 'true') {
+		if (module != 'none') {
 			//load module_anexos
 			var script = this.createElement({
 				label: 'script',
 				attrs: [
 					{attr: 'type', value: 'text/javascript'},
-					{attr: 'src', value: './assets/modules/module_anexos.js'}
+					{attr: 'src', value: './assets/modules/' + module + '.js'}
 				]
 			});
 			this.appendChilds(script);

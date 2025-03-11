@@ -1,12 +1,6 @@
 //constans
-const VERSION = '2.3';
-const PREVIOUS_VERSION = '2.2';
-const DIFF_SAME_VERSION = 0;
-const DIFF_ILEGAL_VERSION = 1;
-const DIFF_OLDER_VERSION = -1;
+const VERSION = changelog[0].version;
 //global vars
-//check client version
-clientVersion = localStorage.getItem('version');
 menu = new Object();
 currentMenu = null;
 currentSpotifyPlaylist = null;
@@ -72,8 +66,9 @@ setAsideEvents = function () {
         $v('#' + event.currentTarget.id).addClass('selected');
 
         //load content
-        var gotScript = $v('#' + event.currentTarget.id).attr('data-script');
-        $v('#note').loadContent(event.currentTarget.id, gotScript);
+        var module = $v('#' + event.currentTarget.id).attr('data-module');
+        $v('#note').loadContent(event.currentTarget.id, module);
+        $v('#changelog').css('visibility', 'hidden');
         $v('.content').css('visibility', 'visible');
     
         event.stopPropagation();
@@ -116,7 +111,7 @@ loadAside = function () {
                     id: currentAside + '-' + subnav.id,
                     classes: ['subnav'],
                     attrs: [
-                        {attr: 'data-script', value: (subnav.script == undefined) ? false : subnav.script}
+                        {attr: 'data-module', value: (subnav.module == undefined) ? 'none' : subnav.module}
                     ],
                     innerHTML: subnav.title
                 });
@@ -138,6 +133,7 @@ $v('.header li').addEvent('click', (event) => {
         currentMenu = event.currentTarget.id;
         $v('#' + event.currentTarget.id).addClass('selected');
         //set navbar/content visible
+        $v('#changelog').css('visibility', 'hidden');
         $v('.aside').css('visibility', 'visible');
         $v('.content').css('visibility', 'hidden');
         //load aside
@@ -147,6 +143,7 @@ $v('.header li').addEvent('click', (event) => {
 
 $v('.logo').addEvent('click', () => {
     currentMenu = null;
+    $v('#changelog').css('visibility', 'hidden');
     $v('.header .selected').removeClass('selected');
     $v('.aside, .content').css('visibility', 'hidden');
 });
@@ -196,27 +193,6 @@ window.onSpotifyIframeApiReady = (IFrameAPI) => {
     IFrameAPI.createController(element, options, callback);
 };
 
-checkOlderVersion = function(client, project = VERSION) {
-    switch (checkDiffVersion(client, project)) {
-        case DIFF_SAME_VERSION:
-        case DIFF_ILEGAL_VERSION:
-            return false;
-        case DIFF_OLDER_VERSION:
-            return true;
-    }
-}
-
-checkDiffVersion = function(client, project = VERSION) {
-    switch (client.localeCompare(project, undefined, { numeric: true, sensitivity: 'base' })) {
-        case 0: //same version
-            return DIFF_SAME_VERSION;
-        case 1: //clientVersion > version
-            return DIFF_ILEGAL_VERSION;
-        case -1: //clientVersion < version
-            return DIFF_OLDER_VERSION;
-    }
-}
-
 changelogLoader = function () {
     //set event show changelog
     $v('#version').addEvent('click', (event) => {
@@ -230,40 +206,55 @@ changelogLoader = function () {
     });
 
     //display version
-    $v('#version').attr('data-version', version).innerHTML(VERSION);
+    $v('#version').attr('data-version', VERSION).innerHTML(VERSION);
 
-    $v('#changelog').ajax({
-        method: 'GET',
-        url: './assets/changelog.html'
-    }).then((data) => {
-        $v('#changelog').innerHTML(data);
-        
-        //check client version
-        clientVersion = clientVersion || PREVIOUS_VERSION;
-        clientVersion = (checkDiffVersion(clientVersion) == 1) ? PREVIOUS_VERSION : clientVersion;
+    //create changelog tree
+    changelog.forEach((version, index) => {
+        var versionNode = $v().createElement({
+            label: 'div'
+        });
 
-        //check version diff
-        if (checkOlderVersion(clientVersion)) {
-            $v('#changelog').css('visibility', 'visible');
-    
-            $v('#changelog .version').nodes.forEach((element) => {
-                //add new tag on updated versions
-                var tagNew = $v().createElement({
-                    label: 'code',
-                    classes: ['new'],
-                    innerHTML: 'new'
-                });
-                
-                if (checkOlderVersion(clientVersion, element.dataset.version)) {
-                    element.appendChild(tagNew);
-                }
+        var versionNumberNode = $v().createElement({
+            label: 'h4',
+            classes: ['version'],
+            attrs: [
+                {attr: 'data-version', value: version.version}
+            ],
+            innerHTML: version.version
+        });
+
+        if (index == 0) version.tags.push('new');
+        version.tags.forEach(tag => {
+            var tagNode = $v().createElement({
+                label: 'code',
+                classes: [(tag == 'content') ? 'texts' : tag],
+                innerHTML: tag
             });
 
-            //set new version to client
-            localStorage.setItem('version', VERSION);
-        }
+            versionNumberNode.appendChild(tagNode);
+        });
+        
+        versionNode.appendChild(versionNumberNode);
 
-        //add event full changelog
+        var versionChangesNode = $v().createElement({
+            label: 'ul',
+            classes: ['changes']
+        });
+
+        version.changes.forEach(change => {
+            var versionChangeItem = $v().createElement({
+                label: 'li',
+                innerHTML: change
+            });
+
+            versionChangesNode.appendChild(versionChangeItem);
+        });
+        
+        versionNode.appendChild(versionChangesNode);
+
+        $v('#changelogContents #changelog-' + ((index == 0) ? 'currentVersion' : 'oldVersions')).appendChilds(versionNode);
+
+        //add event full-changelog
         $v('#changelog #full-changelog').addEvent('click', (event) => {
             $v('#changelog').css('visibility', 'hidden');
             
@@ -294,9 +285,7 @@ changelogLoader = function () {
             //prevent locked menu
             currentMenu = null;
             $v('.header .selected').removeClass('selected');
-        })
-    }).catch((data) => {
-        console.log(data);
+        });
     });
 }
 

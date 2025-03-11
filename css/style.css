@@ -165,18 +165,19 @@ body {
 }
 
 #changelog #changelogContents, #note #changelogContents {
-    padding: 20px;
+    padding: 15px 15px 10px;
 }
 
 #changelog {
     background: linear-gradient(145deg, #431d20, #06182d);
     border-radius: 15px;
     bottom: 43px;
-    height: 250px;
+    min-height: 175px;
+    max-height: 225px;
     overflow-y: scroll;
     position: absolute;
     right: 7px;
-    visibility: hidden;
+    /*visibility: hidden;*/
     width: 400px;
     z-index: 999;
 }
@@ -193,10 +194,14 @@ body {
     color: black;
     font-style: italic;
     font-weight: bold;
-    margin: auto;
+    margin: auto auto 15px;
     padding: 5px;
     text-align: center;
     width: 150px;
+}
+
+#changelog #full-changelog:hover {
+    background-color: rgb(255 195 31);
 }
 
 #changelog #changelog-oldVersions {

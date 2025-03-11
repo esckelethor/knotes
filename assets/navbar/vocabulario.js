@@ -2,11 +2,11 @@ menu.vocabulario = {
     hangeul: [
         {id: 'hangeul_i', title: 'I: Alfabeto'},
         {id: 'hangeul_ii', title: 'II: Batchim'},
-        {id: 'hangeul_iii', title: 'III: Construcción silabica', script: true},
+        {id: 'hangeul_iii', title: 'III: Construcción silabica', module: 'anexos'},
         {id: 'hangeul_iv', title: 'IV: Orden oracional'}
     ],
     bloque: [
-        {id: 'nacionalidades', title: 'nacionalidades', script: true},
+        {id: 'nacionalidades', title: 'nacionalidades', module: 'anexos'},
         {id: 'hora', title: 'hora'},
         {id: 'numeros', title: 'números'},
         {id: 'conteo', title: 'unidades de conteo'},
