@@ -111,7 +111,7 @@ loadAside = function () {
                     id: currentAside + '-' + subnav.id,
                     classes: ['subnav'],
                     attrs: [
-                        {attr: 'data-module', value: (subnav.module == undefined) ? 'none' : subnav.module}
+                        {attr: 'data-module', value: (subnav.module == undefined) ? DATA_MODULE_NONE : subnav.module}
                     ],
                     innerHTML: subnav.title
                 });

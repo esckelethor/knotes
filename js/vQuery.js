@@ -1,4 +1,6 @@
-// vanilla JS framework based on JQuery
+//vanilla JS framework based on JQuery
+//constants for module loader
+const DATA_MODULE_NONE = 'none';
 //vQuery global object initiator
 vQuery = function (selector) {
 	let vq = new _vQuery(selector);
@@ -24,7 +26,7 @@ _vQuery.prototype.getValueOrDefault = function (value, defaultValue) {
 	return (value != undefined && value != null) ? value : defaultValue;
 }
 
-_vQuery.prototype.loadContent = function (asset, module) {
+_vQuery.prototype.loadContent = function (asset, module = DATA_MODULE_NONE) {
 	this.innerHTML('');
 
 	asset = asset.replaceAll('-', '/');
@@ -34,7 +36,7 @@ _vQuery.prototype.loadContent = function (asset, module) {
 	}).then((data) => {
 		this.innerHTML(data);
 
-		if (module != 'none') {
+		if (module != DATA_MODULE_NONE) {
 			//load module_anexos
 			var script = this.createElement({
 				label: 'script',
