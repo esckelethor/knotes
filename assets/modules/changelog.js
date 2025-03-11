@@ -1,5 +1,10 @@
 changelog = [
     {
+        version: '2.6',
+        tags: ['content'],
+        changes: ['Actualizción anexos vocabulario: hangeul III']
+    },
+    {
         version: '2.5',
         tags: ['content', 'bugfix'],
         changes: ['Finalización contenido frases', 'Actualización apuntes en tablas de frases', 'Minorfox carga modulo anexos']
