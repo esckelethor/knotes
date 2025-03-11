@@ -1,8 +1,8 @@
 changelog = [
     {
         version: '2.5',
-        tags: ['content'],
-        changes: ['Finalización contenido frases']
+        tags: ['content', 'bugfix'],
+        changes: ['Finalización contenido frases', 'Actualización apuntes en tablas de frases', 'Minorfox carga modulo anexos']
     },
     {
         version: '2.4',
