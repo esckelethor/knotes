@@ -1,5 +1,10 @@
 changelog = [
     {
+        version: '2.5',
+        tags: ['content'],
+        changes: ['Finalización contenido frases']
+    },
+    {
         version: '2.4',
         tags: ['content', 'feature'],
         changes: ['Remake modulos anexos y changelog', 'Actualización información del changelog']
