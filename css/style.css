@@ -164,10 +164,6 @@ body {
     width: 20%;
 }
 
-#changelog #changelogContents, #note #changelogContents {
-    padding: 15px 15px 10px;
-}
-
 #changelog {
     background: linear-gradient(145deg, #431d20, #06182d);
     border-radius: 15px;
@@ -177,15 +173,29 @@ body {
     overflow-y: scroll;
     position: absolute;
     right: 7px;
-    /*visibility: hidden;*/
-    width: 400px;
+    width: 420px;
     z-index: 999;
 }
 
-#changelog .version, #note .version {
+#changelog #changelogContents, #changelog #full-changelog,
+#note #changelogContents, #note #full-changelog {
+    padding: 15px 15px 10px;
+}
+
+#changelog #changelog-knowIssues, #note #changelog-knowIssues {
+    padding-left: 20px;
+}
+
+#changelog .version, #changelog .knownIssues-title, #note .version, #note .knownIssues-title {
     color: rgb(252, 252, 155);
     border-color: rgb(252, 252, 155);
     margin: 0;
+}
+
+#changelog #changelog-knowIssues #knownIssuesContent .issues .issueWorkaround,
+#note #changelog-knowIssues #knownIssuesContent .issues .issueWorkaround {
+    font-style: italic;
+    padding-left: 20px;
 }
 
 #changelog #full-changelog {
@@ -208,8 +218,8 @@ body {
     display: none;
 }
 
-#changelog .new, #changelog .bugfix, #changelog .feature, #changelog .texts,
-#note .new, #note .bugfix, #note .feature, #note .texts {
+#changelog .new, #changelog .bugfix, #changelog .feature, #changelog .texts, #changelog .knownIssues,
+#note .new, #note .bugfix, #note .feature, #note .texts, #note .knownIssues {
     border-radius: 15px 15px 0 0;
     color: black;
     float: right;
@@ -232,6 +242,10 @@ body {
 
 #changelog .texts, #note .texts {
     background-color: violet;
+}
+
+#changelog .knownIssues, #note .knownIssues {
+    background-color: rgb(248, 149, 62);
 }
 
 .footer {

@@ -146,6 +146,8 @@ $v('.logo').addEvent('click', () => {
     $v('#changelog').css('visibility', 'hidden');
     $v('.header .selected').removeClass('selected');
     $v('.aside, .content').css('visibility', 'hidden');
+    $v('.aside').innerHTML('');
+    $v('#note').innerHTML('');
 });
 
 $v('.logo2').addEvent('click', () => {
@@ -287,6 +289,36 @@ changelogLoader = function () {
             $v('.header .selected').removeClass('selected');
         });
     });
+
+    //create known issues tree
+    var knownIssuesNode = $v().createElement({
+        label: 'ul',
+        classes: ['issues']
+    });
+
+    knownIssues.forEach(issue => {
+        var issueNode = $v().createElement({
+            label: 'li',
+            innerHTML: issue.detail
+        });
+        
+        var issueWorkaroundNode = $v().createElement({
+            label: 'div',
+            classes: ['issueWorkaround'],
+            innerHTML: ' ' + issue.workaround
+        });
+
+        var workaroundTitleNode = $v().createElement({
+            label: 'u',
+            innerHTML: 'Workaround:'
+        });
+
+        issueWorkaroundNode.prepend(workaroundTitleNode);
+        issueNode.appendChild(issueWorkaroundNode);
+        knownIssuesNode.appendChild(issueNode);
+    });
+
+    $v('#changelog #knownIssuesContent').appendChilds(knownIssuesNode);
 }
 
 window.onload = function () {

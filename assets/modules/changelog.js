@@ -1,4 +1,16 @@
+knownIssues = [
+    {
+        detail: 'El contenido se carga en blanco',
+        workaround: 'Volver a seleccionar el menú'
+    }
+]
+
 changelog = [
+    {
+        version: '2.7',
+        tags: ['feature'],
+        changes: ['Agregar en el changelog sección errores conocidos']
+    },
     {
         version: '2.6',
         tags: ['content'],
@@ -49,4 +61,4 @@ changelog = [
         tags: ['content', 'feature'],
         changes: ['Maquetado inicial', 'Estrucutración de menús', 'Definición de páginas base de contenido']
     }
-]
+];
