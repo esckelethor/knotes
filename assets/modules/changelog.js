@@ -1,3 +1,5 @@
+const WATERMARK = 'CLASES COREANO > APRENSPAN > GRAMATICA MERGE > 0-24.pdf > Resumen 15';
+
 knownIssues = [
     {
         detail: 'El contenido se carga en blanco',
@@ -6,6 +8,13 @@ knownIssues = [
 ]
 
 changelog = [
+    {
+        version: '2.8',
+        tags: ['content'],
+        changes: ['Correcciones en apuntes de gramática: partículas 가/이 y 은/는', 'Agregar contenido vocabulario: hora',
+            'Agregar contenido gramática: estilos de formalidad, partícula 에, partícula 의, adverbios de lugar'
+        ]
+    },
     {
         version: '2.7',
         tags: ['feature'],
@@ -19,7 +28,7 @@ changelog = [
     {
         version: '2.5',
         tags: ['content', 'bugfix'],
-        changes: ['Finalización contenido frases', 'Actualización apuntes en tablas de frases', 'Minorfox carga modulo anexos']
+        changes: ['Finalización contenido frases', 'Actualización apuntes en tablas de frases', 'Minorfix carga modulo anexos']
     },
     {
         version: '2.4',
@@ -34,7 +43,7 @@ changelog = [
     {
         version: '2.2',
         tags: ['content'],
-        changes: ['Añadido nuevo contenido verbos, partículas y números']
+        changes: ['Añadido nuevo contenido: verbos, partículas y números']
     },
     {
         version: '2.1',

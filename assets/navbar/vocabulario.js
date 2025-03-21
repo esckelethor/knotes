@@ -7,8 +7,8 @@ menu.vocabulario = {
     ],
     bloque: [
         {id: 'nacionalidades', title: 'nacionalidades', module: 'anexos'},
-        {id: 'hora', title: 'hora'},
         {id: 'numeros', title: 'números'},
+        {id: 'hora', title: 'hora'},
         {id: 'conteo', title: 'unidades de conteo'},
         {id: 'uso_ne', title: 'uso de 네'},
         {id: 'cute', title: 'cute - 귀여운'},
