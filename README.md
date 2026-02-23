@@ -7,7 +7,7 @@
 Web para estudiar coreano, recopilación de notas tomadas mientras se estudiaba
 
 ### Desarrollado con
-HTML5, CSS3 and JS (ECMAScript 15) puro sin frameworks
+HTML5, CSS3 and vanilla JS (ECMAScript 15) sin frameworks
 
 ### Web publicada (instalable como un tab a pantalla completa en Android)
 https://esckelethor.github.io/knotes/ <i>(web en construcción)</i>
