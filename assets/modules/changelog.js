@@ -9,6 +9,12 @@ knownIssues = [
 
 changelog = [
     {
+        version: '3.0',
+        tags: ['feature'],
+        changes: ['Impplementación multilenguaje', 'Nuevo sistema de tagging', 'Unificación de estilos'
+        ]
+    },
+    {
         version: '2.8',
         tags: ['content'],
         changes: ['Correcciones en apuntes de gramática: partículas 가/이 y 은/는', 'Agregar contenido vocabulario: hora',
