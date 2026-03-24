@@ -11,7 +11,7 @@ changelog = [
     {
         version: '3.0',
         tags: ['feature'],
-        changes: ['Impplementación multilenguaje', 'Nuevo sistema de tagging', 'Unificación de estilos'
+        changes: ['Implementación multilenguaje', 'Nuevo sistema de tagging', 'Unificación de estilos'
         ]
     },
     {

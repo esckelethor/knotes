@@ -13,7 +13,7 @@
 }
 
 body {
-    background: silver url("../assets/img/background.png") no-repeat fixed center;
+    background: silver url("../assets/img/basic/background.png") no-repeat fixed center;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -257,7 +257,7 @@ body {
     padding: 5px;
 }
 
-.footer #version, .footer #footer_filler {
+.footer #version, .footer #lang {
     flex: 1;
     margin: 0 10px;
     text-align-last: right;

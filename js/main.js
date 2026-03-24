@@ -1,14 +1,14 @@
 //constans
 const VERSION = changelog[0].version;
 //global vars
-menu = new Object();
+//menu = new Object();
 currentMenu = null;
 currentSpotifyPlaylist = null;
 spotifyIsPaused = true;
 spotifyEmbedController = null;
 
 isCollapsed = function (collapsed) {
-    return './assets/img/' + ((collapsed == 'true') ? 'r' : 'b') + '_arrow.png';
+    return './assets/img/icon/' + ((collapsed == 'true') ? 'r' : 'b') + '_arrow.png';
 }
 
 setAsideEvents = function () {
@@ -78,8 +78,13 @@ setAsideEvents = function () {
 loadAside = function () {
     $v('.aside').innerHTML('');
     $v('#note').innerHTML('');
+    var aside = null;
 
-    var aside = menu[currentMenu];
+    if (currentMenu.includes('-')) {
+        aside = menu[currentMenu.split('-')[0]][currentMenu.split('-')[1]];
+    } else {
+        aside = menu[currentMenu];
+    }
 
     for(var key in aside) {
         var currentAside = currentMenu + '-' + key;
@@ -122,6 +127,27 @@ loadAside = function () {
 
     setAsideEvents();
 }
+
+loadMenu = function () {
+    $v('.header #menu').innerHTML('');
+    var lang = null;
+    var nav = null;
+
+    if (lang == null || lang == undefined) {
+        lang = 'kr';
+    } else{
+        null; //carga lang del combo
+    }
+    
+    for(var key in menu[lang].titles) {
+        var contentMenu = $v().createElement({
+            label: 'li',
+            id: menu[lang].titles[key].id,
+            innerHTML: menu[lang].titles[key].value
+        });
+        $v('.header #menu').appendChilds(contentMenu);
+    }
+}();
 
 $v('.header li').addEvent('click', (event) => {
     if (currentMenu != event.currentTarget.id) {
@@ -262,7 +288,7 @@ changelogLoader = function () {
             
             var tagLogo = $v().createElement({
                 label: 'img',
-                attrs: [{attr: 'src', value: './assets/img/logo.png'}]
+                attrs: [{attr: 'src', value: './assets/img/basic/logo.png'}]
             });
 
             var tagImgContainer = $v().createElement({

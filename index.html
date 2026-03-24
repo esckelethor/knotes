@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>K-NOTES ~ K-주석</title>
-    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="./assets/img/icon/favicon.ico">
     <link rel="stylesheet" href="./css/style.css"></link>
     <link rel="stylesheet" href="./css/notes.css"></link>
     <!-- web-app -->
@@ -13,14 +13,9 @@
 </head>
 <body>
     <div class="header">
-        <img src="./assets/img/logo.png" alt="logo" class="logo">
-        <img src="./assets/img/sam_taeguk.png" alt="sam_taeguk" class="logo2">
-        <ul>
-            <li id="vocabulario">Vocabulario ~ 어휘</li>
-            <li id="gramatica">Gramática ~ 문법</li>
-            <li id="verbos">Verbos ~ 동사</li>
-            <li id="frases">Frases ~ 문장</li>
-        </ul>
+        <img src="./assets/img/basic/logo.png" alt="logo" class="logo"/>
+        <img src="./assets/img/basic/sam_taeguk.png" alt="sam_taeguk" class="logo2"/>
+        <ul id="menu"></ul>
     </div>
     <div class="main">
         <div class="aside"></div>
@@ -48,9 +43,9 @@
             <div id="changelog-oldVersions"></div>
         </div>
         <div id="full-changelog">VER HISTORIAL</div>
-    </div>
+    </div>    
     <div class="footer">
-        <div id="footer_filler"></div>
+        <div id="lang"></div>
         <div id="copyrigth">
             &copy;&nbsp;
             <a href="https://github.com/esckelethor">esckelethor</a>
@@ -65,10 +60,8 @@
     <script type="application/javascript" src="./js/vQuery.js"></script>
     <script type="application/javascript" src="./js/prototypes.js"></script>
     <script type="application/javascript" src="./assets/modules/changelog.js"></script>
+    <script type="application/javascript" src="./assets/navbar/kr.js"></script>
+    <script type="application/javascript" src="./assets/navbar/en.js"></script>
     <script type="application/javascript" src="./js/main.js"></script>
-    <script type="application/javascript" src="./assets/navbar/vocabulario.js"></script>
-    <script type="application/javascript" src="./assets/navbar/gramatica.js"></script>
-    <script type="application/javascript" src="./assets/navbar/verbos.js"></script>
-    <script type="application/javascript" src="./assets/navbar/frases.js"></script>
 </body>
 </html>
