@@ -1,0 +1,33 @@
+:root {
+    /* links */
+    --v_green: rgb(0, 126, 87);
+}
+
+/* anexos */
+#selector-anexos #anexos {
+    font-weight: bold;
+}
+
+#content-anexo, #content-anexo #wrapper-anexos, #content-anexo #wrapper-anexos div:not([data-ejercicio]) {
+    display: none;
+}
+
+#content-anexo img {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+}
+
+#content-anexo #back img {
+    display: initial;
+}
+
+#content-anexo #back img {
+    height: 15px;
+    width: 15px;
+}
+
+.anexo {
+    cursor: pointer;
+    color: var(--v_green);
+}

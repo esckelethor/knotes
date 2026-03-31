@@ -1,53 +1,51 @@
+:root {
+    /* titulo */
+    --v_cian: #2b87ff;
+    /* resaltar */
+    --v_note_red: #e58088;
+    --v_note_blue: #66a8ff;
+    --v_note_yellow: #ffd666;
+    --v_note_green: #66ffcf;
+}
+
+/* titulos */
 h2, h3, h4 {
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid var(--v_white);
 }
 
 h2 {
-    color: rgb(252, 252, 155);
-    border-color: rgb(252, 252, 155);
+    color: var(--v_lightRed);
+    border-color: var(--v_lightRed);
 }
 
 h3 {
-    color: rgb(220, 255, 217);
-    border-color: rgb(220, 255, 217);
+    color: var(--v_cian);
+    border-color: var(--v_cian);
 }
 
-#selector-anexos #anexos {
-    font-weight: bold;
+h4 {
+    color: var(--v_yellow);
+    border-color: var(--v_yellow);
 }
 
-#content-anexo, #content-anexo #wrapper-anexos, #content-anexo #wrapper-anexos div:not([data-ejercicio]) {
-    display: none;
-}
-
-#content-anexo img {
-    display: block;
-    margin: 0 auto;
-    width: 70%;
-}
-
-#content-anexo #back img {
-    display: initial;
-}
-
+/* tablas */
 table {
     border: none;
     border-collapse: collapse;
     width: 100%;
 }
 
-table img, h3 img, #content-anexo #back img {
+table img, h3 img{
     height: 15px;
     width: 15px;
 }
 
 table td, table th {
-    color: black;
     padding: 5px;
 }
 
 table th, table td.title {
-    background-color: rgb(255, 255, 214);
+    background-color: var(--v_lightGrey);
     font-weight: bold;
     text-align: center;
 }
@@ -69,21 +67,21 @@ table tr:first-child td:last-child, table tr:first-child th:last-child {
 }
 
 table tr:nth-child(even) {
-    background: rgb(175, 188, 213);
+    background: var(--v_darkRed-05);
 }
 
 table tr:nth-child(even) td.left {
-    background: rgb(106, 143, 212);
+    background: var(--v_darkRed);
     font-weight: bold;
     text-align: center;
 }
 
 table tr:nth-child(odd) {
-    background: rgb(213, 175, 175);
+    background: var(--v_darkBlue-05);
 }
 
 table tr:nth-child(odd) td.left {
-    background: rgb(206, 99, 99);
+    background: var(--v_darkBlue);
     font-weight: bold;
     text-align: center;
 }
@@ -102,15 +100,8 @@ table td.rigth {
 
 table tr.w-auto td {
     width: auto;
-    border: 1px black !important;
+    border: 1px var(--v_black) !important;
     text-align: center;
-}
-
-.batchim {
-    background: linear-gradient(to bottom, black 0 57%, #d300ff 43% 100%);
-    background-clip: text;
-    color: transparent;
-    font-weight: bold;
 }
 
 .to-rigth {
@@ -133,102 +124,52 @@ table tr.w-auto td {
     column-count: 5;
 }
 
-.verb1, .verb2, .sust1, .sust2, .particle1, .particle2, .adverb, .nexo, .transform1, .transform2 {
-    font-weight: bold;
+/* columnas sin tabla */
+.divCols {
+  display: flex;
+  gap: 20px;
+}
+
+.col {
+  flex: 1;
+}
+
+/* ejercicios, marcar texto como titulo, y cursor */
+.mark, .success {
+    color: var(--v_green);
+}
+
+.fail {
+    color: var(--v_lightRed);
+}
+
+#back {
+    cursor: pointer;
 }
 
 .mark {
-    color: rgb(98, 248, 201);
+    font-weight: bold;
 }
 
-table .mark {
-    color: rgb(0, 126, 87);
+/* resaltar palabras o silabas */
+.batchim {
+    background: linear-gradient(to bottom, var(--v_white) 0 57%, var(--v_note_green) 43% 100%);
+    background-clip: text;
+    color: transparent;
 }
 
-.mark2 {
-    color: rgb(252, 252, 155);
+.mark_red {
+    color: var(--v_note_red);
 }
 
-table .mark2 {
-    color: rgb(255, 255, 0);
+.mark_blue {
+    color: var(--v_note_blue);
 }
 
-.verb1, .success {
-    color: rgb(31, 201, 31);
+.mark_yellow {
+    color: var(--v_note_yellow);
 }
 
-table .verb1 {
-    color: rgb(7, 91, 7);
-}
-
-.verb2 {
-    color: lime;
-}
-
-table .verb2 {
-    color: rgb(2, 147, 2);
-}
-
-.sust1 {
-    color: rgb(0, 187, 255);
-}
-
-table .sust1 {
-    color: rgb(5, 96, 129);
-}
-
-.sust2 {
-    color: aqua;
-}
-
-table .sust2 {
-    color: rgb(5, 145, 145);
-}
-
-.particle1 {
-    color: yellow;
-}
-
-table .particle1 {
-    color: yellow;
-}
-
-.particle2 {
-    color: orange;
-}
-
-table .particle2 {
-    color: rgb(190, 125, 6);
-}
-
-.adverb {
-    color: rgb(255, 133, 133);
-}
-
-table .adverb {
-    color: rgb(248, 62, 62);
-}
-
-.nexo {
-    color: violet;
-}
-
-table .nexo {
-    color: rgb(153, 45, 153);
-}
-
-.transform1, .fail {
-    color: rgb(255, 63, 159);
-}
-
-table .transform1 {
-    color: rgb(248, 34, 141);
-}
-
-.transform2 {
-    color: rgb(255, 59, 255);
-}
-
-table .transform2 {
-    color: rgb(255, 59, 255);
+.mark_green {
+    color: var(--v_note_green);
 }

@@ -1,0 +1,87 @@
+:root {
+    --v_pink: rgb(248, 34, 141);
+    --v_lightYellow: rgb(252, 252, 155);
+    --v_orange: rgb(230 109 4);
+}
+
+#changelog {
+    background: linear-gradient(145deg, var(--v_darkRed), var(--v_darkBlue));
+    border-radius: 15px;
+    bottom: 43px;
+    min-height: 175px;
+    max-height: 225px;
+    overflow-y: scroll;
+    position: absolute;
+    right: 7px;
+    width: 420px;
+    z-index: 999;
+}
+
+#changelog #changelogContents, #changelog #full-changelog,
+#note #changelogContents, #note #full-changelog {
+    padding: 15px 15px 10px;
+}
+
+#changelog #changelog-knowIssues, #note #changelog-knowIssues {
+    padding-left: 20px;
+}
+
+#changelog .version, #changelog .knownIssues-title, #note .version, #note .knownIssues-title {
+    color: var(--v_lightYellow);
+    border-color: var(--v_lightYellow);
+    margin: 0;
+}
+
+#changelog #changelog-knowIssues #knownIssuesContent .issues .issueWorkaround,
+#note #changelog-knowIssues #knownIssuesContent .issues .issueWorkaround {
+    font-style: italic;
+    padding-left: 20px;
+}
+
+#changelog #full-changelog {
+    border-radius: 15px;
+    background-color: var(--v_darkRed);
+    font-style: italic;
+    font-weight: bold;
+    margin: auto auto 15px;
+    padding: 5px;
+    text-align: center;
+    width: 150px;
+}
+
+#changelog #full-changelog:hover {
+    background-color: var(--v_darkBlue);
+}
+
+#changelog #changelog-oldVersions {
+    display: none;
+}
+
+#changelog .new, #changelog .bugfix, #changelog .feature, #changelog .texts, #changelog .knownIssues,
+#note .new, #note .bugfix, #note .feature, #note .texts, #note .knownIssues {
+    border-radius: 15px 15px 0 0;
+    float: right;
+    font-style: italic;
+    margin: 0px 5px;
+    padding: 0 10px 0 10px;
+}
+
+#changelog .new, #note .new {
+    background-color: var(--v_lightRed);
+}
+
+#changelog .bugfix, #note .bugfix {
+    background-color: var(--v_lightBlue);
+}
+
+#changelog .feature, #note .feature {
+    background-color: var(--v_green)
+}
+
+#changelog .texts, #note .texts {
+    background-color: var(--v_pink);
+}
+
+#changelog .knownIssues, #note .knownIssues {
+    background-color: var(--v_orange)
+}

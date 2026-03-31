@@ -15,23 +15,23 @@ menu.kr = {
         bloque: [
             {id: 'nacionalidades', title: 'nacionalidades', module: 'anexos'},
             {id: 'numeros', title: 'números'},
-            {id: 'hora', title: 'hora'},
+            {id: 'hora', title: 'hora'}/*,
             {id: 'conteo', title: 'unidades de conteo'},
             {id: 'uso_ne', title: 'uso de 네'},
             {id: 'cute', title: 'cute - 귀여운'},
-            {id: 'otros', title: 'otros'}
+            {id: 'otros', title: 'otros'}*/
         ]
     },
     gramatica: {
         base: [
-            {id: 'estilos_formalidad', title: 'Estilos de formalidad'},
+            {id: 'estilos_formalidad', title: 'Estilos de formalidad'}/*,
             {id: 'pronombres', title: 'Pronombres'},
             {id: 'demostrativos', title: 'Demostrativos'},
             {id: 'modif_demostrativos', title: 'Modificadores demostrativos'},
             {id: 'honorifico', title: 'Infijo honorífico'},
             {id: 'negaciones', title: 'Negaciones'},
-            {id: 'orden_accion', title: 'Orden de acciones'}
-        ],
+            {id: 'orden_accion', title: 'Orden de acciones'}*/
+        ]/*,
         general: [
             {id: 'pasado', title: 'Formando el pasado'},
             {id: 'desiderativo', title: 'Final desiderativo'},
@@ -50,12 +50,12 @@ menu.kr = {
             {id: 'algo_juntos', title: 'Hagamos algo juntos'},
             {id: 'estilo_indirecto', title: 'Estilo indirecto'},
             {id: 'subordinadas_adj', title: 'Oraciones subordinadas adjetivas'}
-        ],
+        ]*/,
         particulas: [
             {id: '가_이', title: '가/이'},
             {id: '은_는', title: '은/는'},
             {id: '에', title: '에'},
-            {id: '의', title: '의'},
+            {id: '의', title: '의'}/*,
             {id: '을_를', title: '을/를'},
             {id: '또_도', title: '또/도'},
             {id: '요', title: '요'},
@@ -66,15 +66,15 @@ menu.kr = {
             {id: '로', title: '(으) 로'},
             {id: '밖에', title: '밖에'},
             {id: '마다', title: '마다'},
-            {id: '겠', title: '겠'}
+            {id: '겠', title: '겠'}*/
         ],
         adverbios: [
-            {id: 'adv_lugar', title: 'Lugar'},
+            {id: 'adv_lugar', title: 'Lugar'}/*,
             {id: 'adv_negacion', title: 'Negación'},
             {id: 'adv_bien', title: 'Bien'},
-            {id: 'adv_bastante', title: 'Bastante'}
+            {id: 'adv_bastante', title: 'Bastante'}*/
         ],
-        transformaciones: [
+        /*transformaciones: [
             {id: 'adj_sust', title: 'Adjetivo en sustantivo'},
             {id: 'adj_adv', title: 'Adjetivo en adverbio'},
             {id: 'verb_descrip', title: 'Verbos descriptivos'},
@@ -104,16 +104,16 @@ menu.kr = {
             {id: 'exist_necesidad', title: 'Existencia de necesidad'},
             {id: 'not_necesidad', title: 'Ausencia de necesidad'},
             {id: 'sorpresa', title: 'Sorpresa'}
-        ],
+        ]*/
     },
     verbos: {
         principales: [
             {id: '이다', title: '이다 ~ Ser/Estar'},
             {id: '아니다', title: '아니다 ~ No ser/No estar'},
             {id: '있다', title: '있다 ~ Existencia/Posesión'},
-            {id: '없다', title: '없다 ~ No existencia/No posesión'},
-            {id: 'pasado_이다_아니다', title: 'Pasado de 이다 y 아니다'}
-        ],
+            {id: '없다', title: '없다 ~ No existencia/No posesión'}/*,
+            {id: 'pasado_이다_아니다', title: 'Pasado de 이다 y 아니다'}*/
+        ]/*,
         regulares: [
             {id: '하다', title: '하다 ~ Hacer'}
         ],
@@ -124,7 +124,7 @@ menu.kr = {
             {id: '르', title: 'Finalizado en -르'},
             {id: 'ㅅ', title: 'Finalizado en -ㅅ'},
             {id: 'tabla_르', title: 'Tabla verbos -르'}
-        ]
+        ]*/
     },
     frases: {
         felicitaciones: [
