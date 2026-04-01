@@ -7,12 +7,15 @@ menu.kr = {
     ],
     vocabulario: {
         hangeul: [
-            {id: 'hangeul_i', title: 'I: Alfabeto'},
-            {id: 'hangeul_ii', title: 'II: Batchim'},
-            {id: 'hangeul_iii', title: 'III: Construcción silabica', module: 'anexos'},
-            {id: 'hangeul_iv', title: 'IV: Orden oracional'}
+            {id: 'alfabeto', title: 'Alfabeto'},
+            {id: 'batchim_i', title: 'Batchim I'},
+            {id: 'batchim_ii', title: 'Batchim II'},
+            {id: 'batchim_iii', title: 'Batchim III'},
+            {id: 'construccion_silabas', title: 'Construcción silabica', module: 'anexos'},
+            {id: 'orden_oracional', title: 'Orden oracional'}
         ],
-        bloque: [
+        //PENDIENTE DE REHACER HTML Y AGRUPAR DESDE AQUI 
+        vocabulario_base: [
             {id: 'nacionalidades', title: 'nacionalidades', module: 'anexos'},
             {id: 'numeros', title: 'números'},
             {id: 'hora', title: 'hora'}/*,

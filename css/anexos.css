@@ -4,7 +4,7 @@
 }
 
 /* anexos */
-#selector-anexos #anexos {
+#selector-anexos #anexos, #back>span {
     font-weight: bold;
 }
 
@@ -27,7 +27,7 @@
     width: 15px;
 }
 
-.anexo {
+.anexo, #back>span {
     cursor: pointer;
     color: var(--v_green);
 }

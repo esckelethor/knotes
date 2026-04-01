@@ -143,10 +143,6 @@ table tr.w-auto td {
     color: var(--v_lightRed);
 }
 
-#back {
-    cursor: pointer;
-}
-
 .mark {
     font-weight: bold;
 }

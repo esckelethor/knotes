@@ -1,47 +1,31 @@
 menu.en = {
     titles: [
-        {id: 'en-basico', value: 'Nivel basico'},
+        {id: 'en-basico', value: 'Nivel basico'}/*,
         {id: 'en-medio', value: 'Nivel medio'},
-        {id: 'en-avanzado', value: 'Nivel avanzado'}
+        {id: 'en-avanzado', value: 'Nivel avanzado'}*/
     ],
     basico: {
         pronombres: [
-            {id: 'pronombres', title: 'Pronombres personales'},
-            {id: 'posesivos', title: 'Posesivos'},
-            {id: 'demostrativos', title: 'Demostrativos'},
-            {id: 'reflexivos', title: 'Pronombres reflexivos'}
+            {id: 'pronombres_i', title: 'Pronombres I'}, //pronombres personales + posesivos
+            {id: 'pronombres_ii', title: 'Pronombres II'} //demostrativos + pronombres reflexivos
         ],
-        articulos: [
-            {id: 'determinado', title: 'Determinado'},
-            {id: 'indeterminado', title: 'Indeterminado'}
-        ],
+        articulos: [], //determinados + indeterminados        
         preposiciones: [
-            {id: 'preposiciones', title: 'Preposiciones'},
-            {id: 'lugar', title: 'De lugar'},
-            {id: 'tiempo', title: 'De tiempo'},
-            {id: 'movimiento', title: 'De movimiento'}
+            {id: 'preposiciones_i', title: 'Preposiciones I'}, //preposiciones + de lugar
+            {id: 'preposiciones_ii', title: 'Preposiciones II'} //de tiempo + de movimiento
         ],
         nombres: [
-            {id: 'nombres', title: 'Nombres'},
-            {id: 'nompropios', title: 'Nombres propios'},
-            {id: 'contables', title: 'Contables e incontables'},
-            {id: 'haber', title: 'Haber'},
-            {id: 'cuantificadores', title: 'Cuantificadores'}
+            {id: 'nombres_i', title: 'Nombres I'}, //nombres + nombres propios
+            {id: 'nombres_ii', title: 'Nombres II'} //contables e incontables + habe + cuantificadores
         ],
         adjetivos: [],
         verbos: [
-            {id: 'verbos', title: 'Verbos'},
-            {id: 'ser', title: 'Ser/estar'},
-            {id: 'cortos', title: 'Formas cortas'},
-            {id: 'tener', title: 'Tener'},
-            {id: 'modales', title: 'Modales'}
+            {id: 'verbos_i', title: 'Verbos I'}, //verbos + ser/estar + formas cortas
+            {id: 'verbos_ii', title: 'Verbos II'} //tener + modales
         ],
-        estructura_frases: [            
-            {id: 'construccion', title: 'Construir frases'},
-            {id: 'imperativas', title: 'Frases imperativas'}
-        ]
+        estructura_frases: []    //construir frases + frases imperativas         
         //8
-    },
+    }/*,
     medio: {
         base: [
             {id: 'pronombres', title: 'Pronombres'},
@@ -52,5 +36,5 @@ menu.en = {
         base: [
             {id: 'pronombres', title: 'Pronombres'}
         ]
-    }
+    }*/
 };
