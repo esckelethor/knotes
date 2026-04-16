@@ -5,14 +5,14 @@ gCurrentSpotifyPlaylist = null;
 gSpotifyIsPaused = true;
 gSpotifyEmbedController = null;
 
-isCollapsed = function (collapsed) {
-    return './assets/img/icon/' + ((collapsed == 'true') ? 'r' : 'b') + '_arrow.png';
+isCollapsed = function (pCollapsed) {
+    return './assets/img/icon/' + ((pCollapsed == 'true') ? 'r' : 'b') + '_arrow.png';
 }
 
-checkVisibility = function(selector) {
-    var vVisibility = $v(selector).css('visibility');
+checkVisibility = function(pSelector) {
+    var vVisibility = $v(pSelector).css('visibility');
     vVisibility = (vVisibility == '') ? 'hidden' : vVisibility;
-    $v(selector).css('visibility', (vVisibility == 'hidden') ? 'visible' : 'hidden');
+    $v(pSelector).css('visibility', (vVisibility == 'hidden') ? 'visible' : 'hidden');
 }
 
 $v('.logo2').addEvent('click', () => {
@@ -60,7 +60,7 @@ window.onSpotifyIframeApiReady = (IFrameAPI) => {
 
 changelogLoader = function () {
     //set event show changelog
-    $v('#version').addEvent('click', (event) => {
+    $v('#version').addEvent('click', (pEvent) => {
         //prevent open changelog if full changelog visible
         if ($v('#note #changelogContents').length == 0) {
             checkVisibility('#changelog');
@@ -71,7 +71,7 @@ changelogLoader = function () {
     $v('#version').attr('data-version', VERSION).innerHTML(VERSION);
 
     //create changelog tree
-    changelog.forEach((version, index) => {
+    changelog.forEach((pVersion, pIndex) => {
         var vVersionNode = $v().createElement({
             label: 'div'
         });
@@ -80,17 +80,17 @@ changelogLoader = function () {
             label: 'h4',
             classes: ['version'],
             attrs: [
-                {attr: 'data-version', value: version.version}
+                {attr: 'data-version', value: pVersion.version}
             ],
-            innerHTML: version.version
+            innerHTML: pVersion.version
         });
 
-        if (index == 0) version.tags.push('new');
-        version.tags.forEach(tag => {
+        if (pIndex == 0) pVersion.tags.push('new');
+        pVersion.tags.forEach(pTag => {
             var vTagNode = $v().createElement({
                 label: 'code',
-                classes: [(tag == 'content') ? 'texts' : tag],
-                innerHTML: tag
+                classes: [(pTag == 'content') ? 'texts' : pTag],
+                innerHTML: pTag
             });
 
             vVersionNumberNode.appendChild(vTagNode);
@@ -103,10 +103,10 @@ changelogLoader = function () {
             classes: ['changes']
         });
 
-        version.changes.forEach(change => {
+        pVersion.changes.forEach(pChange => {
             var vVersionChangeItem = $v().createElement({
                 label: 'li',
-                innerHTML: change
+                innerHTML: pChange
             });
 
             vVersionChangesNode.appendChild(vVersionChangeItem);
@@ -114,10 +114,10 @@ changelogLoader = function () {
         
         vVersionNode.appendChild(vVersionChangesNode);
 
-        $v('#changelogContents #changelog-' + ((index == 0) ? 'currentVersion' : 'oldVersions')).appendChilds(vVersionNode);
+        $v('#changelogContents #changelog-' + ((pIndex == 0) ? 'currentVersion' : 'oldVersions')).appendChilds(vVersionNode);
 
         //add event full-changelog
-        $v('#changelog #full-changelog').addEvent('click', (event) => {
+        $v('#changelog #full-changelog').addEvent('click', (pEvent) => {
             $v('.aside').css('display', 'none');
             $v('#changelog').css('visibility', 'hidden');
             
@@ -186,14 +186,14 @@ changelogLoader = function () {
     $v('#changelog #changelog-knowIssues').css('display', 'none');
 }
 
-$v('#lang').addEvent('click', (event) => {
+$v('#lang').addEvent('click', (pEvent) => {
     checkVisibility('#lang-selector');
 });
 
-$v('.lang-item').addEvent('click', (event) => {
-    gLang = event.currentTarget.id.split('-')[1];
-    var vSrcLang = $v('#' + event.currentTarget.id + '>img').attr('src');
-    var vTxtLang = $v('#' + event.currentTarget.id + '>div').innerHTML();
+$v('.lang-item').addEvent('click', (pEvent) => {
+    gLang = pEvent.currentTarget.id.split('-')[1];
+    var vSrcLang = $v('#' + pEvent.currentTarget.id + '>img').attr('src');
+    var vTxtLang = $v('#' + pEvent.currentTarget.id + '>div').innerHTML();
     $v('#lang>img').attr('src', vSrcLang);
     $v('#lang>div').innerHTML(vTxtLang);
     loadMenu();

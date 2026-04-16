@@ -34,7 +34,7 @@ loadMenu = function () {
 };
 
 setAsideEvents = function () {
-    $v('.navbar').addEvent('click', (event) => {
+    $v('.navbar').addEvent('click', (pEvent) => {
         var vIdCollapsedOpen = null;
 
         //remove selected navbar
@@ -54,8 +54,8 @@ setAsideEvents = function () {
         $v('.navbar.selected').removeClass('selected');
     
         //set selected navbar
-        if (vIdCollapsedOpen != event.currentTarget.id) {
-            $v('#' + event.currentTarget.id).addClass('selected');
+        if (vIdCollapsedOpen != pEvent.currentTarget.id) {
+            $v('#' + pEvent.currentTarget.id).addClass('selected');
             
             //close current note
             $v('#note').innerHTML('');
@@ -63,15 +63,15 @@ setAsideEvents = function () {
             
             //open subnav
             if ($v('.navbar.selected').hasClass('collapsable')) {
-                $v('#' + event.currentTarget.id).attr('data-collapsed', 'false');
-                vIcoCollapse = isCollapsed($v('#' + event.currentTarget.id).attr('data-collapsed'));
-                $v('#' + event.currentTarget.id + ' .vIcoCollapsed').attr('src', vIcoCollapse);
-                $v('#' + event.currentTarget.id + ' .subnav').css('display', 'inherit');
+                $v('#' + pEvent.currentTarget.id).attr('data-collapsed', 'false');
+                vIcoCollapse = isCollapsed($v('#' + pEvent.currentTarget.id).attr('data-collapsed'));
+                $v('#' + pEvent.currentTarget.id + ' .vIcoCollapsed').attr('src', vIcoCollapse);
+                $v('#' + pEvent.currentTarget.id + ' .subnav').css('display', 'inherit');
             }
 
             //load content
-            if (!$v('#' + event.currentTarget.id).hasClass('collapsable')) {
-                $v('#note').loadContent(event.currentTarget.id);
+            if (!$v('#' + pEvent.currentTarget.id).hasClass('collapsable')) {
+                $v('#note').loadContent(pEvent.currentTarget.id);
                 $v('.content').css('visibility', 'visible');
             }
         } else {
@@ -81,19 +81,19 @@ setAsideEvents = function () {
         }
     });
     
-    $v('.subnav').addEvent('click', (event) => {
+    $v('.subnav').addEvent('click', (pEvent) => {
         //remove selected subnav
         $v('.subnav.selected').removeClass('selected');
         //set selected subnav
-        $v('#' + event.currentTarget.id).addClass('selected');
+        $v('#' + pEvent.currentTarget.id).addClass('selected');
 
         //load content
         clearModals();
-        var vModule = $v('#' + event.currentTarget.id).attr('data-module');
-        $v('#note').loadContent(event.currentTarget.id, vModule);
+        var vModule = $v('#' + pEvent.currentTarget.id).attr('data-module');
+        $v('#note').loadContent(pEvent.currentTarget.id, vModule);
         $v('.content').css('visibility', 'visible');
     
-        event.stopPropagation();
+        pEvent.stopPropagation();
     });
 }
 
@@ -127,15 +127,15 @@ loadAside = function () {
             $v('.aside #' + vCurrentAside).appendChilds(vCollapsableIco);
 
             //add subnav
-            vAside[vKey].forEach(subnav => {
+            vAside[vKey].forEach(pSubnav => {
                 var vContentSubnav = $v().createElement({
                     label: 'div',
-                    id: vCurrentAside + '-' + subnav.id,
+                    id: vCurrentAside + '-' + pSubnav.id,
                     classes: ['subnav'],
                     attrs: [
-                        {attr: 'data-module', value: (subnav.module == undefined) ? $v().DATA_MODULE_NONE : subnav.module}
+                        {attr: 'data-module', value: (pSubnav.module == undefined) ? $v().DATA_MODULE_NONE : pSubnav.module}
                     ],
-                    innerHTML: subnav.title
+                    innerHTML: pSubnav.title
                 });
                 $v('.aside #' + vCurrentAside).appendChilds(vContentSubnav);
             });
@@ -146,16 +146,16 @@ loadAside = function () {
 }
 
 setCLickMenu = function() {
-    $v('.header li').addEvent('click', (event) => {
-        if (gCurrentMenu != event.currentTarget.id) {
+    $v('.header li').addEvent('click', (pEvent) => {
+        if (gCurrentMenu != pEvent.currentTarget.id) {
             //remove selected menu
             gCurrentMenu = null;
             $v('.header .selected').removeClass('selected');
             
             //set selected menu
             clearModals();
-            gCurrentMenu = event.currentTarget.id;
-            $v('#' + event.currentTarget.id).addClass('selected');
+            gCurrentMenu = pEvent.currentTarget.id;
+            $v('#' + pEvent.currentTarget.id).addClass('selected');
             //set navbar/content visible
             $v('.aside').css('visibility', 'visible');
             $v('.content').css('visibility', 'hidden');

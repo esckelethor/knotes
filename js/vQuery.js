@@ -1,14 +1,14 @@
 //vanilla JS framework based on JQuery
 //vQuery constructor
-_vQuery = function (selector) {
-	this.vQuery = '1.1.0';
+_vQuery = function (pSelector) {
+	this.vQuery = '1.1.1';
 	
-	let nodes = document.querySelectorAll(selector);
-	if (nodes.length > 0) {
-		nodes = [].slice.call(nodes);
-		this.nodes = nodes;
+	let vNodes = document.querySelectorAll(pSelector);
+	if (vNodes.length > 0) {
+		vNodes = [].slice.call(vNodes);
+		this.nodes = vNodes;
 	}
-	this.length = (nodes != undefined) ? nodes.length : 0;
+	this.length = (vNodes != undefined) ? vNodes.length : 0;
 	return this;
 }
 
@@ -16,170 +16,170 @@ _vQuery = function (selector) {
 _vQuery.prototype.DATA_MODULE_NONE = 'none';
 
 //vQuery utils, can be used with a blank selector
-_vQuery.prototype.getValueOrDefault = function (value, defaultValue) {
-	return (value != undefined && value != null) ? value : defaultValue;
+_vQuery.prototype.getValueOrDefault = function (pValue, pDefaultValue) {
+	return (pValue != undefined && pValue != null) ? pValue : pDefaultValue;
 }
 
-_vQuery.prototype.loadContent = function (asset, module = this.DATA_MODULE_NONE) {
+_vQuery.prototype.loadContent = function (pAsset, pModule = this.DATA_MODULE_NONE) {
 	this.innerHTML('');
 
-	asset = asset.replaceAll('-', '/');
+	pAsset = pAsset.replaceAll('-', '/');
 	this.ajax({
 		method: 'GET',
-		url: './assets/content/' + asset + '.html'
-	}).then((data) => {
-		this.innerHTML(data);
+		url: './assets/content/' + pAsset + '.html'
+	}).then((pData) => {
+		this.innerHTML(pData);
 
-		if (module != this.DATA_MODULE_NONE) {
+		if (pModule != this.DATA_MODULE_NONE) {
 			//load module_anexos
-			var script = this.createElement({
+			var vScript = this.createElement({
 				label: 'script',
 				attrs: [
 					{attr: 'type', value: 'text/javascript'},
-					{attr: 'src', value: './assets/modules/' + module + '.js'}
+					{attr: 'src', value: './assets/modules/' + pModule + '.js'}
 				]
 			});
-			this.appendChilds(script);
+			this.appendChilds(vScript);
 		}
-	}).catch((data) => {
-		console.log(data.message);
+	}).catch((pData) => {
+		console.log(pData.message);
 	});
 }
 
-_vQuery.prototype.ajax = function (data) {
-	let ajax = {
-		method: this.getValueOrDefault(data.method, null),
-		url: this.getValueOrDefault(data.url, null)
+_vQuery.prototype.ajax = function (pData) {
+	let vAjax = {
+		method: this.getValueOrDefault(pData.method, null),
+		url: this.getValueOrDefault(pData.url, null)
 	}
-	if (ajax.method == null) return new Promise.reject(new Error('Missing HTTP Method'));
-	if (ajax.url == null) return new Promise.reject(new Error('Missing URL'));
+	if (vAjax.method == null) return new Promise.reject(new Error('Missing HTTP Method'));
+	if (vAjax.url == null) return new Promise.reject(new Error('Missing URL'));
 
-	ajax.method = ajax.method.toUpperCase();
+	vAjax.method = vAjax.method.toUpperCase();
 
 	return new Promise((resolve, reject) => {
-		var xhr = new XMLHttpRequest();
+		var vXHR = new XMLHttpRequest();
 
-		xhr.ontimeout = function () {
+		vXHR.ontimeout = function () {
 			return reject(new Error('Connection timeout. No response was obtained from the server in the established time\n' +
-				'\t Endpoint: ' + ajax.url));
+				'\t Endpoint: ' + vAjax.url));
 		}
 
-		xhr.onerror = function () {
-			let body = (ajax.isJson) ? ajax.body : JSON.stringify(ajax.body);
+		vXHR.onerror = function () {
+			let body = (vAjax.isJson) ? vAjax.body : JSON.stringify(vAjax.body);
 			return reject(new Error('Connection error. Could not stablish a connection with the server...\n' +
-				'\t Endpoint: ' + ajax.url));
+				'\t Endpoint: ' + vAjax.url));
 		}
 
-		xhr.onload = function() {
+		vXHR.onload = function() {
 			if (this.status == 200) {
 				return resolve(this.responseText);
 			} else {
 				return reject(new Error('Request error. Non 200 response was obtained from the server...\n' +
-				'\t Endpoint: ' + ajax.url));
+				'\t Endpoint: ' + vAjax.url));
 			}
 		}
 
-		xhr.open(ajax.method, ajax.url, true);
-		xhr.send();
+		vXHR.open(vAjax.method, vAjax.url, true);
+		vXHR.send();
 	});
 }
 
 //vQuery functions for DOM manipulation
-_vQuery.prototype.createElement = function(data) {
-	let elementData = {
-		label: this.getValueOrDefault(data.label, null),
-		id: this.getValueOrDefault(data.id, null),
-		classes: this.getValueOrDefault(data.classes, []),
-		attrs: this.getValueOrDefault(data.attrs, []),
-		innerHTML: this.getValueOrDefault(data.innerHTML, null),
-		value: this.getValueOrDefault(data.value, null)
+_vQuery.prototype.createElement = function(pData) {
+	let vElementData = {
+		label: this.getValueOrDefault(pData.label, null),
+		id: this.getValueOrDefault(pData.id, null),
+		classes: this.getValueOrDefault(pData.classes, []),
+		attrs: this.getValueOrDefault(pData.attrs, []),
+		innerHTML: this.getValueOrDefault(pData.innerHTML, null),
+		value: this.getValueOrDefault(pData.value, null)
 	};
-	if (elementData.label == null) return undefined;
+	if (vElementData.label == null) return undefined;
 	
-	let element = document.createElement(elementData.label);
-	if (elementData.id != null) element.setAttribute('id', elementData.id);
-	elementData.classes.forEach(cssClass => element.classList.add(cssClass));
-	elementData.attrs.forEach(attrData => element.setAttribute(attrData.attr, attrData.value));
-	if (elementData.innerHTML != null) element.innerHTML = elementData.innerHTML;
-	if (elementData.value != null) element.setAttribute('value', elementData.value);
+	let vElement = document.createElement(vElementData.label);
+	if (vElementData.id != null) vElement.setAttribute('id', vElementData.id);
+	vElementData.classes.forEach(cssClass => vElement.classList.add(cssClass));
+	vElementData.attrs.forEach(attrData => vElement.setAttribute(attrData.attr, attrData.value));
+	if (vElementData.innerHTML != null) vElement.innerHTML = vElementData.innerHTML;
+	if (vElementData.value != null) vElement.setAttribute('value', vElementData.value);
 
-	return element;
+	return vElement;
 };
 
-_vQuery.prototype.appendChilds = function(childs, atStart = false) {
+_vQuery.prototype.appendChilds = function(pChilds, pAtStart = false) {
 	if (this.nodes == undefined) return this;
-	childs = (Array.isArray(childs)) ? childs : [childs];
-	this.nodes.forEach(node => {
-		childs.forEach(child => {
-			if (atStart) {
-				node.prepend(child);
+	pChilds = (Array.isArray(pChilds)) ? pChilds : [pChilds];
+	this.nodes.forEach(pNode => {
+		pChilds.forEach(pChild => {
+			if (pAtStart) {
+				pNode.prepend(pChild);
 			} else {
-				node.append(child);
+				pNode.append(pChild);
 			}
 		});
 	});
 	return this;
 };
 
-_vQuery.prototype.attr = function (attr, value = null) {
+_vQuery.prototype.attr = function (pAttr, pValue = null) {
 	if (this.nodes == undefined) {
-		return (value != null) ? this : undefined;
+		return (pValue != null) ? this : undefined;
 	}
-	if (value != null) {
-		this.nodes.forEach(node => node.setAttribute(attr, value));
+	if (pValue != null) {
+		this.nodes.forEach(node => node.setAttribute(pAttr, pValue));
 		return this;
 	} else {
-		return this.nodes[0].getAttribute(attr);
+		return this.nodes[0].getAttribute(pAttr);
 	}
 }
 
-_vQuery.prototype.addEvent = function (evt, value = null) {
+_vQuery.prototype.addEvent = function (pEvt, pValue = null) {
 	if (this.nodes == undefined) {
-		return (value != null) ? this : undefined;
+		return (pValue != null) ? this : undefined;
 	}
-	if (value != null) {
-		this.nodes.forEach(node => node.addEventListener(evt, value));
+	if (pValue != null) {
+		this.nodes.forEach(pNode => pNode.addEventListener(pEvt, pValue));
 		return this;
 	} else {
-		return this.nodes[0].getAttribute(evt);
+		return this.nodes[0].getAttribute(pEvt);
 	}
 }
 
-_vQuery.prototype.removeAttr = function (attr) {
+_vQuery.prototype.removeAttr = function (pAttr) {
 	if (this.nodes == undefined) return this;
 
-	this.nodes.forEach(node => node.removeAttribute(attr));
+	this.nodes.forEach(pNode => pNode.removeAttribute(pAttr));
 	return this;
 }
 
-_vQuery.prototype.innerHTML = function (value = null) {
+_vQuery.prototype.innerHTML = function (pValue = null) {
 	if (this.nodes == undefined) {
-		return (value != null) ? this : undefined;
+		return (pValue != null) ? this : undefined;
 	}
-	if (value != null) {
-		this.nodes.forEach(node => node.innerHTML = value);
+	if (pValue != null) {
+		this.nodes.forEach(pNode => pNode.innerHTML = pValue);
 		return this;
 	} else {
 		return this.nodes[0].innerHTML;
 	}
 }
 
-_vQuery.prototype.value = function (value = null) {
+_vQuery.prototype.value = function (pValue = null) {
 	if (this.nodes == undefined) {
-		return (value != null) ? this : undefined;
+		return (pValue != null) ? this : undefined;
 	}
-	if (value != null) {
-		this.nodes.forEach(node => node.value = value);
+	if (pValue != null) {
+		this.nodes.forEach(pNode => pNode.value = pValue);
 		return this;
 	} else {
 		return this.nodes[0].value;
 	}
 }
 
-_vQuery.prototype.disabled = function (disabled = null) {
+_vQuery.prototype.disabled = function (pDisabled = null) {
 	if (this.nodes == undefined) return this;
 
-	switch (disabled) {
+	switch (pDisabled) {
 	 	case true:
 	 		return this.attr('disabled', 'disabled');
 	 	case false:
@@ -189,59 +189,58 @@ _vQuery.prototype.disabled = function (disabled = null) {
 	 }
 }
 
-_vQuery.prototype.css = function (property, value = null) {
+_vQuery.prototype.css = function (pProperty, pValue = null) {
 	if (this.nodes == undefined) {
-		return (value != null) ? this : undefined;
+		return (pValue != null) ? this : undefined;
 	}
-	if (value != null) {
-		this.nodes.forEach(node => node.style[property] = value);
+	if (pValue != null) {
+		this.nodes.forEach(pNode => pNode.style[pProperty] = pValue);
 		return this;
 	} else {
-		return this.nodes[0].style[property];
+		return this.nodes[0].style[pProperty];
 	}
 }
 
-_vQuery.prototype.addClass = function (classes = null) {
+_vQuery.prototype.addClass = function (pClasses = null) {
 	if (this.nodes == undefined) {
-		return (classes != null) ? this : undefined;
+		return (pClasses != null) ? this : undefined;
 	}
-	if (classes != null) {
-		classes = (Array.isArray(classes)) ? classes : [classes];
-		classes.forEach(cssClass => {
-			this.nodes.forEach(node => node.classList.add(cssClass));
+	if (pClasses != null) {
+		pClasses = (Array.isArray(pClasses)) ? pClasses : [pClasses];
+		pClasses.forEach(pCssClass => {
+			this.nodes.forEach(pNode => pNode.classList.add(pCssClass));
 		});
 	}
 	return this;
 }
 
-_vQuery.prototype.removeClass = function (classes = null) {
+_vQuery.prototype.removeClass = function (pClasses = null) {
 	if (this.nodes == undefined) {
-		return (classes != null) ? this : undefined;
+		return (pClasses != null) ? this : undefined;
 	}
-	if (classes != null) {
-		classes = (Array.isArray(classes)) ? classes : [classes];
-		classes.forEach(cssClass => {
-			this.nodes.forEach(node => node.classList.remove(cssClass));
+	if (pClasses != null) {
+		pClasses = (Array.isArray(pClasses)) ? pClasses : [pClasses];
+		pClasses.forEach(pCssClass => {
+			this.nodes.forEach(pNode => pNode.classList.remove(pCssClass));
 		});
 	}
 	return this;
 }
 
-_vQuery.prototype.hasClass = function (classes = null) {
+_vQuery.prototype.hasClass = function (pClasses = null) {
 	if (this.nodes == undefined) {
-		return (classes != null) ? classes : undefined;
+		return (pClasses != null) ? pClasses : undefined;
 	}
-	var hasClass = false;
-	if (classes != null) {
-		this.nodes.forEach((node) => {
-			hasClass = (node.classList.contains(classes));
+	var vHasClass = false;
+	if (pClasses != null) {
+		this.nodes.forEach((pNode) => {
+			vHasClass = (pNode.classList.contains(pClasses));
 		});
 	}
-	return hasClass;
+	return vHasClass;
 }
 
 //vQuery global object initiator
-$v = (selector) => {
-	//vQuery initiation
-	return new _vQuery(selector);
+$v = (pSelector) => {
+	return new _vQuery(pSelector);
 }
