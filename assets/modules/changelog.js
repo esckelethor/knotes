@@ -11,15 +11,13 @@ changelog = [
     {
         version: '3.0',
         tags: ['feature'],
-        changes: ['Implementación multilenguaje', 'Nuevo sistema de tagging', 'Unificación de estilos'
-        ]
+        changes: ['Implementación multilenguaje', 'Nuevo sistema de tagging', 'Unificación de estilos']
     },
     {
         version: '2.8',
         tags: ['content'],
         changes: ['Correcciones en apuntes de gramática: partículas 가/이 y 은/는', 'Agregar contenido vocabulario: hora',
-            'Agregar contenido gramática: estilos de formalidad, partícula 에, partícula 의, adverbios de lugar'
-        ]
+            'Agregar contenido gramática: estilos de formalidad, partícula 에, partícula 의, adverbios de lugar']
     },
     {
         version: '2.7',
@@ -62,17 +60,17 @@ changelog = [
         changes: ['Agregar funcionalidad para ejercicios', 'Consolidación de anexos y ejercicios']
     },
     {
-        version: '1.1.0',
+        version: '1.2',
         tags: ['feature'],
         changes: ['Agregar changelog', 'Preparación para cambio de versionado']
     },
     {
-        version: '1.0.1',
+        version: '1.1',
         tags: ['bugfix'],
         changes: ['Fix responsive layout para webapp android']
     },
     {
-        version: '1.0.0',
+        version: '1.0',
         tags: ['content', 'feature'],
         changes: ['Maquetado inicial', 'Estrucutración de menús', 'Definición de páginas base de contenido']
     }
