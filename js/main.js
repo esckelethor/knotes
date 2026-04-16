@@ -1,49 +1,49 @@
 //constans
 const VERSION = changelog[0].version;
 //global vars
-currentSpotifyPlaylist = null;
-spotifyIsPaused = true;
-spotifyEmbedController = null;
+gCurrentSpotifyPlaylist = null;
+gSpotifyIsPaused = true;
+gSpotifyEmbedController = null;
 
 isCollapsed = function (collapsed) {
     return './assets/img/icon/' + ((collapsed == 'true') ? 'r' : 'b') + '_arrow.png';
 }
 
 checkVisibility = function(selector) {
-    var visibility = $v(selector).css('visibility');
-    visibility = (visibility == '') ? 'hidden' : visibility;
-    $v(selector).css('visibility', (visibility == 'hidden') ? 'visible' : 'hidden');
+    var vVisibility = $v(selector).css('visibility');
+    vVisibility = (vVisibility == '') ? 'hidden' : vVisibility;
+    $v(selector).css('visibility', (vVisibility == 'hidden') ? 'visible' : 'hidden');
 }
 
 $v('.logo2').addEvent('click', () => {
     //auto play on first visibility change
-    if (currentSpotifyPlaylist == null) {
-        spotifyEmbedController.play();
-        currentSpotifyPlaylist = $v('#spotify .container .item.selected').attr('id');
+    if (gCurrentSpotifyPlaylist == null) {
+        gSpotifyEmbedController.play();
+        gCurrentSpotifyPlaylist = $v('#spotify .container .item.selected').attr('id');
     }
 
     checkVisibility('#spotify');
 });
 
 window.onSpotifyIframeApiReady = (IFrameAPI) => {
-    const element = document.getElementById('playlist');
-    const options = {
+    const vElement = document.getElementById('playlist');
+    const vOptions = {
         width: '100%',
         height: '160',
         uri: 'spotify:playlist:37i9dQZF1DXdR77H5Z8MIM',
         theme: 'dark'
     };
     const callback = (EmbedController) => {
-        spotifyEmbedController = EmbedController;
+        gSpotifyEmbedController = EmbedController;
 
         $v('#spotify .container .item').addEvent('click', function (event) {
-            if (currentSpotifyPlaylist != event.currentTarget.id) {
+            if (gCurrentSpotifyPlaylist != event.currentTarget.id) {
                 //remove selected playlist
-                currentSpotifyPlaylist = null;
+                gCurrentSpotifyPlaylist = null;
                 $v('#spotify .container .item.selected').removeClass('selected');
                 
                 //set selected playlist
-                currentSpotifyPlaylist = event.currentTarget.id;
+                gCurrentSpotifyPlaylist = event.currentTarget.id;
                 $v('#' + event.currentTarget.id).addClass('selected');
 
                 EmbedController.loadUri($v('#' + event.currentTarget.id).attr('data-spotify-id'));
@@ -52,21 +52,18 @@ window.onSpotifyIframeApiReady = (IFrameAPI) => {
         });
 
         EmbedController.addListener('playback_update', (event) => {
-            spotifyIsPaused = event.data.isPaused;
+            gSpotifyIsPaused = event.data.isPaused;
         });
     };
-    IFrameAPI.createController(element, options, callback);
+    IFrameAPI.createController(vElement, vOptions, callback);
 };
 
 changelogLoader = function () {
     //set event show changelog
     $v('#version').addEvent('click', (event) => {
-        var visibility = $v('#changelog').css('visibility');
-        visibility = (visibility == '') ? 'hidden' : visibility;
-
         //prevent open changelog if full changelog visible
         if ($v('#note #changelogContents').length == 0) {
-            $v('#changelog').css('visibility', (visibility == 'hidden') ? 'visible' : 'hidden');
+            checkVisibility('#changelog');
         }
     });
 
@@ -75,11 +72,11 @@ changelogLoader = function () {
 
     //create changelog tree
     changelog.forEach((version, index) => {
-        var versionNode = $v().createElement({
+        var vVersionNode = $v().createElement({
             label: 'div'
         });
 
-        var versionNumberNode = $v().createElement({
+        var vVersionNumberNode = $v().createElement({
             label: 'h4',
             classes: ['version'],
             attrs: [
@@ -90,98 +87,103 @@ changelogLoader = function () {
 
         if (index == 0) version.tags.push('new');
         version.tags.forEach(tag => {
-            var tagNode = $v().createElement({
+            var vTagNode = $v().createElement({
                 label: 'code',
                 classes: [(tag == 'content') ? 'texts' : tag],
                 innerHTML: tag
             });
 
-            versionNumberNode.appendChild(tagNode);
+            vVersionNumberNode.appendChild(vTagNode);
         });
         
-        versionNode.appendChild(versionNumberNode);
+        vVersionNode.appendChild(vVersionNumberNode);
 
-        var versionChangesNode = $v().createElement({
+        var vVersionChangesNode = $v().createElement({
             label: 'ul',
             classes: ['changes']
         });
 
         version.changes.forEach(change => {
-            var versionChangeItem = $v().createElement({
+            var vVersionChangeItem = $v().createElement({
                 label: 'li',
                 innerHTML: change
             });
 
-            versionChangesNode.appendChild(versionChangeItem);
+            vVersionChangesNode.appendChild(vVersionChangeItem);
         });
         
-        versionNode.appendChild(versionChangesNode);
+        vVersionNode.appendChild(vVersionChangesNode);
 
-        $v('#changelogContents #changelog-' + ((index == 0) ? 'currentVersion' : 'oldVersions')).appendChilds(versionNode);
+        $v('#changelogContents #changelog-' + ((index == 0) ? 'currentVersion' : 'oldVersions')).appendChilds(vVersionNode);
 
         //add event full-changelog
         $v('#changelog #full-changelog').addEvent('click', (event) => {
+            $v('.aside').css('display', 'none');
             $v('#changelog').css('visibility', 'hidden');
             
-            var tagLogo = $v().createElement({
+            var vTagLogo = $v().createElement({
                 label: 'img',
                 attrs: [{attr: 'src', value: './assets/img/basic/logo.png'}]
             });
 
-            var tagImgContainer = $v().createElement({
+            var vTagImgContainer = $v().createElement({
                 label: 'div',
                 classes: ['imgContainer'],
             });
-            tagImgContainer.appendChild(tagLogo);
+            vTagImgContainer.appendChild(vTagLogo);
 
-            var updatedChangelog = $v('#changelog').innerHTML();
-            $v('#note').innerHTML(updatedChangelog);
+            var vUpdatedChangelog = $v('#changelog').innerHTML();
+            $v('#note').innerHTML(vUpdatedChangelog);
             $v('#note #full-changelog').css('display', 'none');
             $v('#note #changelog-oldVersions').css('display', 'initial');
             $v('#note').css('visibility', 'visible');
 
             $v('.aside').innerHTML('');
-            $v('.aside').appendChilds(tagImgContainer);
+            $v('.aside').appendChilds(vTagImgContainer);
             $v('.aside').css('visibility', 'visible');
 
             $v('#changelog').nodes[0].scrollTop = 0;
             $v('#note').nodes[0].scrollTop = 0;
 
             //prevent locked menu
-            currentMenu = null;
+            gCurrentMenu = null;
             $v('.header .selected').removeClass('selected');
         });
     });
 
     //create known issues tree
-    var knownIssuesNode = $v().createElement({
+    var vKnownIssuesNode = $v().createElement({
         label: 'ul',
         classes: ['issues']
     });
 
+    /* //PENDIENTE CAMBIO
     knownIssues.forEach(issue => {
-        var issueNode = $v().createElement({
+        var vIssueNode = $v().createElement({
             label: 'li',
             innerHTML: issue.detail
         });
         
-        var issueWorkaroundNode = $v().createElement({
+        var vIssueWorkaroundNode = $v().createElement({
             label: 'div',
             classes: ['issueWorkaround'],
             innerHTML: ' ' + issue.workaround
         });
 
-        var workaroundTitleNode = $v().createElement({
+        var vWorkaroundTitleNode = $v().createElement({
             label: 'u',
             innerHTML: 'Workaround:'
         });
 
-        issueWorkaroundNode.prepend(workaroundTitleNode);
-        issueNode.appendChild(issueWorkaroundNode);
-        knownIssuesNode.appendChild(issueNode);
+        issueWorkaroundNode.prepend(vWorkaroundTitleNode);
+        issueNode.appendChild(vIssueWorkaroundNode);
+        knownIssuesNode.appendChild(vIssueNode);
     });
-
-    $v('#changelog #knownIssuesContent').appendChilds(knownIssuesNode);
+    */
+    
+    $v('#changelog #knownIssuesContent').appendChilds(vKnownIssuesNode);
+    //TODO: remove after upgrade changelog module
+    $v('#changelog #changelog-knowIssues').css('display', 'none');
 }
 
 $v('#lang').addEvent('click', (event) => {
@@ -189,11 +191,11 @@ $v('#lang').addEvent('click', (event) => {
 });
 
 $v('.lang-item').addEvent('click', (event) => {
-    lang = event.currentTarget.id.split('-')[1];
-    var srcLang = $v('#' + event.currentTarget.id + '>img').attr('src');
-    var txtLang = $v('#' + event.currentTarget.id + '>div').innerHTML();
-    $v('#lang>img').attr('src', srcLang);
-    $v('#lang>div').innerHTML(txtLang);
+    gLang = event.currentTarget.id.split('-')[1];
+    var vSrcLang = $v('#' + event.currentTarget.id + '>img').attr('src');
+    var vTxtLang = $v('#' + event.currentTarget.id + '>div').innerHTML();
+    $v('#lang>img').attr('src', vSrcLang);
+    $v('#lang>div').innerHTML(vTxtLang);
     loadMenu();
     $v('#lang-selector').css('visibility', 'hidden');
 });
@@ -208,7 +210,7 @@ window.onload = function () {
         $v('.logo2').removeClass('rotate');
         
         window.setInterval(function (){
-            if (!spotifyIsPaused) {
+            if (!gSpotifyIsPaused) {
                 $v('.logo2').addClass('rotateInfinite');
             } else {
                 $v('.logo2').removeClass('rotateInfinite');

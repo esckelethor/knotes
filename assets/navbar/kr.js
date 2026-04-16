@@ -1,4 +1,4 @@
-menu.kr = {
+gMenu.kr = {
     titles: [
         {id: 'kr-vocabulario', value: 'Vocabulario ~ 어휘'},
         {id: 'kr-gramatica', value: 'Gramática ~ 문법'},

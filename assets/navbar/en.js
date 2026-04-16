@@ -1,4 +1,4 @@
-menu.en = {
+gMenu.en = {
     titles: [
         {id: 'en-basico', value: 'Nivel basico'}/*,
         {id: 'en-medio', value: 'Nivel medio'},

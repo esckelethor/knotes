@@ -17,6 +17,11 @@
     z-index: 999;
 }
 
+/* PENDIENTE CAMBIO*/
+#changelog-knowIssues {
+    display: none;
+}
+
 #changelog #changelogContents, #changelog #full-changelog,
 #note #changelogContents, #note #full-changelog {
     padding: 15px 15px 10px;

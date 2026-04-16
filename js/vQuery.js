@@ -1,32 +1,26 @@
 //vanilla JS framework based on JQuery
-//constants for module loader
-const DATA_MODULE_NONE = 'none';
-//vQuery global object initiator
-vQuery = function (selector) {
-	let vq = new _vQuery(selector);
-	_vQuery.prototype.vQuery = '1.0.1';
-	_vQuery.prototype.nodes = vq[0];
-	_vQuery.prototype.length = (vq[0] != undefined) ? vq[0].length : 0 ;
-	return vq;
-}
-$v = vQuery;
-
 //vQuery constructor
 _vQuery = function (selector) {
+	this.vQuery = '1.1.0';
+	
 	let nodes = document.querySelectorAll(selector);
 	if (nodes.length > 0) {
 		nodes = [].slice.call(nodes);
-		this[0] = nodes;
+		this.nodes = nodes;
 	}
+	this.length = (nodes != undefined) ? nodes.length : 0;
 	return this;
 }
+
+//constants for module loader
+_vQuery.prototype.DATA_MODULE_NONE = 'none';
 
 //vQuery utils, can be used with a blank selector
 _vQuery.prototype.getValueOrDefault = function (value, defaultValue) {
 	return (value != undefined && value != null) ? value : defaultValue;
 }
 
-_vQuery.prototype.loadContent = function (asset, module = DATA_MODULE_NONE) {
+_vQuery.prototype.loadContent = function (asset, module = this.DATA_MODULE_NONE) {
 	this.innerHTML('');
 
 	asset = asset.replaceAll('-', '/');
@@ -36,7 +30,7 @@ _vQuery.prototype.loadContent = function (asset, module = DATA_MODULE_NONE) {
 	}).then((data) => {
 		this.innerHTML(data);
 
-		if (module != DATA_MODULE_NONE) {
+		if (module != this.DATA_MODULE_NONE) {
 			//load module_anexos
 			var script = this.createElement({
 				label: 'script',
@@ -62,7 +56,7 @@ _vQuery.prototype.ajax = function (data) {
 
 	ajax.method = ajax.method.toUpperCase();
 
-	return new Promise(function (resolve, reject) {
+	return new Promise((resolve, reject) => {
 		var xhr = new XMLHttpRequest();
 
 		xhr.ontimeout = function () {
@@ -244,4 +238,10 @@ _vQuery.prototype.hasClass = function (classes = null) {
 		});
 	}
 	return hasClass;
+}
+
+//vQuery global object initiator
+$v = (selector) => {
+	//vQuery initiation
+	return new _vQuery(selector);
 }

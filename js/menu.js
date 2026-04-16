@@ -1,12 +1,17 @@
 //global vars
-menu = new Object();
-currentMenu = null;
-lang = 'kr';
+gMenu = new Object();
+gCurrentMenu = null;
+gLang = 'kr';
+
+clearModals = function() {
+    $v('#changelog').css('visibility', 'hidden');
+    $v('#lang-selector').css('visibility', 'hidden');
+}
 
 clearContent = function() {
-    currentMenu = null;
-    $v('#changelog').css('visibility', 'hidden');
+    gCurrentMenu = null;
     $v('.header .selected').removeClass('selected');
+    $v('.aside').css('display', 'block');
     $v('.aside, .content').css('visibility', 'hidden');
     $v('.aside').innerHTML('');
     $v('#note').innerHTML('');
@@ -16,13 +21,13 @@ loadMenu = function () {
     clearContent();
     $v('.header #menu').innerHTML('');
     
-    for(var key in menu[lang].titles) {
-        var contentMenu = $v().createElement({
+    for(var vKey in gMenu[gLang].titles) {
+        var vContentMenu = $v().createElement({
             label: 'li',
-            id: menu[lang].titles[key].id,
-            innerHTML: menu[lang].titles[key].value
+            id: gMenu[gLang].titles[vKey].id,
+            innerHTML: gMenu[gLang].titles[vKey].value
         });
-        $v('.header #menu').appendChilds(contentMenu);
+        $v('.header #menu').appendChilds(vContentMenu);
     }
 
     setCLickMenu();
@@ -30,12 +35,12 @@ loadMenu = function () {
 
 setAsideEvents = function () {
     $v('.navbar').addEvent('click', (event) => {
-        var idCollapsedOpen = null;
+        var vIdCollapsedOpen = null;
 
         //remove selected navbar
         if ($v('.navbar.selected').hasClass('collapsable')) {
             //check open navbar id
-            idCollapsedOpen = $v('.navbar.selected').attr('id');
+            vIdCollapsedOpen = $v('.navbar.selected').attr('id');
 
             //remove selected subnav
             $v('.subnav.selected').removeClass('selected');
@@ -43,13 +48,13 @@ setAsideEvents = function () {
             //collapse selected navbar
             $v('.navbar.selected .subnav').css('display', 'none');
             $v('.navbar.selected').attr('data-collapsed', 'true');
-            var icoCollapse = isCollapsed($v('.navbar.selected').attr('data-collapsed'));
-            $v('.navbar.selected .icoCollapsed').attr('src', icoCollapse);
+            var vIcoCollapse = isCollapsed($v('.navbar.selected').attr('data-collapsed'));
+            $v('.navbar.selected .icoCollapsed').attr('src', vIcoCollapse);
         }
         $v('.navbar.selected').removeClass('selected');
     
         //set selected navbar
-        if (idCollapsedOpen != event.currentTarget.id) {
+        if (vIdCollapsedOpen != event.currentTarget.id) {
             $v('#' + event.currentTarget.id).addClass('selected');
             
             //close current note
@@ -59,8 +64,8 @@ setAsideEvents = function () {
             //open subnav
             if ($v('.navbar.selected').hasClass('collapsable')) {
                 $v('#' + event.currentTarget.id).attr('data-collapsed', 'false');
-                icoCollapse = isCollapsed($v('#' + event.currentTarget.id).attr('data-collapsed'));
-                $v('#' + event.currentTarget.id + ' .icoCollapsed').attr('src', icoCollapse);
+                vIcoCollapse = isCollapsed($v('#' + event.currentTarget.id).attr('data-collapsed'));
+                $v('#' + event.currentTarget.id + ' .vIcoCollapsed').attr('src', vIcoCollapse);
                 $v('#' + event.currentTarget.id + ' .subnav').css('display', 'inherit');
             }
 
@@ -83,9 +88,9 @@ setAsideEvents = function () {
         $v('#' + event.currentTarget.id).addClass('selected');
 
         //load content
-        var module = $v('#' + event.currentTarget.id).attr('data-module');
-        $v('#note').loadContent(event.currentTarget.id, module);
-        $v('#changelog').css('visibility', 'hidden');
+        clearModals();
+        var vModule = $v('#' + event.currentTarget.id).attr('data-module');
+        $v('#note').loadContent(event.currentTarget.id, vModule);
         $v('.content').css('visibility', 'visible');
     
         event.stopPropagation();
@@ -93,45 +98,46 @@ setAsideEvents = function () {
 }
 
 loadAside = function () {
+    $v('.aside').css('display', 'block');
     $v('.aside').innerHTML('');
     $v('#note').innerHTML('');
-    var aside = menu[lang][currentMenu.split('-')[1]];
+    var vAside = gMenu[gLang][gCurrentMenu.split('-')[1]];
 
-    for(var key in aside) {
-        var currentAside = currentMenu + '-' + key;
-        var contentAside = $v().createElement({
+    for(var vKey in vAside) {
+        var vCurrentAside = gCurrentMenu + '-' + vKey;
+        var vContentAside = $v().createElement({
             label: 'div',
-            id: currentAside,
+            id: vCurrentAside,
             classes: ['navbar'],
-            innerHTML: key.replaceAll('_', ' ')
+            innerHTML: vKey.replaceAll('_', ' ')
         });
-        $v('.aside').appendChilds(contentAside);
+        $v('.aside').appendChilds(vContentAside);
 
         //check subnav
-        if (aside[key].length > 0) {
+        if (vAside[vKey].length > 0) {
             //add collapse options
-            $v('.aside #' + currentAside).addClass('collapsable');
-            $v('.aside #' + currentAside).attr({attr: 'data-collapsed', value: 'true'});
+            $v('.aside #' + vCurrentAside).addClass('collapsable');
+            $v('.aside #' + vCurrentAside).attr({attr: 'data-collapsed', value: 'true'});
 
-            var collapsableIco = $v().createElement({
+            var vCollapsableIco = $v().createElement({
                 label: 'img',
                 classes: ['icoCollapsed'],
                 attrs: [{attr: 'src', value: isCollapsed('true')}]
             });
-            $v('.aside #' + currentAside).appendChilds(collapsableIco);
+            $v('.aside #' + vCurrentAside).appendChilds(vCollapsableIco);
 
             //add subnav
-            aside[key].forEach(subnav => {
-                var contentSubnav = $v().createElement({
+            vAside[vKey].forEach(subnav => {
+                var vContentSubnav = $v().createElement({
                     label: 'div',
-                    id: currentAside + '-' + subnav.id,
+                    id: vCurrentAside + '-' + subnav.id,
                     classes: ['subnav'],
                     attrs: [
-                        {attr: 'data-module', value: (subnav.module == undefined) ? DATA_MODULE_NONE : subnav.module}
+                        {attr: 'data-module', value: (subnav.module == undefined) ? $v().DATA_MODULE_NONE : subnav.module}
                     ],
                     innerHTML: subnav.title
                 });
-                $v('.aside #' + currentAside).appendChilds(contentSubnav);
+                $v('.aside #' + vCurrentAside).appendChilds(vContentSubnav);
             });
         }
     };
@@ -141,16 +147,16 @@ loadAside = function () {
 
 setCLickMenu = function() {
     $v('.header li').addEvent('click', (event) => {
-        if (currentMenu != event.currentTarget.id) {
+        if (gCurrentMenu != event.currentTarget.id) {
             //remove selected menu
-            currentMenu = null;
+            gCurrentMenu = null;
             $v('.header .selected').removeClass('selected');
             
             //set selected menu
-            currentMenu = event.currentTarget.id;
+            clearModals();
+            gCurrentMenu = event.currentTarget.id;
             $v('#' + event.currentTarget.id).addClass('selected');
             //set navbar/content visible
-            $v('#changelog').css('visibility', 'hidden');
             $v('.aside').css('visibility', 'visible');
             $v('.content').css('visibility', 'hidden');
             //load aside
@@ -161,4 +167,5 @@ setCLickMenu = function() {
 
 $v('.logo').addEvent('click', () => {
     clearContent();
+    clearModals();
 });
