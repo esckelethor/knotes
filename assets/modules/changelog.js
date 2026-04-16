@@ -8,7 +8,7 @@ changelog = [
     {
         version: '3.1',
         tags: [TAG_BUGFIX],
-        changes: ['Estandarización modales', 'Update & fixes vQuery'],
+        changes: ['Estandarización modales', 'Update & fixes vQuery', 'Estandarización variables', 'Inicio restructuración modulo changelog'],
         fixes: ['El contenido se carga en blanco']
     },
     {
