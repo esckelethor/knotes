@@ -1,7 +1,7 @@
 # K-NOTES ~ K-주석
 
 ## ES
-Al principio se creo una web simple para estudiar coreano mediante la recopilación de notas tomadas mientras se estudiaba.
+Al principio se creo una web simple para estudiar coreano mediante la recopilación de notas tomadas mientras se estudiaba
 
 Pasado un tiempo hemos decidido darle más funcionalidades, como:
  - Incluir Spotify con listas dinamicas
@@ -34,12 +34,12 @@ https://esckelethor.github.io/knotes/ <i>(webapp en construcción)</i>
 
 
 ## EN
-Initially, a simple web was created for studying Korean by compiling notes taken during study sessions.
+Initially, a simple web was created for studying Korean by collecting notes taken during study sessions
 
 After some time, we decided to add more features, such as:
-- Including Spotify with dynamic playlists
-- Including a user manual
-- Including multiple languages:
+- Include Spotify with dynamic playlists
+- Include a user manual
+- Include multiple languages:
 
     | Language | Progress |
     |---|---|
@@ -59,7 +59,7 @@ https://esckelethor.github.io/knotes/ <i>(webapp under construction)</i>
  - HTML5
  - CSS3
  - Vanilla JS (ECMAScript 15)
- - Custom vQuery framework replicating jQuery functionalities
+ - Custom framework vQuery replicating jQuery's functionalities
 
 ## Authors
  - <a href="https://github.com/esckelethor"><img src="https://avatars.githubusercontent.com/u/26528445?v=4" width="20px;"/></a> esckelethor
