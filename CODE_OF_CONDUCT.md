@@ -29,6 +29,10 @@ The platform is completely free and contains no advertisements. Since no login i
 ### 5. Limitation of Service
 As an independent platform, the service is provided on an "as is" basis. We reserve the right to modify or suspend the application at any time without prior notice
 
+### 6. Contact Information
+For any questions, suggestions regarding content corrections, or legal notices, you may contact the webapp owner at:
+ - Discord: **esckelethor** or **yaiangel**
+
 ## 🇪🇸
 
 **Última actualización:** 22/04/2026
@@ -59,3 +63,7 @@ La plataforma es totalmente gratuita y no contiene anuncios. Al no requerir inic
 ### 5. Limitación de Servicio
 Como plataforma independiente, el servicio se ofrece "tal cual". Nos reservamos el derecho de modificar o suspender la aplicación 
 en cualquier momento sin previo aviso
+
+### 6. Información de Contacto
+Para cualquier duda, sugerencia de corrección en el contenido o notificación legal, puedes contactar con el titular de la webapp en:
+ - Discord: **esckelethor** or **yaiangel**
