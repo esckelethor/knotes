@@ -6,7 +6,7 @@
 ![CSS](https://img.shields.io/badge/CCS_3-%231a1aff?logo=css&logoColor=%231a1aff&labelColor=grey) 
 ![JAVASCRIPT](https://img.shields.io/badge/ECMAScript_15-gold?logo=javascript&labelColor=grey) 
 ![VQUERY](https://img.shields.io/badge/vQuery-purple?label=Custom%20JS%20Framework&labelColor=grey) 
-![VQUERY_RELEASE](https://img.shields.io/github/v/tag/esckelethor/knotes?filter=vQuery*&label=release&color=purple)
+![VQUERY_RELEASE](https://img.shields.io/github/v/tag/esckelethor/knotes?filter=vQuery*&label=release&color=purple) 
 ![JSON](https://img.shields.io/badge/JSON-grey?logo=json&labelColor=grey)
 
 ## Authors
