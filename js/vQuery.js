@@ -1,7 +1,7 @@
 //vanilla JS framework based on JQuery
 //vQuery constructor
 _vQuery = function (pSelector) {
-	this.vQuery = '1.1.1';
+	this.vQuery = '1.2.0';
 	
 	let vNodes = document.querySelectorAll(pSelector);
 	if (vNodes.length > 0) {
@@ -20,7 +20,7 @@ _vQuery.prototype.getValueOrDefault = function (pValue, pDefaultValue) {
 	return (pValue != undefined && pValue != null) ? pValue : pDefaultValue;
 }
 
-_vQuery.prototype.loadContent = function (pAsset, pModule = this.DATA_MODULE_NONE) {
+_vQuery.prototype.loadContent = function (pAsset, pModules = this.DATA_MODULE_NONE, pCallback) {
 	this.innerHTML('');
 
 	pAsset = pAsset.replaceAll('-', '/');
@@ -30,16 +30,26 @@ _vQuery.prototype.loadContent = function (pAsset, pModule = this.DATA_MODULE_NON
 	}).then((pData) => {
 		this.innerHTML(pData);
 
-		if (pModule != this.DATA_MODULE_NONE) {
-			//load module_anexos
-			var vScript = this.createElement({
-				label: 'script',
-				attrs: [
-					{attr: 'type', value: 'text/javascript'},
-					{attr: 'src', value: './assets/modules/' + pModule + '.js'}
-				]
-			});
-			this.appendChilds(vScript);
+		if (pModules != undefined && typeof pModules === 'string') {
+			if (pModules != this.DATA_MODULE_NONE) {
+				pModules.split(' ').forEach((module) => {
+					//load module_anexos
+					var vScript = this.createElement({
+						label: 'script',
+						attrs: [
+							{attr: 'type', value: 'text/javascript'},
+							{attr: 'src', value: './assets/modules/' + module + '.js'}
+						]
+					});
+					this.appendChilds(vScript);
+				})
+			}
+		} else {
+			pCallback = pModules;
+		}
+
+		if(pCallback != undefined && pCallback instanceof Function) {
+			pCallback();
 		}
 	}).catch((pData) => {
 		console.log(pData.message);

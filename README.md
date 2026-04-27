@@ -1,6 +1,6 @@
 # K-NOTES ~ K-주석
+![DEPLOY](https://github.com/esckelethor/knotes/actions/workflows/pages/pages-build-deployment/badge.svg) 
 ![LICENSE](https://img.shields.io/badge/All_Rights_Reserved-blue?label=license) 
-![DEPLOY](https://img.shields.io/github/actions/workflow/status/esckelethor/knotes/pages%2Fpages-build-deployment) 
 ![RELEASE](https://img.shields.io/github/v/tag/esckelethor/knotes?label=release&color=green) 
 ![HTML](https://img.shields.io/badge/HTML_5-orange?logo=html5&labelColor=grey) 
 ![CSS](https://img.shields.io/badge/CCS_3-%231a1aff?logo=css&logoColor=%231a1aff&labelColor=grey) 

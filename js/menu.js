@@ -89,8 +89,8 @@ setAsideEvents = function () {
 
         //load content
         clearModals();
-        var vModule = $v('#' + pEvent.currentTarget.id).attr('data-module');
-        $v('#note').loadContent(pEvent.currentTarget.id, vModule);
+        var vModules = $v('#' + pEvent.currentTarget.id).attr('data-modules');
+        $v('#note').loadContent(pEvent.currentTarget.id, vModules);
         $v('.content').css('visibility', 'visible');
     
         pEvent.stopPropagation();
@@ -133,7 +133,7 @@ loadAside = function () {
                     id: vCurrentAside + '-' + pSubnav.id,
                     classes: ['subnav'],
                     attrs: [
-                        {attr: 'data-module', value: (pSubnav.module == undefined) ? $v().DATA_MODULE_NONE : pSubnav.module}
+                        {attr: 'data-modules', value: (pSubnav.modules == undefined) ? $v().DATA_MODULE_NONE : pSubnav.modules}
                     ],
                     innerHTML: pSubnav.title
                 });
