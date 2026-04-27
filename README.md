@@ -1,12 +1,10 @@
 # K-NOTES ~ K-주석
-![DEPLOY](https://github.com/esckelethor/knotes/actions/workflows/pages/pages-build-deployment/badge.svg) 
 ![LICENSE](https://img.shields.io/badge/All_Rights_Reserved-blue?label=license) 
-![RELEASE](https://img.shields.io/github/v/tag/esckelethor/knotes?label=release&color=green) 
+![RELEASE](https://img.shields.io/github/v/tag/esckelethor/knotes?filter=!vQuery*&label=release&color=green)
 ![HTML](https://img.shields.io/badge/HTML_5-orange?logo=html5&labelColor=grey) 
 ![CSS](https://img.shields.io/badge/CCS_3-%231a1aff?logo=css&logoColor=%231a1aff&labelColor=grey) 
 ![JAVASCRIPT](https://img.shields.io/badge/ECMAScript_15-gold?logo=javascript&labelColor=grey) 
-![VQUERY](https://img.shields.io/badge/vQuery-purple?label=Custom%20JS%20Framework&labelColor=grey) 
-![VQUERY_RELEASE](https://img.shields.io/github/v/tag/esckelethor/knotes?filter=vQuery*&label=release&color=purple) 
+![VQUERY](https://img.shields.io/github/v/tag/esckelethor/knotes?filter=vQuery*&label=Custom%20JS%20Framework&color=purple) 
 ![JSON](https://img.shields.io/badge/JSON-grey?logo=json&labelColor=grey)
 
 ## Authors
