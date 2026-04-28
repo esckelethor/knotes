@@ -11,12 +11,18 @@ gMenu.kr = {
             {id: 'batchim_i', title: 'Batchim I'},
             {id: 'batchim_ii', title: 'Batchim II'},
             {id: 'batchim_iii', title: 'Batchim III'},
-            {id: 'construccion_silabas', title: 'Construcción silabica', modules: 'anexos'},
+            {id: 'construccion_silabas', title: 'Construcción silabica', modules: 'anexos', anexo: [
+                {id: 'anexo1'},
+                {id: 'anexo2'},
+                {id: 'anexo3'}
+            ]},
             {id: 'orden_oracional', title: 'Orden oracional'}
         ],
         //PENDIENTE DE REHACER HTML Y AGRUPAR DESDE AQUI 
         vocabulario_base: [
-            {id: 'nacionalidades', title: 'nacionalidades', modules: 'anexos'},
+            {id: 'nacionalidades', title: 'nacionalidades', modules: 'anexos', anexo: [
+                {id: 'anexo1'}
+            ]},
             {id: 'numeros', title: 'números'},
             {id: 'hora', title: 'hora'},
             {id: 'conteo', title: 'unidades de conteo'},

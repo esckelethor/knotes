@@ -8,9 +8,9 @@
     font-weight: bold;
 }
 
-#content-anexo, #content-anexo #wrapper-anexos, #content-anexo #wrapper-anexos div:not([data-ejercicio]) {
+/*#content-anexo, #content-anexo #wrapper-anexos, #content-anexo #wrapper-anexos div:not([data-ejercicio]) {
     display: none;
-}
+}*/
 
 #content-anexo img {
     display: block;
