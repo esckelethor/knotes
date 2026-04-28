@@ -6,6 +6,11 @@ TAG_CONTENT = 'content';
 
 changelog = [
     {
+        version: '4.0',
+        tags: [TAG_FEATURE],
+        changes: ['Actualización y cambio funcionalidad del módulo anexos']
+    },
+    {
         version: '3.1',
         tags: [TAG_BUGFIX],
         changes: ['Estandarización modales', 'Update & fixes vQuery', 'Estandarización variables', 'Inicio restructuración modulo changelog'],
