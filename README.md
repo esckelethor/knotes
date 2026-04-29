@@ -35,7 +35,9 @@ After some time, we decided to add more features, such as:
     | FR | ❌ Pending |
 
 ### QUESTIONS?
-If you have any questions, please feel free to ask us on discord: **esckelethor** or **yaiangel**
+If you have any questions, please feel free to ask us on:
+ - LinkedIn: [yeza](https://www.linkedin.com/in/christian-yezallell-angel-fernandez-736923330/) / [Yai](https://www.linkedin.com/in/yaiza-priscila-angel-fernandez-aaa9b4146/)
+ - Discord: **esckelethor** / **yaiangel**
 
 ## ES
 ### AVISO LEGAL
@@ -61,4 +63,6 @@ Pasado un tiempo hemos decidido darle más funcionalidades, como:
      | FR | ❌ Pendiente | 
 
 ### ¿DUDAS?
-Si tienes cualquier duda, siente libre de contactarnos en discord: **esckelethor** or **yaiangel**
+Si tienes cualquier duda, siente libre de contactarnos en:
+ - LinkedIn: [yeza](https://www.linkedin.com/in/christian-yezallell-angel-fernandez-736923330/) / [Yai](https://www.linkedin.com/in/yaiza-priscila-angel-fernandez-aaa9b4146/)
+ - Discord: **esckelethor** / **yaiangel**

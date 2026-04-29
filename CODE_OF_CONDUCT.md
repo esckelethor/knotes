@@ -31,7 +31,8 @@ As an independent platform, the service is provided on an "as is" basis. We rese
 
 ### 6. Contact Information
 For any questions, suggestions regarding content corrections, or legal notices, you may contact the webapp owner at:
- - Discord: **esckelethor** or **yaiangel**
+ - LinkedIn: [yeza](https://www.linkedin.com/in/christian-yezallell-angel-fernandez-736923330/) / [Yai](https://www.linkedin.com/in/yaiza-priscila-angel-fernandez-aaa9b4146/)
+ - Discord: **esckelethor** / **yaiangel**
 
 ## 🇪🇸
 
@@ -66,4 +67,5 @@ en cualquier momento sin previo aviso
 
 ### 6. Información de Contacto
 Para cualquier duda, sugerencia de corrección en el contenido o notificación legal, puedes contactar con el titular de la webapp en:
- - Discord: **esckelethor** or **yaiangel**
+ - LinkedIn: [yeza](https://www.linkedin.com/in/christian-yezallell-angel-fernandez-736923330/) / [Yai](https://www.linkedin.com/in/yaiza-priscila-angel-fernandez-aaa9b4146/)
+ - Discord: **esckelethor** / **yaiangel**
