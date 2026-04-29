@@ -1,14 +1,16 @@
 //vanilla JS framework based on JQuery
 //vQuery constructor
 _vQuery = function (pSelector) {
-	this.vQuery = '1.2.0';
-	
+	this.vQuery = '1.3.0';
+	this.selector = pSelector;
+
 	let vNodes = document.querySelectorAll(pSelector);
 	if (vNodes.length > 0) {
 		vNodes = [].slice.call(vNodes);
 		this.nodes = vNodes;
 	}
 	this.length = (vNodes != undefined) ? vNodes.length : 0;
+	
 	return this;
 }
 
@@ -20,6 +22,44 @@ _vQuery.prototype.getValueOrDefault = function (pValue, pDefaultValue) {
 	return (pValue != undefined && pValue != null) ? pValue : pDefaultValue;
 }
 
+_vQuery.prototype.ajax = function (pReqPayload) {
+	let vAjax = {
+		method: this.getValueOrDefault(pReqPayload.method, null),
+		url: this.getValueOrDefault(pReqPayload.url, null)
+	}
+	if (vAjax.method == null) return new Promise.reject(new Error('Missing HTTP Method'));
+	if (vAjax.url == null) return new Promise.reject(new Error('Missing URL'));
+
+	vAjax.method = vAjax.method.toUpperCase();
+
+	return new Promise((pResolve, pReject) => {
+		var vXHR = new XMLHttpRequest();
+
+		vXHR.ontimeout = function () {
+			return pReject(new Error('Connection timeout. No response was obtained from the server in the established time\n' +
+				'\t Endpoint: ' + vAjax.url));
+		}
+
+		vXHR.onerror = function () {
+			let body = (vAjax.isJson) ? vAjax.body : JSON.stringify(vAjax.body);
+			return pReject(new Error('Connection error. Could not stablish a connection with the server...\n' +
+				'\t Endpoint: ' + vAjax.url));
+		}
+
+		vXHR.onload = function() {
+			if (this.status == 200) {
+				return pResolve(this.responseText);
+			} else {
+				return pReject(new Error('Request error. Non 200 response was obtained from the server...\n' +
+				'\t Endpoint: ' + vAjax.url));
+			}
+		}
+
+		vXHR.open(vAjax.method, vAjax.url, true);
+		vXHR.send();
+	});
+}
+
 _vQuery.prototype.loadContent = function (pAsset, pModules = this.DATA_MODULE_NONE, pCallback) {
 	this.innerHTML('');
 
@@ -27,13 +67,13 @@ _vQuery.prototype.loadContent = function (pAsset, pModules = this.DATA_MODULE_NO
 	this.ajax({
 		method: 'GET',
 		url: './assets/content/' + pAsset + '.html'
-	}).then((pData) => {
-		this.innerHTML(pData);
+	}).then((pResponse) => {
+		this.innerHTML(pResponse);
 
 		if (pModules != undefined && typeof pModules === 'string') {
 			if (pModules != this.DATA_MODULE_NONE) {
 				pModules.split(' ').forEach((module) => {
-					//load module_anexos
+					//load modules
 					var vScript = this.createElement({
 						label: 'script',
 						attrs: [
@@ -51,67 +91,48 @@ _vQuery.prototype.loadContent = function (pAsset, pModules = this.DATA_MODULE_NO
 		if(pCallback != undefined && pCallback instanceof Function) {
 			pCallback();
 		}
-	}).catch((pData) => {
-		console.log(pData.message);
+	}).catch((pResponse) => {
+		console.log(pResponse.message);
 	});
 }
 
-_vQuery.prototype.ajax = function (pData) {
-	let vAjax = {
-		method: this.getValueOrDefault(pData.method, null),
-		url: this.getValueOrDefault(pData.url, null)
+_vQuery.prototype.regexValidation = function (pRegexExp, pExactMatch = true, pHaystack = null) {
+	if (pHaystack == null) {
+		if (this.selector != undefined) {
+			//if vQuery has selector get value from first node
+			pHaystack = (this.nodes[0].tagName == 'INPUT') ? this.nodes[0].value : this.nodes[0].innerHTML;
+		} else {
+			return undefined;
+		}
 	}
-	if (vAjax.method == null) return new Promise.reject(new Error('Missing HTTP Method'));
-	if (vAjax.url == null) return new Promise.reject(new Error('Missing URL'));
 
-	vAjax.method = vAjax.method.toUpperCase();
+	if (pExactMatch) {
+		pRegexExp = '^' + pRegexExp + '$';
+	}
 
-	return new Promise((resolve, reject) => {
-		var vXHR = new XMLHttpRequest();
-
-		vXHR.ontimeout = function () {
-			return reject(new Error('Connection timeout. No response was obtained from the server in the established time\n' +
-				'\t Endpoint: ' + vAjax.url));
-		}
-
-		vXHR.onerror = function () {
-			let body = (vAjax.isJson) ? vAjax.body : JSON.stringify(vAjax.body);
-			return reject(new Error('Connection error. Could not stablish a connection with the server...\n' +
-				'\t Endpoint: ' + vAjax.url));
-		}
-
-		vXHR.onload = function() {
-			if (this.status == 200) {
-				return resolve(this.responseText);
-			} else {
-				return reject(new Error('Request error. Non 200 response was obtained from the server...\n' +
-				'\t Endpoint: ' + vAjax.url));
-			}
-		}
-
-		vXHR.open(vAjax.method, vAjax.url, true);
-		vXHR.send();
-	});
+	let vRegexObj = new RegExp(pRegexExp);
+	let vResults = vRegexObj.exec(pHaystack);
+	return (vResults != null && vResults.length != 0) ? true : false;
 }
 
 //vQuery functions for DOM manipulation
-_vQuery.prototype.createElement = function(pData) {
-	let vElementData = {
-		label: this.getValueOrDefault(pData.label, null),
-		id: this.getValueOrDefault(pData.id, null),
-		classes: this.getValueOrDefault(pData.classes, []),
-		attrs: this.getValueOrDefault(pData.attrs, []),
-		innerHTML: this.getValueOrDefault(pData.innerHTML, null),
-		value: this.getValueOrDefault(pData.value, null)
+_vQuery.prototype.createElement = function(pElementDef) {
+	let vElementDef = {
+		label: this.getValueOrDefault(pElementDef.label, null),
+		id: this.getValueOrDefault(pElementDef.id, null),
+		classes: this.getValueOrDefault(pElementDef.classes, []),
+		attrs: this.getValueOrDefault(pElementDef.attrs, []),
+		innerHTML: this.getValueOrDefault(pElementDef.innerHTML, null),
+		value: this.getValueOrDefault(pElementDef.value, null)
 	};
-	if (vElementData.label == null) return undefined;
+	if (vElementDef.label == null) return undefined;
 	
-	let vElement = document.createElement(vElementData.label);
-	if (vElementData.id != null) vElement.setAttribute('id', vElementData.id);
-	vElementData.classes.forEach(cssClass => vElement.classList.add(cssClass));
-	vElementData.attrs.forEach(attrData => vElement.setAttribute(attrData.attr, attrData.value));
-	if (vElementData.innerHTML != null) vElement.innerHTML = vElementData.innerHTML;
-	if (vElementData.value != null) vElement.setAttribute('value', vElementData.value);
+	let vElement = document.createElement(vElementDef.label);
+	if (vElementDef.id != null) vElement.setAttribute('id', vElementDef.id);
+	vElementDef.classes.forEach(pCssClass => vElement.classList.add(pCssClass));
+	vElementDef.attrs.forEach(pAttrData => vElement.setAttribute(pAttrData.attr, pAttrData.value));
+	if (vElementDef.innerHTML != null) vElement.innerHTML = vElementDef.innerHTML;
+	if (vElementDef.value != null) vElement.setAttribute('value', vElementDef.value);
 
 	return vElement;
 };
@@ -136,7 +157,7 @@ _vQuery.prototype.attr = function (pAttr, pValue = null) {
 		return (pValue != null) ? this : undefined;
 	}
 	if (pValue != null) {
-		this.nodes.forEach(node => node.setAttribute(pAttr, pValue));
+		this.nodes.forEach(pNode => pNode.setAttribute(pAttr, pValue));
 		return this;
 	} else {
 		return this.nodes[0].getAttribute(pAttr);
@@ -248,6 +269,26 @@ _vQuery.prototype.hasClass = function (pClasses = null) {
 		});
 	}
 	return vHasClass;
+}
+
+_vQuery.prototype.triggerEvent = function (pEventName) {
+	if (this.nodes == undefined) return this;
+
+	this.nodes[0].dispatchEvent(new Event(pEventName));
+	return this;
+}
+
+_vQuery.prototype.searchValue = function (pValue = null) {
+	if (this.nodes == undefined || pValue == null) return undefined;
+
+	let vFounded = false;
+	this.nodes.forEach(node => {
+		let nodeValue = (node.tagName == 'INPUT') ? node.value : node.innerHTML;
+		if (nodeValue == pValue) {
+			founded = true;
+		}
+	});
+	return vFounded;
 }
 
 //vQuery global object initiator
