@@ -6,9 +6,9 @@ TAG_CONTENT = 'content';
 
 changelog = [
     {
-        version: '4.0',
+        version: '4.0-9bb69d6',
         tags: [TAG_FEATURE],
-        changes: ['Actualización y cambio funcionalidad del módulo anexos']
+        changes: ['Actualización y cambio funcionalidad del módulo anexos', 'Añadido contenido en inglés basico: pronombres y artículos']
     },
     {
         version: '3.1',
