@@ -1,7 +1,7 @@
 //vanilla JS framework based on JQuery
 //vQuery constructor
 _vQuery = function (pSelector) {
-	this.vQuery = '1.3.0';
+	this.vQuery = '1.3.1';
 	this.selector = pSelector;
 
 	let vNodes = document.querySelectorAll(pSelector);
@@ -78,7 +78,7 @@ _vQuery.prototype.loadContent = function (pAsset, pModules = this.DATA_MODULE_NO
 						label: 'script',
 						attrs: [
 							{attr: 'type', value: 'text/javascript'},
-							{attr: 'src', value: './assets/modules/' + module + '.js'}
+							{attr: 'src', value: './assets/modules/' + module + 'Controller.js'}
 						]
 					});
 					this.appendChilds(vScript);

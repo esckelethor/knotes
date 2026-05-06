@@ -8,8 +8,8 @@
 ![JSON](https://img.shields.io/badge/JSON-grey?logo=json&labelColor=grey)
 
 ## Authors
-<a href="https://github.com/esckelethor"><img src="https://avatars.githubusercontent.com/u/26528445?v=4" width="35px;"/></a> 
-<a href="https://github.com/yaiangel13"><img src="https://avatars.githubusercontent.com/u/12645830?v=4" width="35px;"/></a>
+[<img src="https://avatars.githubusercontent.com/u/26528445?v=4" width="35px;"/>](https://github.com/esckelethor) 
+[<img src="https://avatars.githubusercontent.com/u/12645830?v=4" width="35px;"/>](https://github.com/yaiangel13)
 
 ## EN
 ### DISCLAIMER
@@ -36,8 +36,8 @@ After some time, we decided to add more features, such as:
 
 ### QUESTIONS?
 If you have any questions, please feel free to ask us on:
- - LinkedIn: [yeza](https://www.linkedin.com/in/christian-yezallell-angel-fernandez-736923330/) / [Yai](https://www.linkedin.com/in/yaiza-priscila-angel-fernandez-aaa9b4146/)
- - Discord: **esckelethor** / **yaiangel**
+- LinkedIn: [yeza](https://www.linkedin.com/in/christian-yezallell-angel-fernandez-736923330/) / [Yai](https://www.linkedin.com/in/yaiza-priscila-angel-fernandez-aaa9b4146/)
+- Discord: **esckelethor** / **yaiangel**
 
 ## ES
 ### AVISO LEGAL
@@ -50,12 +50,12 @@ If you have any questions, please feel free to ask us on:
 Al principio se creo una webapp simple para estudiar coreano mediante la recopilación de notas tomadas mientras se estudiaba
 
 Pasado un tiempo hemos decidido darle más funcionalidades, como:
- - Incluir Spotify con listas dinamicas
- - Incluir un manual de uso
- - Incluir ejercicios por tema
- - Incluir examenes con temporizador y puntuación
- - Creación de tarjetas para estudiar el vocabulario
- - Incluir multiidioma:   
+- Incluir Spotify con listas dinamicas
+- Incluir un manual de uso
+- Incluir ejercicios por tema
+- Incluir examenes con temporizador y puntuación
+- Creación de tarjetas para estudiar el vocabulario
+- Incluir multiidioma:   
      | Idioma | Progreso |
      | :--: | -- |
      | KR | ⭕ En construcción |
@@ -64,5 +64,5 @@ Pasado un tiempo hemos decidido darle más funcionalidades, como:
 
 ### ¿DUDAS?
 Si tienes cualquier duda, siente libre de contactarnos en:
- - LinkedIn: [yeza](https://www.linkedin.com/in/christian-yezallell-angel-fernandez-736923330/) / [Yai](https://www.linkedin.com/in/yaiza-priscila-angel-fernandez-aaa9b4146/)
- - Discord: **esckelethor** / **yaiangel**
+- LinkedIn: [yeza](https://www.linkedin.com/in/christian-yezallell-angel-fernandez-736923330/) / [Yai](https://www.linkedin.com/in/yaiza-priscila-angel-fernandez-aaa9b4146/)
+- Discord: **esckelethor** / **yaiangel**
