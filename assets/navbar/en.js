@@ -15,8 +15,8 @@ gMenu.en = {
             {id: 'preposiciones_ii', title: 'Preposiciones II'} //de tiempo + de movimiento
         ],
         nombres: [
-            {id: 'nombres_i', title: 'Nombres I'}, //nombres + nombres propios
-            {id: 'nombres_ii', title: 'Nombres II'} //contables e incontables + habe + cuantificadores
+            {id: 'substantivos_i', title: 'Nombres I'}, //substantivos + substantivos propios
+            {id: 'substantivos_ii', title: 'Nombres II'} //contables e incontables + habe + cuantificadores
         ],
         adjetivos: [],
         verbos: [

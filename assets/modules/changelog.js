@@ -6,10 +6,10 @@ TAG_CONTENT = 'content';
 
 changelog = [
     {
-        version: '4.0-D7DDDDA',
+        version: '4.0-876DAD4',
         tags: [TAG_FEATURE],
         changes: ['Actualización, estandarización y cambio funcionalidad del módulo anexos',
-            'Añadido contenido en inglés basico: pronombres, artículos y preposiciones',
+            'Añadido contenido en inglés basico: pronombres, artículos, preposiciones y sustantivos',
             'Actualización vQuery para estandarización de modulos controller'
         ]
     },
