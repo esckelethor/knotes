@@ -1,11 +1,11 @@
 # K-NOTES ~ K-주석
-![LICENSE](https://img.shields.io/badge/All_Rights_Reserved-blue?label=license) 
-![RELEASE](https://img.shields.io/github/v/tag/esckelethor/knotes?filter=!vQuery*&label=release&color=green) 
-![HTML](https://img.shields.io/badge/HTML_5-orange?logo=html5&labelColor=grey) 
-![CSS](https://img.shields.io/badge/CCS_3-%231a1aff?logo=css&logoColor=%231a1aff&labelColor=grey) 
-![JAVASCRIPT](https://img.shields.io/badge/ECMAScript_15-gold?logo=javascript&labelColor=grey) 
-![VQUERY](https://img.shields.io/github/v/tag/esckelethor/knotes?filter=vQuery*&label=Custom%20JS%20Framework&color=purple) 
-![JSON](https://img.shields.io/badge/JSON-grey?logo=json&labelColor=grey)
+![LICENSE](https://img.shields.io/badge/All_Rights_Reserved-blue?label=license&labelColor=666&color=1A547E) 
+![RELEASE](https://img.shields.io/github/v/tag/esckelethor/knotes?filter=!vQuery*&label=release&labelColor=666&color=34573C) 
+![HTML](https://img.shields.io/badge/HTML%205-black?logo=html5&logoColor=FF6000&labelColor=666&color=FF6000) 
+![CSS](https://img.shields.io/badge/CCS_3-black?logo=css&logoColor=0040FF&labelColor=666&color=0040FF) 
+![JAVASCRIPT](https://img.shields.io/badge/ECMAScript_15-black?logo=javascript&logoColor=F7DF1E&labelColor=666&color=F7DF1E) 
+![VQUERY](https://img.shields.io/github/v/tag/esckelethor/knotes?filter=vQuery*&label=Custom%20JS%20Framework&labelColor=666&color=5A215A) 
+![JSON](https://img.shields.io/badge/JSON-black?logo=json&logoColor=000&labelColor=666&color=444)
 
 ## [EN] ABOUT KNOTES ~ K-주석
 > **DISCLAIMER:** This project is part of my professional portfolio. The code is available for public inspection but *is not open source*. All rights reserved, and its commercial use or redistribution is strictly prohibited

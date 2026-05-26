@@ -33,7 +33,7 @@ For any questions, suggestions regarding content corrections, or legal notices, 
 - Discord: **esckelethor** / **yaiangel**
 
 # [ES] CÓDIGO DE CONDUCTA & TERMINOS DE USO
-`Última actualización:** 22/04/2026`
+`Última actualización: 22/04/2026`
 
 Bienvenido a **K-NOTES ~ K-주석**. Al acceder y utilizar esta webapp de estudio, aceptas los siguientes términos:
 
