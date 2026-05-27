@@ -1,5 +1,5 @@
 # [EN] CODE OF CONDUCT & TERMS OF USE
-`Last updated: 22/04/2026`
+`Last updated: 2026/05/27`
 
 Welcome to **K-NOTES ~ K-주석**. By accessing and using this study webapp, you agree to the following terms:
 
@@ -33,7 +33,7 @@ For any questions, suggestions regarding content corrections, or legal notices, 
 - Discord: **esckelethor** / **yaiangel**
 
 # [ES] CÓDIGO DE CONDUCTA & TERMINOS DE USO
-`Última actualización: 22/04/2026`
+`Última actualización: 2026/05/27`
 
 Bienvenido a **K-NOTES ~ K-주석**. Al acceder y utilizar esta webapp de estudio, aceptas los siguientes términos:
 
