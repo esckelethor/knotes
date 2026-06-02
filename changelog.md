@@ -1,4 +1,4 @@
-# 4.0 ![BUILD](https://img.shields.io/badge/build-876DAD4-black?labelColor=666&color=CE2A37) ![MAJOR_FEATURE](https://img.shields.io/badge/MAJOR%20FEATURE-4B253E) ![CONTENT](https://img.shields.io/badge/CONTENT-222450) ![VQUERY-1.4.0](https://img.shields.io/badge/VQUERY--1.4.0-5A215A)
+# 4.0 ![BUILD](https://img.shields.io/badge/build-BF6BA6A-black?labelColor=666&color=CE2A37) ![MAJOR_FEATURE](https://img.shields.io/badge/MAJOR%20FEATURE-4B253E) ![CONTENT](https://img.shields.io/badge/CONTENT-222450) ![VQUERY-1.4.1](https://img.shields.io/badge/VQUERY--1.4.0-5A215A)
 - Actualización, estandarización y cambio funcionalidad del módulo anexos (#5)
 - Actualización, refactorización y estandarización a sistema markdown del modulo changelog (#14)
 - `VQUERY` Finalización estandarización y refactorización, actualización carga modulos controller, agregadas nuevas funcionalidades útiles

@@ -1,7 +1,7 @@
 //vanilla JS framework based on JQuery
 //vQuery constructor
 _vQuery = function (pSelector) {
-	this.vQuery = '1.4.0';
+	this.vQuery = '1.4.1';
 	this.selector = pSelector;
 
 	let vNodes = document.querySelectorAll(pSelector);
