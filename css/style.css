@@ -257,6 +257,16 @@ body {
     width: 25px;
 }
 
+.footer #lang img, #lang-selector img {
+    margin-bottom: 0px;
+}
+
+.footer #version img {
+    border-radius: 0;
+    margin-bottom: -1px;
+    width: 80px;
+}
+
 /* scrollbar */
 ::-webkit-scrollbar {
     /* width */

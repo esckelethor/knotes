@@ -3,8 +3,16 @@ gMenu = new Object();
 gCurrentMenu = null;
 gLang = 'kr';
 
+//define legal menu
+gMenu.legal = {
+    readme: {id: 'legal-readme', value: 'Sobre K-NOTES ~ K-주석', mdFile: 'README'},
+    changelog: {id: 'legal-changelog', value: 'Historial de versiones', mdFile: 'CHANGELOG'},
+    license: {id: 'legal-license', value: 'Licencia', mdFile: 'LICENSE'},
+    tos: {id: 'legal-tos', value: 'Código de conducta & Terminos de uso', mdFile: 'CODE_OF_CONDUCT'}
+}
+
+//menu functionality
 clearModals = function() {
-    $v('#changelog').css('visibility', 'hidden');
     $v('#lang-selector').css('visibility', 'hidden');
 }
 
@@ -15,6 +23,39 @@ clearContent = function() {
     $v('.aside, .content').css('visibility', 'hidden');
     $v('.aside').innerHTML('');
     $v('#note').innerHTML('');
+}
+
+loadLegalMenu = function () {
+    clearContent();
+    clearModals();
+    $v('.aside').css('display', 'block');
+    $v('.aside').innerHTML('');
+    $v('#note').innerHTML('');
+    //set navbar/content visible
+    $v('.aside').css('visibility', 'visible');
+    $v('.content').css('visibility', 'hidden');
+
+    for (const [vKey, vValue] of Object.entries(gMenu.legal)) {
+        var vAsideMenu = $v().createElement({
+            label: 'div',
+            id: gMenu.legal[vKey].id,
+            classes: ['navbar'],
+            innerHTML: gMenu.legal[vKey].value
+        });
+        $v('.aside').appendChilds(vAsideMenu);
+
+        $v('.aside #' + gMenu.legal[vKey].id).addEvent('click', (pEvent) => {
+            //remove selected navbar
+            $v('.navbar.selected').removeClass('selected');
+            //set selected navbar
+            $v('#' + pEvent.currentTarget.id).addClass('selected');
+            //close current note
+            $v('#note').innerHTML('');
+            //load content
+            $v('.content').css('visibility', 'visible');
+            $v().processMD(gMenu.legal[vKey].mdFile);
+        });
+    }
 }
 
 loadMenu = function () {

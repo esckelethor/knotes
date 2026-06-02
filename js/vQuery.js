@@ -309,7 +309,7 @@ _vQuery.prototype.checkMDBlockParent = function (pMD, pParentTag, pSelector) {
 
 _vQuery.prototype.parseMDLine = function (pLine) {
     //if badge not full parse line
-    if (pLine.includes('![')) return pLine.replace(/!\[(.+?)\]\((.+?)\)/gm, '<a href="$2"><img src="$2" alt="$1 badge"></a>');
+    if (pLine.includes('![')) return pLine.replace(/!\[(.+?)\]\((.+?)\)/gm, '<img src="$2" alt="$1 badge">');
     
     //full parsed line
     return pLine
@@ -470,6 +470,24 @@ _vQuery.prototype.processMD = function(pMD) {
 	});
 }
 
+_vQuery.prototype.getProjectBuildVersion = function() {
+	    this.ajax({
+        method: 'GET',
+		url: './changelog.md'
+    }).then((pResponse) => {
+        if(pResponse != undefined && pResponse != '') {
+			var vMDContentFirstLine = pResponse.split('\n')[0];
+			var vVersion = vMDContentFirstLine.split(' ')[1];
+			var vBuild = this.parseMDLine(vMDContentFirstLine.split(' ')[2]);//.split('/')[4].split('-')[1]
+			//display version & build number
+    		$v('#version').attr('data-version', vVersion).attr('data-build', vBuild).innerHTML(vVersion + vBuild);
+        } else {
+            console.log('[EMPTY MD] "./' + pMD + '.md" can\'t be processed');
+        }
+    }).catch((pResponse) => {
+		console.log(pResponse.message);
+	});
+}
 
 //vQuery global object initiator
 $v = (pSelector) => {
