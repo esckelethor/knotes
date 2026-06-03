@@ -173,6 +173,7 @@ table tr.w-auto td {
 /*md files*/
 .md_code_line {
     background: var(--v_lightGrey);
+    border: 1px solid var(--v_grey);
     border-radius: 5px;
     color: var(--v_note_blue);
     font-style: italic;

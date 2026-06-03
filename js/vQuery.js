@@ -1,7 +1,7 @@
 //vanilla JS framework based on JQuery
 //vQuery constructor
 _vQuery = function (pSelector) {
-	this.vQuery = '1.4.3';
+	this.vQuery = '1.4.4';
 	this.selector = pSelector;
 
 	let vNodes = document.querySelectorAll(pSelector);
@@ -14,8 +14,10 @@ _vQuery = function (pSelector) {
 	return this;
 }
 
-//constants for module loader
+//vQuery constants
 _vQuery.prototype.DATA_MODULE_NONE = 'none';
+_vQuery.prototype.LINE_BREAK_UNIX = '\n';
+_vQuery.prototype.LINE_BREAK_MS = '\r\n';
 
 //vQuery utils, can be used with a blank selector
 _vQuery.prototype.getValueOrDefault = function (pValue, pDefaultValue) {
@@ -113,6 +115,16 @@ _vQuery.prototype.regexValidation = function (pRegexExp, pExactMatch = true, pHa
 	let vRegexObj = new RegExp(pRegexExp);
 	let vResults = vRegexObj.exec(pHaystack);
 	return (vResults != null && vResults.length != 0) ? true : false;
+}
+
+_vQuery.prototype.checkLineBreak = function (pContent) {
+	switch (true) {
+		case pContent.includes(this.LINE_BREAK_MS):
+			return this.LINE_BREAK_MS;
+		case pContent.includes(this.LINE_BREAK_UNIX):
+		default:
+			return this.LINE_BREAK_UNIX;
+	}
 }
 
 //vQuery functions for DOM manipulation
@@ -332,7 +344,7 @@ _vQuery.prototype.parseMDToHTML = function (pMD) {
     $v('#note').innerHTML('');
 
     //parse MD line by line
-    pMD.content.split('\r\n').forEach(pLine => {
+    pMD.content.split(this.checkLineBreak(pMD.content)).forEach(pLine => {
         var vlineTag = null;
         pMD.parse.vTagToOpen = null;
         pMD.parse.vTagToAppend = null;
@@ -440,7 +452,8 @@ _vQuery.prototype.parseMDToHTML = function (pMD) {
                 $v('#note' + vNestedParent).appendChilds(vOpenElement);
                 pMD.parse.vTagToAppend = pMD.parse.vTagToOpen;
             }
-            vLineElement.id = pMD.parse.vTagToAppend.split('#')[1] + '_' + vlineTag + '_' + $v('#note ' + pMD.parse.vTagToAppend + ' ' + vlineTag).length;
+            vLineElement.id = pMD.parse.vTagToAppend.split('#')[1] + '_' + vlineTag + '_' +
+				$v('#note ' + pMD.parse.vTagToAppend + ' ' + vlineTag).length;
             
             $v('#note ' + pMD.parse.vTagToAppend).appendChilds(vLineElement);
         } else {
@@ -476,9 +489,8 @@ _vQuery.prototype.getProjectBuildVersion = function() {
 		url: './CHANGELOG.md'
     }).then((pResponse) => {
         if(pResponse != undefined && pResponse != '') {
-			var vMDContentFirstLine = pResponse.split('\n')[0];
-			var vVersion = vMDContentFirstLine.split(' ')[1];
-			var vBuild = this.parseMDLine(vMDContentFirstLine.split(' ')[2]);//.split('/')[4].split('-')[1]
+			var vVersion = pResponse.split(' ')[1];
+			var vBuild = this.parseMDLine(pResponse.split(' ')[2]);
 			//display version & build number
     		$v('#version').attr('data-version', vVersion).attr('data-build', vBuild).innerHTML(vVersion + vBuild);
         } else {
