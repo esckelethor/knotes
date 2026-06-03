@@ -1,9 +1,9 @@
-# 4.0 ![BUILD](https://img.shields.io/badge/build-8583BB8-black?labelColor=666&color=CE2A37) ![MAJOR_FEATURE](https://img.shields.io/badge/MAJOR%20FEATURE-4B253E) ![CONTENT](https://img.shields.io/badge/CONTENT-222450) ![VQUERY-1.4.1](https://img.shields.io/badge/VQUERY--1.4.2-5A215A)
+# 4.0 ![BUILD](https://img.shields.io/badge/build-B9F9B98-black?labelColor=666&color=CE2A37) ![MAJOR_FEATURE](https://img.shields.io/badge/MAJOR%20FEATURE-4B253E) ![CONTENT](https://img.shields.io/badge/CONTENT-222450) ![VQUERY-1.4.1](https://img.shields.io/badge/VQUERY--1.4.2-5A215A)
 - Actualización, estandarización y cambio funcionalidad del módulo anexos (#5)
 - Actualización, refactorización y estandarización a sistema markdown del modulo changelog (#14)
 - `VQUERY` Finalización estandarización y refactorización, actualización carga modulos controller, agregadas nuevas funcionalidades útiles
 - `VQUERY` Implementación modulo parser de markdown (#17)
-- `EN` Añadido contenido basico: pronombres, artículos, preposiciones y sustantivos (#11)
+- `EN` Añadido contenido basico: pronombres, artículos, preposiciones, sustantivos, adjetivos, verbos, estructura de frases, verbos en presente y números (#11)
 
 # 3.1 ![MINOR_FEATURE](https://img.shields.io/badge/MINOR%20FEATURE-34573C) ![BUGFIX](https://img.shields.io/badge/BUGFIX-522C30) ![VQUERY-1.2.0](https://img.shields.io/badge/VQUERY--1.2.0-5A215A)
 - Estandarización modales y variables
