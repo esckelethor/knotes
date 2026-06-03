@@ -1,7 +1,7 @@
 //vanilla JS framework based on JQuery
 //vQuery constructor
 _vQuery = function (pSelector) {
-	this.vQuery = '1.4.2';
+	this.vQuery = '1.4.3';
 	this.selector = pSelector;
 
 	let vNodes = document.querySelectorAll(pSelector);
@@ -473,7 +473,7 @@ _vQuery.prototype.processMD = function(pMD) {
 _vQuery.prototype.getProjectBuildVersion = function() {
 	    this.ajax({
         method: 'GET',
-		url: './changelog.md'
+		url: './CHANGELOG.md'
     }).then((pResponse) => {
         if(pResponse != undefined && pResponse != '') {
 			var vMDContentFirstLine = pResponse.split('\n')[0];
