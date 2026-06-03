@@ -1,7 +1,7 @@
 //vanilla JS framework based on JQuery
 //vQuery constructor
 _vQuery = function (pSelector) {
-	this.vQuery = '1.4.1';
+	this.vQuery = '1.4.2';
 	this.selector = pSelector;
 
 	let vNodes = document.querySelectorAll(pSelector);
@@ -318,7 +318,7 @@ _vQuery.prototype.parseMDLine = function (pLine) {
         //italic
         .replace(/\*(.+?)\*/gm, '<i>$1</i>')
         //link
-        .replace(/\[(.+?)\]\((.+?)\)/gm, '<a href="$2">$1</a>')
+        .replace(/\[(.+?)\]\((.+?)\)/gm, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
         //code line
         .replace(/`(.+?)`/gm, '<span class="md_code_line">$1</span>');
 }

@@ -1,5 +1,5 @@
 # [EN] LICENSE
-**Copyright (c) 2024 [esckelethor](https://github.com/esckelethor) & [yaiangel13]("https://github.com/yaiangel13)**
+**Copyright (c) 2024 [esckelethor](https://github.com/esckelethor) & [yaiangel13](https://github.com/yaiangel13)**
 
 **All Rights Reserved**
 
@@ -21,7 +21,7 @@ For inquiries regarding commercial licensing or further permissions, please cont
 - Discord: **esckelethor** / **yaiangel**
 
 # [ES] LICENCIA
-**Copyright (c) 2024 <a href="https://github.com/esckelethor">esckelethor</a> & <a href="https://github.com/yaiangel13">yaiangel13</a>**
+**Copyright (c) 2024 [esckelethor](https://github.com/esckelethor) & [yaiangel13](https://github.com/yaiangel13)**
 
 **Todos los derechos reservados**
 
