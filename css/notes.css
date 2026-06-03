@@ -169,3 +169,22 @@ table tr.w-auto td {
 .mark_green {
     color: var(--v_note_green);
 }
+
+/*md files*/
+.md_code_line {
+    background: var(--v_lightGrey);
+    border-radius: 5px;
+    color: var(--v_note_blue);
+    font-style: italic;
+    font-weight: bold;
+    padding-right: 8px;
+    padding-left: 5px;
+}
+
+.md_quote_block {
+    background: var(--v_lightGrey);
+    border-radius: 5px;
+    border-left: 5px solid var(--v_lightBlue);
+    padding: 5px;
+    padding-left: 10px;
+}

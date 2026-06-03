@@ -1,7 +1,7 @@
 //vanilla JS framework based on JQuery
 //vQuery constructor
 _vQuery = function (pSelector) {
-	this.vQuery = '1.3.1';
+	this.vQuery = '1.4.2';
 	this.selector = pSelector;
 
 	let vNodes = document.querySelectorAll(pSelector);
@@ -289,6 +289,204 @@ _vQuery.prototype.searchValue = function (pValue = null) {
 		}
 	});
 	return vFounded;
+}
+
+//vQuery functions for MD parsing
+_vQuery.prototype.cleanMDBreakLines = function () {
+    //remove previous br in case we parse it
+    if ($v('#note').nodes[0].lastElementChild  != null && $v('#note').nodes[0].lastElementChild.tagName == 'BR')
+        $v('#note').nodes[0].lastElementChild.remove();
+}
+
+_vQuery.prototype.checkMDBlockParent = function (pMD, pParentTag, pSelector) {
+    if (!this.regexValidation(pParentTag + '#' + $v(pSelector).attr('id'), false, pMD.vTagToOpen)) {
+        pMD.vOpenTags.push(pMD.vTagToOpen);
+    } else {
+        pMD.vTagToAppend = pMD.vTagToOpen;
+        pMD.vTagToOpen = null;
+    }
+}
+
+_vQuery.prototype.parseMDLine = function (pLine) {
+    //if badge not full parse line
+    if (pLine.includes('![')) return pLine.replace(/!\[(.+?)\]\((.+?)\)/gm, '<img src="$2" alt="$1 badge">');
+    
+    //full parsed line
+    return pLine
+        //bold
+        .replace(/\*\*(.+?)\*\*/gm, '<b>$1</b>')
+        //italic
+        .replace(/\*(.+?)\*/gm, '<i>$1</i>')
+        //link
+        .replace(/\[(.+?)\]\((.+?)\)/gm, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+        //code line
+        .replace(/`(.+?)`/gm, '<span class="md_code_line">$1</span>');
+}
+
+_vQuery.prototype.parseMDToHTML = function (pMD) {
+    pMD.parse = new Object();
+    pMD.parse.vOpenTags = [];
+    var vOpenTagIdx = 0;
+    
+    //clean render div
+    $v('#note').innerHTML('');
+
+    //parse MD line by line
+    pMD.content.split('\r\n').forEach(pLine => {
+        var vlineTag = null;
+        pMD.parse.vTagToOpen = null;
+        pMD.parse.vTagToAppend = null;
+        var vClosedTag = null;
+        var vSelector = null;
+        var vNestedParent = '';
+        
+        switch (true) {
+            case pLine.startsWith('###'): //h3 block
+                this.cleanMDBreakLines();
+                vlineTag = 'h4';
+                pLine = pLine.slice(4);
+                break;
+            case pLine.startsWith('##'): //h2 block
+                this.cleanMDBreakLines();
+                vlineTag = 'h3';
+                pLine = pLine.slice(3);
+                break;
+            case pLine.startsWith('#'): //h1 block
+                this.cleanMDBreakLines();
+                vlineTag = 'h2';
+                pLine = pLine.slice(2);
+                break;
+            case pLine.startsWith('- '): //li element
+                //if list tag isn't open, open it
+                pMD.parse.vTagToOpen = 'ul#' + pMD.file + '_' + vOpenTagIdx + '_list';
+                vSelector = '#note ul:last-child:is([id^="' + pMD.file + '_' + vOpenTagIdx + '"]):not([id$="_nested"])';
+                this.checkMDBlockParent(pMD.parse, 'ul', vSelector);
+
+                //parse list item
+                vlineTag = 'li';
+                pLine = pLine.slice(2);
+                break;
+            case pLine.startsWith('  - '): //nested li element
+                //if list tag isn't open, open it
+                vNestedParent = ' li#' + $v('#note #' + pMD.file + '_' + vOpenTagIdx + '_list li'
+                    + ':last-child:not([id*="_nested"])').attr('id');
+                pMD.parse.vTagToOpen = 'ul' + vNestedParent.slice(3) + '_nested';
+                vSelector = '#note li ul:last-child:is([id^="' + pMD.file + '_' + vOpenTagIdx + '"][id$="_nested"])';
+                this.checkMDBlockParent(pMD.parse, 'ul', vSelector);
+
+                //parse list item
+                vlineTag = 'li';
+                pLine = pLine.slice(4);
+                break;
+            case pLine.startsWith('!['): //badge element
+                //if list tag isn't open, open it
+                pMD.parse.vTagToOpen = 'div#' + pMD.file + '_' + vOpenTagIdx + '_badge';
+                vSelector = '#note div:last-child:is([id^="' + pMD.file + '_' + vOpenTagIdx + '"][id$="_badge"]';
+                this.checkMDBlockParent(pMD.parse, 'div', vSelector);
+
+                //parse list item
+                vlineTag = 'span';
+                pLine = pLine;
+                break;
+            case pLine.startsWith('> '): //quote element
+                //if list tag isn't open, open it
+                pMD.parse.vTagToOpen = 'div#' + pMD.file + '_' + vOpenTagIdx + '_quote';
+                vSelector = '#note div:last-child:is([id^="' + pMD.file + '_' + vOpenTagIdx + '"][id$="_quote"]';
+                this.checkMDBlockParent(pMD.parse, 'div', vSelector);
+
+                //parse list item
+                vlineTag = 'div';
+                pLine = pLine.slice(2);
+
+                //if blank break line jump next item
+                if (pLine.length == 0) return;
+
+                break;
+            default: //simple line
+                //check if it's line break to close open blocks
+                if (pLine.length == 0) {
+                    //check if need to close tags
+                    if (pMD.parse.vOpenTags.length != 0) {
+                        vClosedTag = pMD.parse.vOpenTags.pop();
+                        if (this.regexValidation('ul#(.+?)_nested', false, vClosedTag)) {
+                            //close ul parent
+                            pMD.parse.vOpenTags.pop();
+                            vNestedParent = '';
+                        }
+                        vOpenTagIdx++;
+                    }
+                    vlineTag = 'br';
+                } else {
+                    vlineTag = 'div';
+                }
+                break;
+        }
+
+        //create tag to append
+        var vLineElement = this.createElement({
+            label: vlineTag,
+            attrs: (pLine.startsWith('<!--')) ? [{attr: 'data-md', value: 'comment'}] : [],
+            innerHTML: this.parseMDLine(pLine)
+        });
+        
+        //append new tag or append it to last open block
+        if (pMD.parse.vTagToOpen != null || pMD.parse.vTagToAppend != null) {
+            if (pMD.parse.vTagToOpen != null) {
+                var vOpenElement = this.createElement({
+                    label: pMD.parse.vTagToOpen.split('#')[0],
+                    id: pMD.parse.vTagToOpen.split('#')[1],
+                    classes: (pMD.parse.vTagToOpen.endsWith('_quote')) ? ['md_quote_block'] : []
+                });
+                $v('#note' + vNestedParent).appendChilds(vOpenElement);
+                pMD.parse.vTagToAppend = pMD.parse.vTagToOpen;
+            }
+            vLineElement.id = pMD.parse.vTagToAppend.split('#')[1] + '_' + vlineTag + '_' + $v('#note ' + pMD.parse.vTagToAppend + ' ' + vlineTag).length;
+            
+            $v('#note ' + pMD.parse.vTagToAppend).appendChilds(vLineElement);
+        } else {
+            $v('#note').appendChilds(vLineElement);
+        }
+    });
+
+    //clean last node if line break
+    this.cleanMDBreakLines();
+}
+
+_vQuery.prototype.processMD = function(pMD) {
+    this.ajax({
+        method: 'GET',
+		url: './' + pMD + '.md'
+    }).then((pResponse) => {
+        if(pResponse != undefined && pResponse != '') {
+            this.parseMDToHTML({
+                file: pMD,
+                content: pResponse
+            });
+        } else {
+            console.log('[EMPTY MD] "./' + pMD + '.md" can\'t be processed');
+        }
+    }).catch((pResponse) => {
+		console.log(pResponse.message);
+	});
+}
+
+_vQuery.prototype.getProjectBuildVersion = function() {
+	    this.ajax({
+        method: 'GET',
+		url: './changelog.md'
+    }).then((pResponse) => {
+        if(pResponse != undefined && pResponse != '') {
+			var vMDContentFirstLine = pResponse.split('\n')[0];
+			var vVersion = vMDContentFirstLine.split(' ')[1];
+			var vBuild = this.parseMDLine(vMDContentFirstLine.split(' ')[2]);//.split('/')[4].split('-')[1]
+			//display version & build number
+    		$v('#version').attr('data-version', vVersion).attr('data-build', vBuild).innerHTML(vVersion + vBuild);
+        } else {
+            console.log('[EMPTY MD] "./' + pMD + '.md" can\'t be processed');
+        }
+    }).catch((pResponse) => {
+		console.log(pResponse.message);
+	});
 }
 
 //vQuery global object initiator

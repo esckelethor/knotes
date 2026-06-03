@@ -1,5 +1,3 @@
-//constans
-const VERSION = changelog[0].version;
 //global vars
 gCurrentSpotifyPlaylist = null;
 gSpotifyIsPaused = true;
@@ -58,133 +56,10 @@ window.onSpotifyIframeApiReady = (IFrameAPI) => {
     IFrameAPI.createController(vElement, vOptions, callback);
 };
 
-changelogLoader = function () {
-    //set event show changelog
-    $v('#version').addEvent('click', (pEvent) => {
-        //prevent open changelog if full changelog visible
-        if ($v('#note #changelogContents').length == 0) {
-            checkVisibility('#changelog');
-        }
-    });
-
-    //display version
-    $v('#version').attr('data-version', VERSION).innerHTML(VERSION);
-
-    //create changelog tree
-    changelog.forEach((pVersion, pIndex) => {
-        var vVersionNode = $v().createElement({
-            label: 'div'
-        });
-
-        var vVersionNumberNode = $v().createElement({
-            label: 'h4',
-            classes: ['version'],
-            attrs: [
-                {attr: 'data-version', value: pVersion.version}
-            ],
-            innerHTML: pVersion.version
-        });
-
-        if (pIndex == 0) pVersion.tags.push('new');
-        pVersion.tags.forEach(pTag => {
-            var vTagNode = $v().createElement({
-                label: 'code',
-                classes: [(pTag == 'content') ? 'texts' : pTag],
-                innerHTML: pTag
-            });
-
-            vVersionNumberNode.appendChild(vTagNode);
-        });
-        
-        vVersionNode.appendChild(vVersionNumberNode);
-
-        var vVersionChangesNode = $v().createElement({
-            label: 'ul',
-            classes: ['changes']
-        });
-
-        pVersion.changes.forEach(pChange => {
-            var vVersionChangeItem = $v().createElement({
-                label: 'li',
-                innerHTML: pChange
-            });
-
-            vVersionChangesNode.appendChild(vVersionChangeItem);
-        });
-        
-        vVersionNode.appendChild(vVersionChangesNode);
-
-        $v('#changelogContents #changelog-' + ((pIndex == 0) ? 'currentVersion' : 'oldVersions')).appendChilds(vVersionNode);
-
-        //add event full-changelog
-        $v('#changelog #full-changelog').addEvent('click', (pEvent) => {
-            $v('.aside').css('display', 'none');
-            $v('#changelog').css('visibility', 'hidden');
-            
-            var vTagLogo = $v().createElement({
-                label: 'img',
-                attrs: [{attr: 'src', value: './assets/img/basic/logo.png'}]
-            });
-
-            var vTagImgContainer = $v().createElement({
-                label: 'div',
-                classes: ['imgContainer'],
-            });
-            vTagImgContainer.appendChild(vTagLogo);
-
-            var vUpdatedChangelog = $v('#changelog').innerHTML();
-            $v('#note').innerHTML(vUpdatedChangelog);
-            $v('#note #full-changelog').css('display', 'none');
-            $v('#note #changelog-oldVersions').css('display', 'initial');
-            $v('#note').css('visibility', 'visible');
-
-            $v('.aside').innerHTML('');
-            $v('.aside').appendChilds(vTagImgContainer);
-            $v('.aside').css('visibility', 'visible');
-
-            $v('#changelog').nodes[0].scrollTop = 0;
-            $v('#note').nodes[0].scrollTop = 0;
-
-            //prevent locked menu
-            gCurrentMenu = null;
-            $v('.header .selected').removeClass('selected');
-        });
-    });
-
-    //create known issues tree
-    var vKnownIssuesNode = $v().createElement({
-        label: 'ul',
-        classes: ['issues']
-    });
-
-    /* //PENDIENTE CAMBIO
-    knownIssues.forEach(issue => {
-        var vIssueNode = $v().createElement({
-            label: 'li',
-            innerHTML: issue.detail
-        });
-        
-        var vIssueWorkaroundNode = $v().createElement({
-            label: 'div',
-            classes: ['issueWorkaround'],
-            innerHTML: ' ' + issue.workaround
-        });
-
-        var vWorkaroundTitleNode = $v().createElement({
-            label: 'u',
-            innerHTML: 'Workaround:'
-        });
-
-        issueWorkaroundNode.prepend(vWorkaroundTitleNode);
-        issueNode.appendChild(vIssueWorkaroundNode);
-        knownIssuesNode.appendChild(vIssueNode);
-    });
-    */
-    
-    $v('#changelog #knownIssuesContent').appendChilds(vKnownIssuesNode);
-    //TODO: remove after upgrade changelog module
-    $v('#changelog #changelog-knowIssues').css('display', 'none');
-}
+$v('#version').addEvent('click', (pEvent) => {
+    loadLegalMenu();
+    $v('.aside #legal-changelog').triggerEvent('click');
+});
 
 $v('#lang').addEvent('click', (pEvent) => {
     checkVisibility('#lang-selector');
@@ -202,7 +77,7 @@ $v('.lang-item').addEvent('click', (pEvent) => {
 
 window.onload = function () {
     loadMenu();
-    changelogLoader();
+    $v().getProjectBuildVersion();
 
     $v('.logo2').addClass('rotate');
 
