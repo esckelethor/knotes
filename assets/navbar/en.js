@@ -6,25 +6,28 @@ gMenu.en = {
     ],
     basico: {
         pronombres: [
-            {id: 'pronombres_i', title: 'Pronombres I'}, //pronombres personales + posesivos
-            {id: 'pronombres_ii', title: 'Pronombres II'} //demostrativos + pronombres reflexivos
+            {id: 'pronombres_i', title: 'Pronombres I'},
+            {id: 'pronombres_ii', title: 'Pronombres II'}
         ],
         articulos: [], //determinados + indeterminados        
         preposiciones: [
-            {id: 'preposiciones_i', title: 'Preposiciones I'}, //preposiciones + de lugar
-            {id: 'preposiciones_ii', title: 'Preposiciones II'} //de tiempo + de movimiento
+            {id: 'preposiciones_i', title: 'Preposiciones I'},
+            {id: 'preposiciones_ii', title: 'Preposiciones II'}
         ],
         substantivos: [
-            {id: 'substantivos_i', title: 'Substantivos I'}, //substantivos + substantivos propios
-            {id: 'substantivos_ii', title: 'Substantivos II'} //contables e incontables + habe + cuantificadores
+            {id: 'substantivos_i', title: 'Substantivos I'},
+            {id: 'substantivos_ii', title: 'Substantivos II'}
         ],
         adjetivos: [],
         verbos: [
-            {id: 'verbos_i', title: 'Verbos I'}, //verbos + ser/estar + formas cortas
-            {id: 'verbos_ii', title: 'Verbos II'} //tener + modales
+            {id: 'verbos_i', title: 'Verbos I'},
+            {id: 'verbos_ii', title: 'Verbos II'}
         ],
-        estructura_frases: []    //construir frases + frases imperativas         
-        //8
+        estructura_frases: [],
+        verbo_en_presente: [],
+        numeros: [],
+        fecha_y_horas: []        
+        //10
     }/*,
     medio: {
         base: [
