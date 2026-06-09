@@ -11,6 +11,22 @@ gMenu.legal = {
     tos: {id: 'legal-tos', value: 'Código de conducta & Terminos de uso', mdFile: 'CODE_OF_CONDUCT'}
 }
 
+//define spotify lists
+gMenu.spotify = {
+    kr: [
+        {id: 'spotify_playlist_nolja', spotifyID: 'spotify:playlist:37i9dQZF1DXdR77H5Z8MIM', name: '놀자!'},
+        {id: 'spotify_playlist_summer-hits', spotifyID: 'spotify:playlist:37i9dQZF1DX1lU51fgoMhF', name: '썸머 히트'},
+        {id: 'spotify_playlist_kpop-on', spotifyID: 'spotify:playlist:37i9dQZF1DX9tPFwDMOaN1', name: 'K-POP 온'},
+        {id: 'spotify_playlist_hallyu-mix', spotifyID: 'spotify:playlist:37i9dQZF1EIhnRNqAzxrQB', name: '한류 믹스'}
+    ],
+    en: [
+        {id: 'spotify_playlist_pop-remix', spotifyID: 'spotify:playlist:37i9dQZF1DXcZDD7cfEKhW', name: 'POP Mix'},
+        {id: 'spotify_playlist_mood-booster', spotifyID: 'spotify:playlist:37i9dQZF1DX3rxVfibe1L0', name: 'MoodBoost'},
+        {id: 'spotify_playlist_happy-favorites', spotifyID: 'spotify:playlist:37i9dQZF1DWZKuerrwoAGz', name: 'Happy Favs'},
+        {id: 'spotify_playlist_throwback-party', spotifyID: 'spotify:playlist:37i9dQZF1DX7F6T2n2fegs', name: 'Throwback'}
+    ]
+}
+
 //menu functionality
 clearModals = function() {
     $v('#lang-selector').css('visibility', 'hidden');
@@ -210,3 +226,16 @@ $v('.logo').addEvent('click', () => {
     clearContent();
     clearModals();
 });
+
+//spotify functionality
+loadSpotifyLists = function () {
+    gMenu.spotify[gLang].forEach((pList, pIdx) => {
+        $v('#spotify .container div:nth-child(' + ++pIdx + ')')
+            .attr('id', pList.id)
+            .attr('data-spotify-id', pList.spotifyID)
+            .innerHTML(pList.name);
+    });
+    //select main playlist
+    $v('#spotify .container .item.selected').removeClass('selected');
+    $v('#spotify .container div:first-child').addClass('selected');
+}

@@ -13,7 +13,7 @@ checkVisibility = function(pSelector) {
     $v(pSelector).css('visibility', (vVisibility == 'hidden') ? 'visible' : 'hidden');
 }
 
-$v('.logo2').addEvent('click', () => {
+$v('.sam_taeguk_dj').addEvent('click', () => {
     //auto play on first visibility change
     if (gCurrentSpotifyPlaylist == null) {
         gSpotifyEmbedController.play();
@@ -23,15 +23,36 @@ $v('.logo2').addEvent('click', () => {
     checkVisibility('#spotify');
 });
 
+$v('#version').addEvent('click', (pEvent) => {
+    loadLegalMenu();
+    $v('.aside #legal-changelog').triggerEvent('click');
+});
+
+$v('#lang').addEvent('click', (pEvent) => {
+    checkVisibility('#lang-selector');
+});
+
+$v('.lang-item').addEvent('click', (pEvent) => {
+    gLang = pEvent.currentTarget.id.split('-')[1];
+    var vSrcLang = $v('#' + pEvent.currentTarget.id + '>img').attr('src');
+    var vTxtLang = $v('#' + pEvent.currentTarget.id + '>div').innerHTML();
+    $v('#lang>img').attr('src', vSrcLang);
+    $v('#lang>div').innerHTML(vTxtLang);
+    loadMenu();
+    loadSpotifyLists();
+    gSpotifyEmbedController.loadUri(gMenu.spotify[gLang][0].spotifyID);
+    $v('#lang-selector').css('visibility', 'hidden');
+});
+
 window.onSpotifyIframeApiReady = (IFrameAPI) => {
-    const vElement = document.getElementById('playlist');
-    const vOptions = {
+    var vElement = document.getElementById('playlist');
+    var vOptions = {
         width: '100%',
         height: '160',
-        uri: 'spotify:playlist:37i9dQZF1DXdR77H5Z8MIM',
+        uri: gMenu.spotify[gLang][0].spotifyID,
         theme: 'dark'
     };
-    const callback = (EmbedController) => {
+    var vCallback = (EmbedController) => {
         gSpotifyEmbedController = EmbedController;
 
         $v('#spotify .container .item').addEvent('click', function (event) {
@@ -53,42 +74,25 @@ window.onSpotifyIframeApiReady = (IFrameAPI) => {
             gSpotifyIsPaused = event.data.isPaused;
         });
     };
-    IFrameAPI.createController(vElement, vOptions, callback);
+
+    IFrameAPI.createController(vElement, vOptions, vCallback);
 };
-
-$v('#version').addEvent('click', (pEvent) => {
-    loadLegalMenu();
-    $v('.aside #legal-changelog').triggerEvent('click');
-});
-
-$v('#lang').addEvent('click', (pEvent) => {
-    checkVisibility('#lang-selector');
-});
-
-$v('.lang-item').addEvent('click', (pEvent) => {
-    gLang = pEvent.currentTarget.id.split('-')[1];
-    var vSrcLang = $v('#' + pEvent.currentTarget.id + '>img').attr('src');
-    var vTxtLang = $v('#' + pEvent.currentTarget.id + '>div').innerHTML();
-    $v('#lang>img').attr('src', vSrcLang);
-    $v('#lang>div').innerHTML(vTxtLang);
-    loadMenu();
-    $v('#lang-selector').css('visibility', 'hidden');
-});
 
 window.onload = function () {
     loadMenu();
     $v().getProjectBuildVersion();
+    loadSpotifyLists();
 
-    $v('.logo2').addClass('rotate');
+    $v('.sam_taeguk_dj').addClass('rotate');
 
     window.setInterval(function () {
-        $v('.logo2').removeClass('rotate');
+        $v('.sam_taeguk_dj').removeClass('rotate');
         
         window.setInterval(function (){
             if (!gSpotifyIsPaused) {
-                $v('.logo2').addClass('rotateInfinite');
+                $v('.sam_taeguk_dj').addClass('rotateInfinite');
             } else {
-                $v('.logo2').removeClass('rotateInfinite');
+                $v('.sam_taeguk_dj').removeClass('rotateInfinite');
             }
         }, 1000);
     }, 2000);

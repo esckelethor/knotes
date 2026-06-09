@@ -59,7 +59,7 @@ a:link:active, a:visited:active {
     padding: 5px 0;
 }
 
-.header>.logo, .header>.logo2 {
+.header>.logo, .header>.sam_taeguk_dj {
     cursor: pointer;
     float: left;
     height: 50px;
@@ -67,15 +67,15 @@ a:link:active, a:visited:active {
     width: 50px;
 }
 
-.header>.logo2 {
+.header>.sam_taeguk_dj {
     float: right;
 }
 
-.header>.logo2:hover, .header>.logo2.rotate {
+.header>.sam_taeguk_dj:hover, .header>.sam_taeguk_dj.rotate {
     animation: rotation 2s linear;
 }
 
-.header>.logo2.rotateInfinite {
+.header>.sam_taeguk_dj.rotateInfinite {
     animation: rotation 2s linear infinite;
 }
 
@@ -84,7 +84,6 @@ a:link:active, a:visited:active {
 }
 
 .header>ul {
-    cursor: pointer;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -170,6 +169,18 @@ a:link:active, a:visited:active {
     padding: 0px 10px 10px;
 }
 
+.content .watermark {
+    position: absolute;
+    aspect-ratio: 1/1;
+    bottom: 75px;
+    height: auto;
+    opacity: 0.25;
+    pointer-events: none;
+    right: 50px;
+    user-select: none;
+    width: clamp(60px, 15%, 175px);
+}
+
 #spotify {
     background: linear-gradient(145deg, var(--v_lightBlue) 0 33%, var(--v_lightRed) 0 66%, var(--v_yellow) 33% 100%);
     border-radius: 15px;
@@ -193,6 +204,7 @@ a:link:active, a:visited:active {
 #spotify>.container>.item {
     background: var(--v_grey);
     border-radius: 15px;
+    cursor: pointer;
     margin-bottom: 3px;
     padding: 5px;
     text-align-last: center;

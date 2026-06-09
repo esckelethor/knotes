@@ -1,7 +1,7 @@
 //vanilla JS framework based on JQuery
 //vQuery constructor
 _vQuery = function (pSelector) {
-	this.vQuery = '1.4.4';
+	this.vQuery = '1.4.5';
 	this.selector = pSelector;
 
 	let vNodes = document.querySelectorAll(pSelector);
@@ -18,8 +18,21 @@ _vQuery = function (pSelector) {
 _vQuery.prototype.DATA_MODULE_NONE = 'none';
 _vQuery.prototype.LINE_BREAK_UNIX = '\n';
 _vQuery.prototype.LINE_BREAK_MS = '\r\n';
+_vQuery.prototype.MAIN_NOTE_NODE = '#note';
+_vQuery.prototype.VERSION_NODE = '#version';
 
 //vQuery utils, can be used with a blank selector
+_vQuery.prototype.addWatermark = function () {
+	var vWatermarkElement = this.createElement({
+		label: 'img',
+		attrs: [{attr: 'src', value: './assets/img/basic/logo.png'}, {attr: 'alt', value: 'knotes logo'},
+			{attr: 'data-watermark', value: 'knotes'}],
+		classes: ['watermark']
+	});
+
+	$v(this.MAIN_NOTE_NODE).appendChilds(vWatermarkElement);
+}
+
 _vQuery.prototype.getValueOrDefault = function (pValue, pDefaultValue) {
 	return (pValue != undefined && pValue != null) ? pValue : pDefaultValue;
 }
@@ -71,6 +84,7 @@ _vQuery.prototype.loadContent = function (pAsset, pModules = this.DATA_MODULE_NO
 		url: './assets/content/' + pAsset + '.html'
 	}).then((pResponse) => {
 		this.innerHTML(pResponse);
+		this.addWatermark();
 
 		if (pModules != undefined && typeof pModules === 'string') {
 			if (pModules != this.DATA_MODULE_NONE) {
@@ -306,8 +320,8 @@ _vQuery.prototype.searchValue = function (pValue = null) {
 //vQuery functions for MD parsing
 _vQuery.prototype.cleanMDBreakLines = function () {
     //remove previous br in case we parse it
-    if ($v('#note').nodes[0].lastElementChild  != null && $v('#note').nodes[0].lastElementChild.tagName == 'BR')
-        $v('#note').nodes[0].lastElementChild.remove();
+    if ($v(this.MAIN_NOTE_NODE).nodes[0].lastElementChild  != null && $v(this.MAIN_NOTE_NODE).nodes[0].lastElementChild.tagName == 'BR')
+        $v(this.MAIN_NOTE_NODE).nodes[0].lastElementChild.remove();
 }
 
 _vQuery.prototype.checkMDBlockParent = function (pMD, pParentTag, pSelector) {
@@ -341,7 +355,7 @@ _vQuery.prototype.parseMDToHTML = function (pMD) {
     var vOpenTagIdx = 0;
     
     //clean render div
-    $v('#note').innerHTML('');
+    $v(this.MAIN_NOTE_NODE).innerHTML('');
 
     //parse MD line by line
     pMD.content.split(this.checkLineBreak(pMD.content)).forEach(pLine => {
@@ -380,7 +394,7 @@ _vQuery.prototype.parseMDToHTML = function (pMD) {
                 break;
             case pLine.startsWith('  - '): //nested li element
                 //if list tag isn't open, open it
-                vNestedParent = ' li#' + $v('#note #' + pMD.file + '_' + vOpenTagIdx + '_list li'
+                vNestedParent = ' li#' + $v(this.MAIN_NOTE_NODE + ' #' + pMD.file + '_' + vOpenTagIdx + '_list li'
                     + ':last-child:not([id*="_nested"])').attr('id');
                 pMD.parse.vTagToOpen = 'ul' + vNestedParent.slice(3) + '_nested';
                 vSelector = '#note li ul:last-child:is([id^="' + pMD.file + '_' + vOpenTagIdx + '"][id$="_nested"])';
@@ -449,15 +463,15 @@ _vQuery.prototype.parseMDToHTML = function (pMD) {
                     id: pMD.parse.vTagToOpen.split('#')[1],
                     classes: (pMD.parse.vTagToOpen.endsWith('_quote')) ? ['md_quote_block'] : []
                 });
-                $v('#note' + vNestedParent).appendChilds(vOpenElement);
+                $v(this.MAIN_NOTE_NODE + ' ' + vNestedParent).appendChilds(vOpenElement);
                 pMD.parse.vTagToAppend = pMD.parse.vTagToOpen;
             }
             vLineElement.id = pMD.parse.vTagToAppend.split('#')[1] + '_' + vlineTag + '_' +
-				$v('#note ' + pMD.parse.vTagToAppend + ' ' + vlineTag).length;
+				$v(this.MAIN_NOTE_NODE + ' ' + pMD.parse.vTagToAppend + ' ' + vlineTag).length;
             
-            $v('#note ' + pMD.parse.vTagToAppend).appendChilds(vLineElement);
+            $v(this.MAIN_NOTE_NODE + ' ' + pMD.parse.vTagToAppend).appendChilds(vLineElement);
         } else {
-            $v('#note').appendChilds(vLineElement);
+            $v(this.MAIN_NOTE_NODE).appendChilds(vLineElement);
         }
     });
 
@@ -475,6 +489,7 @@ _vQuery.prototype.processMD = function(pMD) {
                 file: pMD,
                 content: pResponse
             });
+			this.addWatermark();
         } else {
             console.log('[EMPTY MD] "./' + pMD + '.md" can\'t be processed');
         }
@@ -492,7 +507,7 @@ _vQuery.prototype.getProjectBuildVersion = function() {
 			var vVersion = pResponse.split(' ')[1];
 			var vBuild = this.parseMDLine(pResponse.split(' ')[2]);
 			//display version & build number
-    		$v('#version').attr('data-version', vVersion).attr('data-build', vBuild).innerHTML(vVersion + vBuild);
+    		$v(this.VERSION_NODE).attr('data-version', vVersion).attr('data-build', vBuild).innerHTML(vVersion + vBuild);
         } else {
             console.log('[EMPTY MD] "./' + pMD + '.md" can\'t be processed');
         }
