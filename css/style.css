@@ -71,11 +71,7 @@ a:link:active, a:visited:active {
     float: right;
 }
 
-.header>.sam_taeguk_dj:hover, .header>.sam_taeguk_dj.rotate {
-    animation: rotation 2s linear;
-}
-
-.header>.sam_taeguk_dj.rotateInfinite {
+.header>.sam_taeguk_dj:hover {
     animation: rotation 2s linear infinite;
 }
 

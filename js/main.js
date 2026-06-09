@@ -82,18 +82,4 @@ window.onload = function () {
     loadMenu();
     $v().getProjectBuildVersion();
     loadSpotifyLists();
-
-    $v('.sam_taeguk_dj').addClass('rotate');
-
-    window.setInterval(function () {
-        $v('.sam_taeguk_dj').removeClass('rotate');
-        
-        window.setInterval(function (){
-            if (!gSpotifyIsPaused) {
-                $v('.sam_taeguk_dj').addClass('rotateInfinite');
-            } else {
-                $v('.sam_taeguk_dj').removeClass('rotateInfinite');
-            }
-        }, 1000);
-    }, 2000);
 }();
