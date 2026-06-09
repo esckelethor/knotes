@@ -4,7 +4,7 @@
 - `VQUERY` Finalización estandarización y refactorización, actualización carga modulos controller, agregadas nuevas funcionalidades útiles
 - `VQUERY` Implementación modulo parser de markdown (#17)
 - `EN` Añadido contenido basico: pronombres, artículos, preposiciones, sustantivos, adjetivos, verbos, estructura de frases, verbos en presente y números (#11)
-- `SPOTIFY` Implementación de listas dinámicas según idioma de estudio
+- `SPOTIFY` Implementación de listas dinámicas según idioma de estudio (#9)
 
 # 3.1 ![MINOR_FEATURE](https://img.shields.io/badge/MINOR%20FEATURE-34573C) ![BUGFIX](https://img.shields.io/badge/BUGFIX-522C30) ![VQUERY](https://img.shields.io/badge/VQUERY--1.2.0-5A215A)
 - Estandarización modales y variables
