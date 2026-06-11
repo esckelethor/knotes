@@ -1,7 +1,7 @@
-# 5.0 ![BUILD](https://img.shields.io/badge/build-433CFF8-black?labelColor=666&color=CE2A37) ![MINOR_FEATURE](https://img.shields.io/badge/MINOR%20FEATURE-34573C)
+# 5.0 ![BUILD](https://img.shields.io/badge/build-33EF4F4-black?labelColor=666&color=CE2A37) ![MINOR_FEATURE](https://img.shields.io/badge/MINOR%20FEATURE-34573C)
 - Actualización de carga a modo dinámico para el menú de lenguaje (#16)
 - Actualización y refactorización de reglas de estilos CSS
-- `[v3.1+] KNOWN ISSUE` El icono del submenu no se actualiza en el toggle collapse
+- `FIXES` El icono del submenu no se actualiza en el toggle collapse
 
 # 4.0 ![MAJOR_FEATURE](https://img.shields.io/badge/MAJOR%20FEATURE-4B253E) ![CONTENT](https://img.shields.io/badge/CONTENT-222450) ![VQUERY](https://img.shields.io/badge/VQUERY--1.4.5-5A215A)
 - Actualización, estandarización y cambio funcionalidad del módulo anexos (#5)
@@ -10,6 +10,7 @@
 - `VQUERY` Implementación modulo parser de markdown (#17)
 - `EN` Añadido contenido basico: pronombres, artículos, preposiciones, sustantivos, adjetivos, verbos, estructura de frases, verbos en presente y números (#11)
 - `SPOTIFY` Implementación de listas dinámicas según idioma de estudio (#9)
+- `[v3.1+] KNOWN ISSUE` El icono del submenu no se actualiza en el toggle collapse
 
 # 3.1 ![MINOR_FEATURE](https://img.shields.io/badge/MINOR%20FEATURE-34573C) ![BUGFIX](https://img.shields.io/badge/BUGFIX-522C30) ![VQUERY](https://img.shields.io/badge/VQUERY--1.2.0-5A215A)
 - Estandarización modales y variables
