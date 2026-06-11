@@ -32,7 +32,7 @@ loadLangMenu = function () {
         //create lang img
         var vLangImgElement = $v().createElement({
             label: 'img',
-            attrs: [{attr: 'src', value: '../assets/img/flags/' + pKey + '.png'}, {attr: 'alt', value: 'lang-' + pKey}]
+            attrs: [{attr: 'src', value: './assets/img/flags/' + pKey + '.png'}, {attr: 'alt', value: 'lang-' + pKey}]
         });
         
         //create lang title
