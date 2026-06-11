@@ -122,7 +122,7 @@ setAsideEvents = function () {
             if ($v('.navbar.selected').hasClass('collapsable')) {
                 $v('#' + pEvent.currentTarget.id).attr('data-collapsed', 'false');
                 vIcoCollapse = isCollapsed($v('#' + pEvent.currentTarget.id).attr('data-collapsed'));
-                $v('#' + pEvent.currentTarget.id + ' .vIcoCollapsed').attr('src', vIcoCollapse);
+                $v('#' + pEvent.currentTarget.id + ' .icoCollapsed').attr('src', vIcoCollapse);
                 $v('#' + pEvent.currentTarget.id + ' .subnav').css('display', 'inherit');
             }
 
