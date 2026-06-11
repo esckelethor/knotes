@@ -28,6 +28,6 @@
 }
 
 .anexo, #back>span {
-    cursor: pointer;
     color: var(--v_green);
+    cursor: pointer;
 }

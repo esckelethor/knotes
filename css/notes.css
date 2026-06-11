@@ -14,28 +14,30 @@ h2, h3, h4 {
 }
 
 h2 {
-    color: var(--v_lightRed);
     border-color: var(--v_lightRed);
+    color: var(--v_lightRed);
 }
 
 h3 {
-    color: var(--v_cian);
     border-color: var(--v_cian);
+    color: var(--v_cian);
 }
 
 h4 {
-    color: var(--v_yellow);
     border-color: var(--v_yellow);
+    color: var(--v_yellow);
 }
 
 /* tablas */
 table {
     border: none;
     border-collapse: collapse;
+    border-radius: 15px;
+    overflow: hidden;
     width: 100%;
 }
 
-table img, h3 img{
+table img, h3 img {
     height: 15px;
     width: 15px;
 }
@@ -50,30 +52,12 @@ table th, table td.title {
     text-align: center;
 }
 
-table tr:last-child td:first-child{
-    border-bottom-left-radius: 15px;
-}
-
-table tr:first-child td:first-child, table tr:first-child th:first-child {
-    border-top-left-radius: 15px;
-}
-    
-table tr:last-child td:last-child {
-    border-bottom-right-radius: 15px;
-}
-
-table tr:first-child td:last-child, table tr:first-child th:last-child {
-    border-top-right-radius: 15px;
-}
-
 table tr:nth-child(even) {
     background: var(--v_darkRed-05);
 }
 
 table tr:nth-child(even) td.left {
     background: var(--v_darkRed);
-    font-weight: bold;
-    text-align: center;
 }
 
 table tr:nth-child(odd) {
@@ -82,8 +66,6 @@ table tr:nth-child(odd) {
 
 table tr:nth-child(odd) td.left {
     background: var(--v_darkBlue);
-    font-weight: bold;
-    text-align: center;
 }
 
 table tr td {
@@ -91,6 +73,8 @@ table tr td {
 }
 
 table td.left {
+    font-weight: bold;
+    text-align: center;
     width: 20%;
 }
 
@@ -99,11 +83,11 @@ table td.rigth {
 }
 
 table tr.w-auto td {
-    width: auto;
-    border: 1px var(--v_black) !important;
     text-align: center;
+    width: auto;
 }
 
+/* display modes */
 .to-rigth {
     float: right;
 }
@@ -126,12 +110,12 @@ table tr.w-auto td {
 
 /* columnas sin tabla */
 .divCols {
-  display: flex;
-  gap: 20px;
+    display: flex;
+    gap: 20px;
 }
 
 .col {
-  flex: 1;
+    flex: 1;
 }
 
 /* ejercicios, marcar texto como titulo, y cursor */
@@ -178,14 +162,14 @@ table tr.w-auto td {
     color: var(--v_note_blue);
     font-style: italic;
     font-weight: bold;
-    padding-right: 8px;
     padding-left: 5px;
+    padding-right: 8px;
 }
 
 .md_quote_block {
     background: var(--v_lightGrey);
-    border-radius: 5px;
     border-left: 5px solid var(--v_lightBlue);
+    border-radius: 5px;
     padding: 5px;
     padding-left: 10px;
 }
