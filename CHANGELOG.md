@@ -1,4 +1,4 @@
-# 5.0 ![BUILD](https://img.shields.io/badge/build-33EF4F4-black?labelColor=666&color=CE2A37) ![MINOR_FEATURE](https://img.shields.io/badge/MINOR%20FEATURE-34573C)
+# 5.0 ![BUILD](https://img.shields.io/badge/build-5D38382-black?labelColor=666&color=CE2A37) ![MINOR_FEATURE](https://img.shields.io/badge/MINOR%20FEATURE-34573C)
 - Actualización de carga a modo dinámico para el menú de lenguaje (#16)
 - Actualización y refactorización de reglas de estilos CSS
 - `FIXES` El icono del submenu no se actualiza en el toggle collapse
