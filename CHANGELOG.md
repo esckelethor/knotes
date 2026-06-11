@@ -1,4 +1,7 @@
-# 4.0 ![BUILD](https://img.shields.io/badge/build-50421BD-black?labelColor=666&color=CE2A37) ![MAJOR_FEATURE](https://img.shields.io/badge/MAJOR%20FEATURE-4B253E) ![CONTENT](https://img.shields.io/badge/CONTENT-222450) ![VQUERY](https://img.shields.io/badge/VQUERY--1.4.5-5A215A)
+# 5.0 ![BUILD](https://img.shields.io/badge/build-433CFF8-black?labelColor=666&color=CE2A37) ![MINOR_FEATURE](https://img.shields.io/badge/MINOR%20FEATURE-34573C)
+- `[v3.1+] KNOWN ISSUE` El icono del submenu no se actualiza en el toggle collapse
+
+# 4.0 ![MAJOR_FEATURE](https://img.shields.io/badge/MAJOR%20FEATURE-4B253E) ![CONTENT](https://img.shields.io/badge/CONTENT-222450) ![VQUERY](https://img.shields.io/badge/VQUERY--1.4.5-5A215A)
 - Actualización, estandarización y cambio funcionalidad del módulo anexos (#5)
 - Actualización, refactorización y estandarización a sistema markdown del modulo changelog (#14)
 - `VQUERY` Finalización estandarización y refactorización, actualización carga modulos controller, agregadas nuevas funcionalidades útiles
